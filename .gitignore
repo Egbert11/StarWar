@@ -1,0 +1,26 @@
+## Directory-based project format
+.idea/
+
+## File-based project format
+*.ipr
+*.iws
+*.iml
+
+## Mac OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+
+._*
+
+## SVN
+.svn/
+
+## Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+Desktop.ini
+
+## VIM
+*.swp
