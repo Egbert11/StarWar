@@ -1,0 +1,22 @@
+/* 复位样式 */
+html,form,input,select,textarea,div,p,ul,ol,dt,dd,dl,li,h1,h2,h3,h4,h5,h6,label,td{margin:0;padding:0;}
+html{}
+body{margin:0;padding:0;font-family:Arial,verdana,"宋体";font-size:14px;line-height:24px;cursor:default;}
+li{list-style:none;}
+textarea {overflow-y:auto;overflow-x:hidden;font-family:Arial,verdana,sans-serif,"宋体";}
+input,select,img{vertical-align:middle;font-size:14px;font-family:Arial,verdana,sans-serif,"宋体";}
+table,td,img{border:0;}
+a{color:#2050A0;text-decoration:underline;cursor:pointer;outline: none;}
+a:hover {text-decoration:underline;}
+
+table, th, td{border: 1px solid #aed0df; border-collapse: collapse;}
+.day_progress{position: relative; margin:0 auto; width: 590px;}
+#calendar{border-color: #77bee8; color:#77bee8; font-size:12px;}
+#calendar td{text-align:left; width: 84px; height: 50px; background: #ffffff; color: #77bee8; vertical-align: top;position: relative;}
+#head th{border: none; border-bottom: 1px solid #aed0df;}
+#tittle{font-size:20px; padding:4px 0px; color: #1c79c2;}
+#days th{border: none; font-weight:bold; text-align:center; width: 84px; height: 20px; line-height: 20px;}
+#today{color:#F00; font-weight:bold;}
+.day_detail{position: absolute; top: 0 ;left: 0; width: 200px; height:60px; background: #1c79c2; text-align: center; display: none;}
+.award{display: inline-block; position:absolute; width: 22px; height: 22px; right:1px; background: url(../image/sprite.png) 0 -92px no-repeat;}
+.award-bg{display: block; background: url(../image/sprite.png) -33px -85px no-repeat; width: 48px; height: 40px; position: absolute; left: 18px; top: 5px;}
