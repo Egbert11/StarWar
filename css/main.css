@@ -1,0 +1,137 @@
+body{
+	background:#000000;
+}
+.clear_float{
+	clear:both;
+}
+.main_container{
+	width:600px;
+	height:525px;		
+	margin:0 auto;
+}
+
+.banner{
+	width:600px;
+	height:150px;
+	background-color:#33FF00;
+	overflow:hidden;
+}
+
+.person_info{
+	float:left;
+    width:270px;
+	height:150px;
+}
+
+.person_info img{
+	display:block;
+	float:left;
+	width:100px;
+	height:125px;
+	margin-top:5px;
+	margin-left:3px;
+	border:1px solid #ffffff;
+}
+
+.pinfo_text_content{
+	margin-left:120px;
+	margin-top:2px;
+}
+
+.person_info .person_name{
+	font-weight:bold;
+	color:#ffffff;
+	font-size:14px;
+	line-height:25px;
+}
+
+.sub_info_title{
+	font-size:12px;
+	color:#ffffff;
+	line-height:20px;
+}
+
+.sub_info_content{
+	font-size:12px;
+	color:#ff9900;
+	line-height:20px;
+}
+
+.fo_btn{
+	width:100px;
+	height:40px;
+	background-color:#CC33FF;
+	cursor:pointer;
+}
+
+.star_rank{
+	padding-top:20px;
+	padding-left:10px;
+	width:110px;
+	height:150px;
+	border-left:1px solid #969696;
+	border-right:1px solid #969696;
+	float:left;
+}
+
+.star_journey{
+	width:180px;
+	height:150px;
+	float:left;
+	padding-top:20px;
+	padding-left:20px;
+}
+
+.star_journey .journey_date{
+	color:#969696;
+	font-size:12px;
+}
+
+.tabs{
+	width:590px;
+	margin-left:5px;
+	height:40px;
+}
+
+.tab_selected{
+	background-color:#ffffff;
+	color:#0033CC;
+	font-weight:bold;
+}
+
+.single_tab span{
+	line-height:40px;
+	margin:0 auto;
+	padding-left:40px
+}
+
+
+.single_tab{
+	cursor:pointer;
+	width:144px;
+	height:40px;
+	color:#336699;
+	font-weight:normal;
+	opacity:0.6;
+	margin-right:3px;
+	float:left;
+
+}
+
+.main_content{
+	margin-left:5px;
+	width:590px;
+	height:300px;
+	background-color:#123456;
+}
+
+.content{
+	display:none;
+	width:590px;
+	
+}
+
+.cactive{
+	display:block;
+}
+
