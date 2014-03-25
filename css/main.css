@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+.main {
+    width: 600px;
+    height: 350px;
+    margin: 0 auto;
+    border-color: #abc;
+    border-width: 1px;
+}
+
+.main .zhuboRank {
+    width:300px;
+    height: 350px;
+    border-color: #aaa;
+    border-width: 1px;
+}
