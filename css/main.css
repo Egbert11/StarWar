@@ -1,5 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
+img{
+	border:0;
+}
 .clear_float{
 	clear:both;
 }
@@ -22,7 +25,7 @@
 	height:100%;
 }
 
-img.avatar{
+.avatar{
 	display:block;
 	float:left;
 	width:100px;
@@ -76,15 +79,35 @@ img.avatar{
 	height:100%;
 	float:left;
 	padding-left:20px;
-	padding-top:15px;
+	padding-top:30px;
+	position :relative;
+}
+
+.star_rank .icon{
+	height:42px;
+	width:67px;
+	background:url(../image/sprite.png)no-repeat 0px 0px;
+	position:absolute;
+	top:0px;
+	left:0px;
 }
 
 .star_journey{
-	width:150px;
+	width:145px;
 	height:100%;
 	float:left;
-	padding-left:20px;
-	padding-top:15px;
+	padding-left:25px;
+	padding-top:30px;
+	position:relative;
+}
+
+.star_journey .icon{
+	width:67px;
+	height:42px;
+	background:url(../image/sprite.png)no-repeat -77px 0px;
+	position:absolute;
+	top:0px;
+	left:0px;
 }
 
 .star_journey .journey_date{
@@ -126,7 +149,7 @@ img.avatar{
 .main_content{
 	margin:0 5px;
 	width:590px;
-	height:300px;
+	height:338px;
     background-color: #ffffff;
 }
 
@@ -137,6 +160,183 @@ img.avatar{
 
 .cactive{
 	display:block;
+}
+
+#tab3 .sjheader{
+	width:100%;
+	height:35px;
+	border-bottom:1px solid gray;
+	position:relative;
+}
+
+#tab3 .sjhlbtn,.sjhrbtn{
+	color:#77bee8;
+	cursor:pointer;
+	font-size:12px;
+	position:absolute;
+}
+
+#tab3 .sjhlbtn{
+	top:15px;
+	text-align:right;
+	left:175px;
+	
+}
+
+#tab3 .sjhrbtn{
+	text-align:left;
+	top:15px;
+	right:175px;
+}
+
+#tab3 .sjheadertitle{
+	font-weight:bold;
+	color:#1c79c2;
+	padding:4px 0px;
+	font-size:20px;
+	position:absolute;
+	left:235px;
+	top:5px;
+}
+
+#tab3 .sjcontent{
+	height:260px;
+	width:100%;
+
+}
+
+#tab3 .sjmonth_rank{
+	height:75px;
+}
+
+#tab3 .sjrank_title{
+	width:133px;
+	height:32px;
+	background:url(../image/sprite.png) no-repeat 0px -284px;
+	line-height:32px;
+	display:inline-block;
+	padding-left:10px;
+	color:#ffffff;
+}
+
+#tab3 .sjmonth_rank .sjrank_title{	
+	margin-top:20px;
+}
+
+#tab3 .sjrank_content{
+	height:66px;
+	width:237px;
+	background:url("../image/sprite.png") no-repeat 0px -132px;
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:30px;
+}
+
+#tab3 .sjrank_icon{
+	background:url(../image/sprite.png) no-repeat -30px -55px; 
+	width:25px;
+	height:25px;
+	border:0px solid #ffffff;
+	margin-left:60px;
+	margin-top:20px;
+	display:inline-block;
+}
+
+#tab3 .sjrank_content .sub_info_title{
+	vertical-align:middle;
+	position:relative;
+	top:-10px;
+}
+
+#tab3 .rank_cells{
+	margin-left:20px;
+	width:540px;
+	height:191px;
+	background:url(../image/travel-bg.png) no-repeat;
+	position:relative;
+}
+
+#tab3 .week_cell{
+	width:170px;
+	height:90px;
+	display:inline-block;
+}
+
+#tab3 #week_cell1{
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+
+#tab3 #week_cell2{
+	position:absolute;
+	top:10px;
+	left:195px;
+}
+
+#tab3 #week_cell3{
+	position:absolute;
+	top:10px;
+	left:380px;
+}
+
+#tab3 #week_cell4{
+	position:absolute;
+	top:110px;
+	left:100px;
+}
+
+#tab3 #week_cell5{
+	position:absolute;
+	top:110px;
+	left:285px;
+}
+
+
+
+
+
+#tab3  .week_cell_date{
+	position:relative;
+	left:20px;
+	top:2px;
+	color:#ffffff;
+	font-weight:bold;
+}
+
+
+
+#tab3 .week_cell .week_icon{
+	top:13px;
+	position:relative;
+	left:15px;
+	width:25px;
+	height:25px;
+	display:inline-block;
+	background:url(../image/sprite.png) no-repeat -60px -54px;
+}
+
+.week_icon{
+	display:inline-block;
+	width:25px;
+	height:25px;
+	background:url(../image/sprite.png) no-repeat -60px -54px;
+}
+
+#tab3 .week_cell .sub_info_title{
+	margin-left:15px;
+	vertical-align:middle;
+	position:relative;
+	top:4px;
+	left:2px;
+}
+
+#tab3 .week_cell_empty .wupaiming{
+	position:relative;
+	top:20px;
+	left:55px;
+	font-size:12px;
+	color:#969696;
 }
 
 .main {
@@ -307,3 +507,4 @@ img.avatar{
 	font-size:12px;
 	color:#78a8d5;
 }
+
