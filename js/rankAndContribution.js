@@ -21,19 +21,19 @@ function starRankTab() {
 		switch(whichTab){
 			case "1":
 				zhubo.find(".tab2_rankList").css({'display':'none'});
-				zhubo.find("#day").css({'display':'block'});
+				zhubo.find("#day1").css({'display':'block'});
 				break;
 			case "2":
 				zhubo.find(".tab2_rankList").css({'display':'none'});
-				zhubo.find("#week").css({'display':'block'});
+				zhubo.find("#week1").css({'display':'block'});
 				break;
 			case "3":
 				zhubo.find(".tab2_rankList").css({'display':'none'});
-				zhubo.find("#month").css({'display':'block'});
+				zhubo.find("#month1").css({'display':'block'});
 				break;
 			case "4":
 				zhubo.find(".tab2_rankList").css({'display':'none'});
-				zhubo.find("#all").css({'display':'block'});
+				zhubo.find("#all1").css({'display':'block'});
 				break;
 		}
 		//粉丝贡献排行
@@ -41,19 +41,19 @@ function starRankTab() {
 		switch(whichTab){
 			case "5":
 				fans.find(".tab2_rankList").css({'display':'none'});
-				fans.find("#day").css({'display':'block'});
+				fans.find("#day2").css({'display':'block'});
 				break;
 			case "6":
 				fans.find(".tab2_rankList").css({'display':'none'});
-				fans.find("#week").css({'display':'block'});
+				fans.find("#week2").css({'display':'block'});
 				break;
 			case "7":
 				fans.find(".tab2_rankList").css({'display':'none'});
-				fans.find("#month").css({'display':'block'});
+				fans.find("#month2").css({'display':'block'});
 				break;
 			case "8":
 				fans.find(".tab2_rankList").css({'display':'none'});
-				fans.find("#all").css({'display':'block'});
+				fans.find("#all2").css({'display':'block'});
 				break;
 		}
 	});
