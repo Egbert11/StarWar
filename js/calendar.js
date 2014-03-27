@@ -1,3 +1,5 @@
+var base_month = new Date().getMonth();
+
 var calendar = { 
 	dayTable:null, //初始化TABLE 
 	year:null, //初始化年 
@@ -17,7 +19,7 @@ var calendar = {
 	createCalendar:function(form,date){ //创建日历方法 
 		calendar.year = date.getFullYear(); //获得当时的年份,并赋值到calendar属性year中,以便别的方法的调用 
 		calendar.month = date.getMonth(); //跟上面获取年份的目的一样 
-		form.getElementsByTagName('th')[2].innerHTML = calendar.year + '年 ' + (calendar.month + 1) + '月'; //插入年份和月份
+		form.getElementsByTagName('dt')[2].innerHTML = calendar.year + '年 ' + (calendar.month + 1) + '月'; //插入年份和月份
 		calendar.clearCalendar(form); //清空TABLE 
 		var monthLen = calendar.getMonthLen(calendar.year,calendar.month); //获取月份长度 
 		var firstDay = calendar.getFirstDay(calendar.year,calendar.month); //获取月份首天为星期几 
@@ -31,24 +33,45 @@ var calendar = {
 	}, 
 
 	clearCalendar:function(form){ //清空TABLE方法 
-		this.dayTable = form.getElementsByTagName('td'); 
+		this.dayTable = form.getElementsByTagName('dd'); 
 		for(var i = 0;i < this.dayTable.length;i++){ 
-			this.dayTable[i].innerHTML = ' '; 
+			this.dayTable[i].innerHTML = ''; 
 			this.dayTable[i].id = ''; 
 		} 
 	}, 
 
+	addStarInCalendar:function(form){//添加每日记录
+		var len = form.getElementsByTagName('dd').length;
+		for(var i=0;i<len;i++){
+			if(form.getElementsByTagName('dd')[i].innerHTML != "" ){
+				var text = '<b class="award"></b><b class="award-bg2"></b>';
+				$("#calendar dd:eq("+i+")").append(text); 
+			}
+		}
+	},
+
 	init:function(form){ //主方法 
-		this.dayTable = form.getElementsByTagName('td'); 
+		this.dayTable = form.getElementsByTagName('dd'); 
 		this.createCalendar(form,new Date()); 
-		var preMon = form.getElementsByTagName('th')[1];
-		var nextMon = form.getElementsByTagName('th')[3];
+		var preMon = form.getElementsByTagName('span')[0];
+		var nextMon = form.getElementsByTagName('span')[1];
 		preMon.onclick = function(){ //当点击左按钮时,减去一个月,并重绘TABLE 
 			calendar.createCalendar(form,new Date(calendar.year,calendar.month-1,1)); 
+			calendar.addStarInCalendar(form);
+			if(base_month > calendar.month){
+				preMon.innerHTML = "";
+			}
+			nextMon.innerHTML = "&gt;";
 		}
 		nextMon.onclick = function(){ //当点击右按钮时,加上一个月,并重绘TABLE
 			calendar.createCalendar(form,new Date(calendar.year,calendar.month+1,1)); 
+			calendar.addStarInCalendar(form);
+			preMon.innerHTML = "&lt;";
+			if(base_month < calendar.month){
+				nextMon.innerHTML = "";				
+			}
 		}
+		this.addStarInCalendar(form);
 	}
 }
 
@@ -59,19 +82,21 @@ window.onload = function(){
 
 
 $(function(){
-	$("#calendar td").bind({
-		mouseover:function(){
-			var top = $(this).offset().top;
-			var left = $(this).offset().left;
-			var x = top;
-			var y = left;
-			$("#day_detail").css("top",x);
-			$("#day_detail").css("left",y);
-			$("#day_detail").show();
+	$("#calendar dd").bind({
+		mouseover:function(e){
+			if($(this).html() != ""){
+				var x = $(this).offset().left;
+				var y = $(this).parent("dl").offset().top; 
+				$("#day_detail").css("top",y+50);
+				$("#day_detail").css("left",x-36);
+				$("#day_detail").show();
+			}
 		},
-		mouseleave:function(){
-			$("#day_detail").hide();
+		mouseout:function(){
+			if($(this).html() != ""){
+				$("#day_detail").hide();
+			}
 		}
-
 	});
+
 });
