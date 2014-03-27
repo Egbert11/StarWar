@@ -1,14 +1,3 @@
-/* 复位样式 */
-html,form,input,select,textarea,div,p,ul,ol,dt,dd,dl,li,h1,h2,h3,h4,h5,h6,label,td{margin:0;padding:0;}
-html{}
-body{margin:0;padding:0;font-family:Arial,verdana,"宋体";font-size:14px;line-height:24px;cursor:default;}
-li{list-style:none;}
-textarea {overflow-y:auto;overflow-x:hidden;font-family:Arial,verdana,sans-serif,"宋体";}
-input,select,img{vertical-align:middle;font-size:14px;font-family:Arial,verdana,sans-serif,"宋体";}
-table,td,img{border:0;}
-a{color:#2050A0;text-decoration:underline;cursor:pointer;outline: none;}
-a:hover {text-decoration:underline;}
-
 table, th, td{border: 1px solid #aed0df; border-collapse: collapse;}
 .day_progress{margin:0 auto; width: 590px;}
 #calendar{border-color: #77bee8; color:#77bee8; font-size:12px;}
