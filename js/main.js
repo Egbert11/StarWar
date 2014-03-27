@@ -35,8 +35,8 @@ function SetUpStarTravelHover(){
 					fy = y + 50;
 					break;
 				case 3:
-					fx = x - 90;
-					fy = y - 100;
+					fx = x - 242;
+					fy = y + 50;
 					break;
 				case 4:
 					fx = x + 130;
