@@ -84,6 +84,11 @@ img{
 	line-height:16px;
 	box-shadow:1px 1px 1px #000000;
 }
+.fo_btn:hover{
+    background:-webkit-gradient(linear,left top,left bottom,from(#f5a0ff),to(#c757c0));
+    cursor:pointer;
+}
+
 
 .fo_btn_icon{
 	background:url(../image/sprite.png) no-repeat -90px -59px;
@@ -241,7 +246,7 @@ b.week{
 #tab3 .sjheader{
     width:100%;
     height:35px;
-    border-bottom:1px solid gray;
+    border-bottom:1px solid #aed0df;
     position:relative;
 }
 
