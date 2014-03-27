@@ -253,7 +253,7 @@ b.week{
 }
 
 #tab3 .sjhlbtn{
-    top:15px;
+    top:8px;
     text-align:right;
     left:175px;
 
@@ -261,7 +261,7 @@ b.week{
 
 #tab3 .sjhrbtn{
     text-align:left;
-    top:15px;
+    top:8px;
     right:175px;
 }
 
@@ -336,7 +336,7 @@ b.week{
 }
 
 #tab3 .week_cell{
-    width:170px;
+    width:175px;
     height:90px;
     display:inline-block;
 }
@@ -380,7 +380,7 @@ b.week{
 }
 
 #tab3 .week_cell .week_icon{
-    top:13px;
+    top:8px;
     position:relative;
     left:15px;
     width:25px;
@@ -400,7 +400,7 @@ b.week{
     margin-left:15px;
     vertical-align:middle;
     position:relative;
-    top:4px;
+    top:-1px;
     left:2px;
 }
 

@@ -23,9 +23,40 @@ function SetUpStarTravelHover(){
 			var hoverLayer = $("#tab3 .hoverlayer");
 			var x = cell.position().left;
 			var y = cell.position().top;
-			hoverLayer.css({display:"block",top:(y+55)+"px",left:(x+100)+"px"});
-		},function(){
-			
+			var fx = 0;
+			var fy = 0;
+			switch(index+1){
+				case 1:
+					fx = x + 100;
+					fy = y +50;
+					break;
+				case 2:
+					fx = x +100;
+					fy = y + 50;
+					break;
+				case 3:
+					fx = x - 90;
+					fy = y - 100;
+					break;
+				case 4:
+					fx = x + 130;
+					fy = y - 60 ; 
+					break;
+				case 5:
+					fx = x -50;
+					fy = y;
+					break;
+				default:
+					
+					break;
+			}
+			hoverLayer.css({display:"block",top:fy+"px",left:fx+"px"});
+			hoverLayer.hover(function(){
+				$(this).css({display:"block"});
+			},function(){
+				$(this).css({display:"none"});
+			});
+		},function(){	
 			var hoverLayer = $("#tab3 .hoverlayer");
 			hoverLayer.css({display:"none"});
 		});
@@ -33,7 +64,13 @@ function SetUpStarTravelHover(){
 	var cell = $("#tab3 .sjmonth_rank .sjrank_content");
 	cell.hover(function(){
 		var hoverLayer = $("#tab3 .mhoverlayer");
-		hoverLayer.css({display:"block",top:"55px",left:"360px"});
+		hoverLayer.css({display:"block",top:"55px",left:"330px"});
+		hoverLayer.unbind("hover");
+		hoverLayer.hover(function(){
+			$(this).css({display:"block"});
+		},function(){
+			$(this).css({display:"none"});
+		});
 	},function(){
 		var hoverLayer = $("#tab3 .mhoverlayer");
 		hoverLayer.css({display:"none"});
