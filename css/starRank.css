@@ -9,9 +9,10 @@
 }
 
 .tab2_main .tab2_zhuboRank {
-    width:293px;
+    width:300px;
     height: 350px;
 	display:inline-block;
+	margin-left: -1px;
 }
 
 .tab2_main .fansRank {
@@ -34,8 +35,8 @@
 
 .tab2_main .title span {
 	position:relative;
-	top:9px;
-	left:22px;
+	top:4px;
+	left:19px;
 }
 
 .tab2_main .tab_style {
@@ -55,7 +56,10 @@
 	height:15px;
 	display:inline-block;
 	border-bottom:thin #78a8d5 solid;
-	margin:0 -4.5px;
+	margin: 0px -2.6px;
+	padding: 0px 0px 6px 0px;
+	position: relative;
+	top: 3px;
 }
 
 .tab2_main .tab_style span.active {
