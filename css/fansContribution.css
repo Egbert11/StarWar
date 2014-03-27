@@ -2,16 +2,15 @@
 /* CSS Document */
 
 .tab4_main {
-	width: 600px;
+	width: 590px;
     height: 350px;
     margin: 0 auto;
-    border:1px solid #aaa;
+	background-color:#f6ffff;
 }
 
 .tab4_main .tab4_rank {
-	width:598px;
+	width:590px;
     height: 162px;
-    border:1px solid #aaa;
 	display:inline-block;
 }
 
@@ -32,20 +31,20 @@
 	left:22px;
 }
 .tab4_main .tab4_rank .tab4_thisMonthBestFan {
-	width:198px;
+	width:196px;
 	height:120px;
 	display:inline-block;
 }
 
 .tab4_main .tab4_rank .tab4_todayBestFan {
-	width:198px;
+	width:196px;
 	height:120px;
 	display:inline-block;
 	margin-left:-8px;
 }
 
 .tab4_main .tab4_rank .tab4_pertimeBestFan {
-	width:198px;
+	width:196px;
 	height:120px;
 	display:inline-block;
 	margin-left:-8px;
@@ -132,9 +131,8 @@
 }
 
 .tab4_main .tab4_dynamicState {
-	width:598px;
+	width:590px;
     height: 185px;
-    border:1px solid #aaa;
 	display:inline-block;
 }
 
@@ -149,10 +147,9 @@
 }
 
 .tab4_main .tab4_dynamicState .tab4_content {
-	width:533px;
+	width:530px;
     height: 133px;
 	margin:10px 30px;
-    border:1px solid #aaa;
 	display:inline-block;
 }
 
