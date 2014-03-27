@@ -70,7 +70,7 @@ img{
     width:100px;
     line-height: 32px;
     height: 32px;
-    background:-webkit-gradient(linear,left top,left bottom,from(#f4aacb),to(#e86ca4));
+    background:-webkit-gradient(linear,left top,left bottom,from(#c757c0),to(#f5a0ff));
     cursor:pointer;
     display: inline-block;
     position: relative;
@@ -132,6 +132,10 @@ img{
     position:relative;
 }
 
+.star_journey .sub_info_title,.star_journey .sub_info_content{
+	line-height:12px;
+}
+
 .star_journey .icon{
     width:67px;
     height:42px;
@@ -180,8 +184,10 @@ b.week{
 .star_journey .journey_date{
     color: #a0d5fb;
     display: block;
-    padding-left: 33px;
+    padding-left: 31px;
     margin-top: -2px;
+	font-size:12px;
+	line-height:12px;
 }
 
 .tabs{
@@ -204,6 +210,8 @@ b.week{
     text-align: center;
     opacity:0.6;
     background: #ffffff;
+	-webkit-border-top-left-radius:5px;
+	-webkit-border-top-right-radius:5px;
 }
 
 .tabs li a.active,
@@ -360,13 +368,13 @@ b.week{
 #tab3 #week_cell5{
     position:absolute;
     top:110px;
-    left:285px;
+    left:295px;
 }
 
 #tab3  .week_cell_date{
     position:relative;
-    left:20px;
-    top:2px;
+    left:30px;
+    top:0px;
     color:#ffffff;
     font-weight:bold;
 }
@@ -398,7 +406,7 @@ b.week{
 
 #tab3 .week_cell_empty .wupaiming{
     position:relative;
-    top:20px;
+    top:10px;
     left:55px;
     font-size:12px;
     color:#969696;
@@ -409,7 +417,7 @@ b.week{
 	width:250px;
 	height:135px;
 	background-color:#ffffff;
-	moz-border-radius:2px;
+	-webkit-border-radius:5px;
     border:2px solid #0099FF;
 	position:absolute;
 	top:0px;
