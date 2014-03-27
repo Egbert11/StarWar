@@ -6,6 +6,7 @@
     height: 350px;
     margin: 0 auto;
 	background-color:#f6ffff;
+	margin-left: -1px;
 }
 
 .tab4_main .tab4_rank {
@@ -27,8 +28,8 @@
 
 .tab4_main .tab4_title span {
 	position:relative;
-	top:9px;
-	left:22px;
+	top:4px;
+	left:19px;
 }
 .tab4_main .tab4_rank .tab4_thisMonthBestFan {
 	width:196px;
@@ -40,14 +41,14 @@
 	width:196px;
 	height:120px;
 	display:inline-block;
-	margin-left:-8px;
+	margin-left:-5px;
 }
 
 .tab4_main .tab4_rank .tab4_pertimeBestFan {
 	width:196px;
 	height:120px;
 	display:inline-block;
-	margin-left:-8px;
+	margin-left:-5px;
 }
 
 .tab4_main .tab4_rank .tab4_bestFanTitle {
@@ -102,8 +103,8 @@
 	display:inline-block;
 	background:url(../image/sprite.png?xxx) -192px -57px no-repeat;
 	position: relative;
-	top: 22px;
-	left: -94px;
+	top: 24px;
+	left: -89px;
 }
 
 .tab4_main .tab4_rank .tab4_bestFan .name {
@@ -123,8 +124,8 @@
 	height:20px;
 	display:inline;
 	position: relative;
-	top: 2px;
-	left:70px;
+	top: -4px;
+	left:66px;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
 	color:#1c79c2;
@@ -157,6 +158,8 @@
 	font-family:宋体;
 	font-size:12px;
 	color:#78a8d5;
+	line-height: 17px;
+	padding: 6px 0;
 }
 
 .tab4_main .tab4_dynamicState .tab4_content .name {
