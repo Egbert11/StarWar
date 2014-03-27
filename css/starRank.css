@@ -1,29 +1,27 @@
 @charset "utf-8";
 /* CSS Document */
 
-.main {
+.tab2_main {
     width: 600px;
     height: 350px;
     margin: 0 auto;
-    border:1px solid #aaa;
+	background-color:#f6ffff;
 }
 
-.main .zhuboRank {
+.tab2_main .tab2_zhuboRank {
     width:298px;
     height: 350px;
-    border:1px solid #aaa;
 	display:inline-block;
 }
 
-.main .fansRank {
+.tab2_main .fansRank {
     width:298px;
     height: 350px;
-    border:1px solid #aaa;
 	display:inline-block;
 	margin-left:-8px;
 }
 
-.main .title {
+.tab2_main .title {
 	width:135px;
 	height:30px;
 	background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
@@ -34,13 +32,13 @@
 	color:#ffffff;
 }
 
-.main .title span {
+.tab2_main .title span {
 	position:relative;
 	top:9px;
 	left:22px;
 }
 
-.main .tab_style {
+.tab2_main .tab_style {
 	width:268px;
 	height:20px;
 	position: relative;
@@ -48,7 +46,7 @@
 	display:block;
 }
 
-.main .tab_style span{
+.tab2_main .tab_style span{
 	font-family:宋体;
 	font-size:12px;
 	color:#1c79c2;
@@ -60,33 +58,33 @@
 	margin:0 -4px;
 }
 
-.main .tab_style span.active {
+.tab2_main .tab_style span.active {
 	border-top:thin #1c79c2 solid;
 	border-left:thin #1c79c2 solid;
 	border-right:thin #1c79c2 solid;
 	border-bottom:none;
 }
 
-.main .rankList {
+.tab2_main .tab2_rankList {
 	margin:11px 45px;
 	height:270px;
 	width:205px;
 	display:none;
 }
 
-.main .active {
+.tab2_main .active {
 	margin:11px 45px;
 	height:270px;
 	width:205px;
 }
 
-.main .rankList .num1 {
+.tab2_main .tab2_rankList .num1 {
 	width:205px;
 	height:31px;
 	margin:2px 0;
 }
 
-.main .rankList .num1 .bg1 {
+.tab2_main .tab2_rankList .num1 .bg1 {
 	width:17px;
 	height:16px;
 	display:inline-block;
@@ -95,14 +93,14 @@
 	top: -7px;
 }
 
-.main .rankList .num1 .bg2 {
+.tab2_main .tab2_rankList .num1 .bg2 {
 	width:31px;
 	height:31px;
 	display:inline-block;
 	background:url(../image/sprite.png?xxx) -198px -88px no-repeat;
 }
 
-.main .rankList .num1 span {
+.tab2_main .tab2_rankList .num1 span {
 	width:200px;
 	height:16px;
 	display:inline;
@@ -113,20 +111,20 @@
 	color:#d62870;
 }
 
-.main .rankList .num2 {
+.tab2_main .tab2_rankList .num2 {
 	width:205px;
 	height:20px;
 	margin:5px 0 2px 0;
 }
 
-.main .rankList .num2 .bg1 {
+.tab2_main .tab2_rankList .num2 .bg1 {
 	width:17px;
 	height:16px;
 	display:inline-block;
 	background:url(../image/sprite.png?xxx) -143px -59px no-repeat;
 }
 
-.main .rankList .num2 span {
+.tab2_main .tab2_rankList .num2 span {
 	width:200px;
 	height:16px;
 	display:inline;
@@ -137,20 +135,20 @@
 	color:#0b51ef;
 }
 
-.main .rankList .num3 {
+.tab2_main .tab2_rankList .num3 {
 	width:205px;
 	height:20px;
 	margin:7px 0;
 }
 
-.main .rankList .num3 .bg1 {
+.tab2_main .tab2_rankList .num3 .bg1 {
 	width:17px;
 	height:16px;
 	display:inline-block;
 	background:url(../image/sprite.png?xxx) -168px -59px no-repeat;
 }
 
-.main .rankList .num3 span {
+.tab2_main .tab2_rankList .num3 span {
 	width:200px;
 	height:16px;
 	display:inline;
@@ -161,13 +159,13 @@
 	color:#b618ff;
 }
 
-.main .rankList .latter {
+.tab2_main .tab2_rankList .latter {
 	width:205px;
 	height:20px;
 	margin:7px 0;
 }
 
-.main .rankList .latter span:first-child {
+.tab2_main .tab2_rankList .latter span:first-child {
 	width:17px;
 	height:16px;
 	display:inline-block;
@@ -180,7 +178,7 @@
 	text-align:center;
 }
 
-.main  .rankList .latter span:last-child {
+.tab2_main  .tab2_rankList .latter span:last-child {
 	width:200px;
 	height:16px;
 	display:inline;

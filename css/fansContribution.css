@@ -5,13 +5,12 @@
 	width: 600px;
     height: 350px;
     margin: 0 auto;
-    border:1px solid #aaa;
+	background-color:#f6ffff;
 }
 
 .tab4_main .tab4_rank {
 	width:598px;
     height: 162px;
-    border:1px solid #aaa;
 	display:inline-block;
 }
 
@@ -134,7 +133,6 @@
 .tab4_main .tab4_dynamicState {
 	width:598px;
     height: 185px;
-    border:1px solid #aaa;
 	display:inline-block;
 }
 
@@ -152,7 +150,6 @@
 	width:533px;
     height: 133px;
 	margin:10px 30px;
-    border:1px solid #aaa;
 	display:inline-block;
 }
 
