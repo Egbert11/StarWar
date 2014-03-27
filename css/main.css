@@ -69,7 +69,7 @@ img{
     width:100px;
     line-height: 32px;
     height: 32px;
-    background-color:#CC33FF;
+    background:-webkit-gradient(linear,left top,left bottom,from(#f4aacb),to(#e86ca4));
     cursor:pointer;
     display: inline-block;
     position: relative;
@@ -78,6 +78,22 @@ img{
     -webkit-border-radius: 16px;
     border-radius: 16px;
     text-align: center;
+	color:#ffffff;
+	font-weight:bold;
+	line-height:16px;
+	box-shadow:1px 1px 1px #000000;
+}
+
+.fo_btn_icon{
+	background:url(../image/sprite.png) no-repeat -90px -59px;
+	width:20px;
+	height:16px;
+	display:inline-block;
+	margin-top:10px;
+}
+
+.fo_btn_text{
+	vertical-align:super;
 }
 
 .star_rank{
