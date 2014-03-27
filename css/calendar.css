@@ -3,7 +3,7 @@ table, th, td{border: 1px solid #aed0df; border-collapse: collapse;}
 #calendar{border-color: #77bee8; color:#77bee8; font-size:12px;}
 .day_progress dl{overflow: auto;zoom:1;}
 .day_progress dt,.day_progress dd{text-align:left; width: 77px; height: 49px; padding-left: 6px; background: #ffffff; color: #77bee8; vertical-align: top;position: relative; float: left; border: 1px solid #AED0DF; border-width: 1px 0 0 1px; font-weight: bold;}
-#head dt{border: none; border-bottom: 1px solid #aed0df; overflow: auto; zoom:1; width: 84px; height: 27px; padding: 0;}
+#head dt{border: none; border-bottom: 1px solid #aed0df; overflow: auto; zoom:1; width: 84px; height: 27px; line-height: 27px; padding: 0;}
 #head span{cursor:pointer;}
 dt#tittle{width:252px; font-size:20px; color: #1c79c2; text-align: center; }
 #days dt{border: none; font-weight:bold; text-align:center; width: 84px; height: 20px; line-height: 20px; padding: 0;}
