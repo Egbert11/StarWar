@@ -10,13 +10,19 @@ a{color:#2050A0;text-decoration:underline;cursor:pointer;outline: none;}
 a:hover {text-decoration:underline;}
 
 table, th, td{border: 1px solid #aed0df; border-collapse: collapse;}
-.day_progress{position: relative; margin:0 auto; width: 590px;}
+.day_progress{margin:0 auto; width: 590px;}
 #calendar{border-color: #77bee8; color:#77bee8; font-size:12px;}
-#calendar td{text-align:left; width: 84px; height: 45px; background: #ffffff; color: #77bee8; vertical-align: top;position: relative;}
-#head th{border: none; border-bottom: 1px solid #aed0df;}
-#tittle{font-size:20px; padding:4px 0px; color: #1c79c2;}
-#days th{border: none; font-weight:bold; text-align:center; width: 84px; height: 20px; line-height: 20px;}
+.day_progress dl{overflow: auto;zoom:1;}
+.day_progress dt,.day_progress dd{text-align:left; width: 77px; height: 50px; padding-left: 6px; background: #ffffff; color: #77bee8; vertical-align: top;position: relative; float: left; border: 1px solid #AED0DF; border-width: 1px 0 0 1px; font-weight: bold;}
+#head dt{border: none; border-bottom: 1px solid #aed0df; overflow: auto; zoom:1; width: 84px; height: 32px; padding: 0;}
+#head span{cursor:pointer;}
+dt#tittle{width:252px; font-size:20px; color: #1c79c2; text-align: center; }
+#days dt{border: none; font-weight:bold; text-align:center; width: 84px; height: 20px; line-height: 20px; padding: 0;}
 #today{color:#F00; font-weight:bold;}
-.day_detail{position: absolute; top: 0 ;left: 0; width: 200px; height:60px; background: #1c79c2; text-align: center; display: none;}
-.award{display: inline-block; position:absolute; width: 22px; height: 22px; right:1px; background: url(../image/sprite.png) 0 -92px no-repeat;}
-.award-bg{display: block; background: url(../image/sprite.png) -33px -85px no-repeat; width: 48px; height: 40px; position: absolute; left: 18px; top: 5px;}
+.last_week dd{border-bottom: 1px solid #AED0DF;}
+.day_detail{position: absolute; top: 0 ;left: 0; width: 200px; height:60px; background: #FFF; border-radius: 4px ; border: 2px solid #439FD8; text-align: center; display: none;}
+.award{display: block; position:absolute; width: 22px; height: 22px; top:0; right:1px; background: url(../image/sprite.png) 0 -92px no-repeat; _background: url(../image/sprite_ie6.png) 0 -92px no-repeat;}
+.award-bg0{display: block; background: url(../image/sprite.png) -33px -85px no-repeat; _background: url(../image/sprite_ie6.png) -33px -85px no-repeat; width: 48px; height: 40px; position: absolute; left: 18px; top: 5px;}
+.award-bg1,.award-bg2,.award-bg3{display: block; background: url(../image/sprite.png) -89px -89px no-repeat; _background: url(../image/sprite_ie6.png) -89px -89px no-repeat; width: 30px; height: 30px; position: absolute; left: 28px; top: 12px;}
+.award-bg2{background: url(../image/sprite.png) -125px -89px no-repeat; _background: url(../image/sprite_ie6.png) -125px -89px no-repeat;}
+.award-bg3{background: url(../image/sprite.png) -160px -89px no-repeat; _background: url(../image/sprite_ie6.png) -160px -89px no-repeat;}
