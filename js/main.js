@@ -34,14 +34,12 @@ function SetUpStarTravelHover(){
 //bind the click function with the tab jump effect; 
 function SetUpTabClickJump(){
 	
-	var tabs = $(".single_tab");
+	var tabs = $(".tabs li a");
 	$.each(tabs,function(index,value){
 		$(this).click(function(){
-			
-			var nowSelectedTab = $("#tab_selected");
-			if (nowSelectedTab == $(this))return;
-			nowSelectedTab.removeAttr('id');
-			$(this).attr('id','tab_selected');
+			var nowSelectedTab = $(".tabs .active");
+			nowSelectedTab.removeClass("active");
+			$(this).addClass("active");
 			var contents = $(".content");
 			$.each(contents,function(index,value){
 				$(this).removeClass('cactive');
