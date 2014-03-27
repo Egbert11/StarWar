@@ -205,7 +205,8 @@ b.week{
 
 .content{
     display:none;
-    width:590px;
+    height: 100%;
+    width: 592px;
 }
 
 .cactive{
