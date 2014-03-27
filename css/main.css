@@ -70,7 +70,7 @@ img{
     width:100px;
     line-height: 32px;
     height: 32px;
-    background:-webkit-gradient(linear,left top,left bottom,from(#f4aacb),to(#e86ca4));
+    background:-webkit-gradient(linear,left top,left bottom,from(#c757c0),to(#f5a0ff));
     cursor:pointer;
     display: inline-block;
     position: relative;
@@ -132,6 +132,10 @@ img{
     position:relative;
 }
 
+.star_journey .sub_info_title,.star_journey .sub_info_content{
+	line-height:12px;
+}
+
 .star_journey .icon{
     width:67px;
     height:42px;
@@ -180,8 +184,10 @@ b.week{
 .star_journey .journey_date{
     color: #a0d5fb;
     display: block;
-    padding-left: 33px;
+    padding-left: 31px;
     margin-top: -2px;
+	font-size:12px;
+	line-height:12px;
 }
 
 .tabs{
