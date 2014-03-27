@@ -7,11 +7,13 @@
     <title>星星大作战</title>
     <link rel="stylesheet" type="text/css" href="./css/reset.css?xxxx"/>
     <link rel="stylesheet" type="text/css" href="./css/main.css?xxx"/>
-   	<link rel="stylesheet" type="text/css" href="css/starRank.css" />
+    <link rel="stylesheet" type="text/css" href="css/starRank.css" />
     <link rel="stylesheet" type="text/css" href="css/fansContribution.css" />
+    <link href="css/calendar.css" rel="stylesheet" type="text/css" media="all"/>
     <script language="javascript" type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
     <script language="javascript" type="text/javascript" src="./js/main.js?xxxx"></script>
     <script language="javascript" type="text/javascript" src="js/rankAndContribution.js"></script>
+    <script src="js/calendar.js" ></script>
 </head>
 <body>
 <div class="main_container">
@@ -29,7 +31,7 @@
 					<span class="sub_info_title">主播关注:
 						<span class="sub_info_content">1234567</span>
 					</span>
-                <span class="fo_btn">关注</span>
+                <span class="fo_btn"><span class="fo_btn_icon"></span><span class="fo_btn_text">关注</span></span>
             </div>
         </div>
 
@@ -75,6 +77,81 @@
     </ul>
     <div class="main_content">
         <div id="tab1" class="content cactive">
+			<div class="day_progress" id="calendar_form">
+				<table id="calendar" cellspacing="1">
+					 <tr id="head">
+						<th></th>
+						<th style="cursor:pointer;cursor:hand;text-align: right;">&lt;</th>
+						<th id="tittle" colspan="3"> </th>
+						<th style="cursor:pointer;cursor:hand;text-align: left;">&gt;</th>
+						<th></th>
+					</tr>
+					<tr id="days">
+						<th>日</th>
+						<th>一</th>
+						<th>二</th>
+						<th>三</th>
+						<th>四</th>
+						<th>五</th>
+						<th>六</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				<div class="day_detail" id="day_detail">目前完成</div>
+			</div>
         </div>
         <div id="tab2" class="content">
         	<div class="tab2_main">
@@ -90,7 +167,7 @@
                         <span id="4">总</span>
                         <span>&nbsp;</span>
                     </div>
-                    <div class="tab2_rankList" style="display:block" id="day">
+                    <div class="tab2_rankList" style="display:block" id="day1">
                         <div class="num1">
                             <div class="bg1"></div>
                             <div class="bg2"></div>
@@ -133,7 +210,7 @@
                             <span>梦幻西游梦幻西游</span>
                         </div>
                     </div>
-                    <div class="tab2_rankList" id="week">
+                    <div class="tab2_rankList" id="week1">
                         <div class="num1">
                             <div class="bg1"></div>
                             <div class="bg2"></div>
@@ -176,7 +253,7 @@
                             <span>大话三国大话三国</span>
                         </div>
                     </div>
-                    <div class="tab2_rankList" id="month">
+                    <div class="tab2_rankList" id="month1">
                         <div class="num1">
                             <div class="bg1"></div>
                             <div class="bg2"></div>
@@ -219,7 +296,7 @@
                             <span>XXXXXXXXXXXX</span>
                         </div>
                     </div>
-                    <div class="tab2_rankList" id="all">
+                    <div class="tab2_rankList" id="all1">
                         <div class="num1">
                             <div class="bg1"></div>
                             <div class="bg2"></div>
@@ -275,7 +352,7 @@
                         <span id="8">总</span>
                         <span>&nbsp;</span>
                     </div>
-                    <div class="tab2_rankList" style="display:block" id="day">
+                    <div class="tab2_rankList" style="display:block" id="day2">
                         <div class="num1">
                             <div class="bg1"></div>
                             <div class="bg2"></div>
@@ -318,7 +395,7 @@
                             <span>梦幻西游梦幻西游</span>
                         </div>
                     </div>
-                    <div class="tab2_rankList" id="week">
+                    <div class="tab2_rankList" id="week2">
                         <div class="num1">
                             <div class="bg1"></div>
                             <div class="bg2"></div>
@@ -361,7 +438,7 @@
                             <span>大话三国大话三国</span>
                         </div>
                     </div>
-                    <div class="tab2_rankList" id="month">
+                    <div class="tab2_rankList" id="month2">
                         <div class="num1">
                             <div class="bg1"></div>
                             <div class="bg2"></div>
@@ -404,7 +481,7 @@
                             <span>XXXXXXXXXXXX</span>
                         </div>
                     </div>
-                    <div class="tab2_rankList" id="all">
+                    <div class="tab2_rankList" id="all2">
                         <div class="num1">
                             <div class="bg1"></div>
                             <div class="bg2"></div>

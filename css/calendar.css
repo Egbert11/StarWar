@@ -12,7 +12,7 @@ a:hover {text-decoration:underline;}
 table, th, td{border: 1px solid #aed0df; border-collapse: collapse;}
 .day_progress{position: relative; margin:0 auto; width: 590px;}
 #calendar{border-color: #77bee8; color:#77bee8; font-size:12px;}
-#calendar td{text-align:left; width: 84px; height: 50px; background: #ffffff; color: #77bee8; vertical-align: top;position: relative;}
+#calendar td{text-align:left; width: 84px; height: 45px; background: #ffffff; color: #77bee8; vertical-align: top;position: relative;}
 #head th{border: none; border-bottom: 1px solid #aed0df;}
 #tittle{font-size:20px; padding:4px 0px; color: #1c79c2;}
 #days th{border: none; font-weight:bold; text-align:center; width: 84px; height: 20px; line-height: 20px;}
