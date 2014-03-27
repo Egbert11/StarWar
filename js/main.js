@@ -102,10 +102,10 @@ function SetUpTabClickJump(){
 //星星排行的日，周，月，总点击事件
 function starRankTab() {
     var tab = $(".tab2_main .tab_style");
-    tab.find("span").bind("click",function(){
-        var parent = $(this).parent();
+    tab.find("a").bind("click",function(){
+        var parent = $(this).parent().parent();
         if($(this).attr('id').length>0){
-            parent.find("span").removeClass("active");
+            parent.find("a").removeClass("active");
             $(this).addClass("active");
         }
         //主播星星排行

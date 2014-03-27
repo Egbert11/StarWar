@@ -517,13 +517,15 @@ b.week{
     height: 350px;
 	display:inline-block;
 	margin-left:-1px;
+	float:left;
 }
 
 .tab2_main .fansRank {
     width:293px;
     height: 350px;
 	display:inline-block;
-	margin-left:-8px;
+	margin-left:-4px;
+	float:left;
 }
 
 .tab2_main .title {
@@ -537,53 +539,43 @@ b.week{
 
 .tab2_main .title span {
 	position:relative;
-	top:4px;
+	top:9px;
 	left:19px;
 }
 
-.tab2_main .tab_style {
-	width:263px;
+.tab2_main ul.tab_style {
+	width:187px;
 	height:20px;
 	position: relative;
 	left: 20px;
 	display:block;
+	margin-top: 6px;
+	border-bottom:thin #78a8d5 solid;
+	padding:0 36px;
 }
 
-.tab2_main .tab_style a{
+ul.tab_style li {
+	float:left;
+	display:inline;
+}
+
+ul.tab_style li a{
 	color:#78a8d5;
 	text-align:center;
 	width:45px;
-	height:15px;
-	display:inline-block;
-	border-bottom:thin #78a8d5 solid;
-	margin: 0px -2.6px;
-	padding: 0px 0px 6px 0px;
-	position: relative;
-	top: 3px;
-	cursor:default;
-	text-decoration:none;
-}
-
-.tab2_main .tab_style span{
-	color:#78a8d5;
-	text-align:center;
-	width:45px;
-	height:15px;
-	display:inline-block;
-	border-bottom:thin #78a8d5 solid;
-	margin: 0px -2.6px;
-	padding: 0px 0px 6px 0px;
-	position: relative;
-	top: 3px;
+	height:19px;
+	display:block;
 	cursor:pointer;
+	text-decoration:none;
+	float:left;
 }
 
-.tab2_main .tab_style span.active {
+ul.tab_style li a.active {
 	color:#1c79c2;
 	border-top:thin #78a8d5 solid;
 	border-left:thin #78a8d5 solid;
 	border-right:thin #78a8d5 solid;
-	border-bottom:none;
+	border-bottom:thin #ffffff solid;
 }
 
 .tab2_main .tab2_rankList {
@@ -593,19 +585,19 @@ b.week{
 	display:none;
 }
 
-.tab2_main .active {
+.tab2_rankList .active {
 	margin:11px 45px;
 	height:270px;
 	width:205px;
 }
 
-.tab2_main .tab2_rankList .num1 {
+.tab2_rankList .num1 {
 	width:205px;
 	height:31px;
 	margin:2px 0;
 }
 
-.tab2_main .tab2_rankList .num1 .bg1 {
+.tab2_rankList .num1 .bg1 {
 	width:17px;
 	height:16px;
 	display:inline-block;
@@ -614,14 +606,14 @@ b.week{
 	top: -7px;
 }
 
-.tab2_main .tab2_rankList .num1 .bg2 {
+.tab2_rankList .num1 .bg2 {
 	width:31px;
 	height:31px;
 	display:inline-block;
 	background:url(../image/sprite.png?xxx) -198px -88px no-repeat;
 }
 
-.tab2_main .tab2_rankList .num1 span {
+.tab2_rankList .num1 span {
 	width:200px;
 	height:16px;
 	display:inline;
@@ -630,20 +622,20 @@ b.week{
 	color:#d62870;
 }
 
-.tab2_main .tab2_rankList .num2 {
+.tab2_rankList .num2 {
 	width:205px;
 	height:20px;
 	margin:5px 0 2px 0;
 }
 
-.tab2_main .tab2_rankList .num2 .bg1 {
+.tab2_rankList .num2 .bg1 {
 	width:17px;
 	height:16px;
 	display:inline-block;
 	background:url(../image/sprite.png?xxx) -143px -59px no-repeat;
 }
 
-.tab2_main .tab2_rankList .num2 span {
+.tab2_rankList .num2 span {
 	width:200px;
 	height:16px;
 	display:inline;
@@ -652,20 +644,20 @@ b.week{
 	color:#0b51ef;
 }
 
-.tab2_main .tab2_rankList .num3 {
+.tab2_rankList .num3 {
 	width:205px;
 	height:20px;
 	margin:7px 0;
 }
 
-.tab2_main .tab2_rankList .num3 .bg1 {
+.tab2_rankList .num3 .bg1 {
 	width:17px;
 	height:16px;
 	display:inline-block;
 	background:url(../image/sprite.png?xxx) -168px -59px no-repeat;
 }
 
-.tab2_main .tab2_rankList .num3 span {
+.tab2_rankList .num3 span {
 	width:200px;
 	height:16px;
 	display:inline;
@@ -674,13 +666,13 @@ b.week{
 	color:#b618ff;
 }
 
-.tab2_main .tab2_rankList .latter {
+.tab2_rankList .latter {
 	width:205px;
 	height:20px;
 	margin:7px 0;
 }
 
-.tab2_main .tab2_rankList .latter span:first-child {
+.tab2_rankList .latter span:first-child {
 	width:17px;
 	height:16px;
 	display:inline-block;
@@ -691,7 +683,7 @@ b.week{
 	text-align:center;
 }
 
-.tab2_main  .tab2_rankList .latter span:last-child {
+.tab2_rankList .latter span:last-child {
 	width:200px;
 	height:16px;
 	display:inline;
@@ -712,7 +704,7 @@ b.week{
 	display:inline-block;
 }
 
-.tab4_main .tab4_rank .tab4_title {
+.tab4_rank .tab4_title {
 	width:135px;
 	height:30px;
 	background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
@@ -721,38 +713,39 @@ b.week{
 	color:#ffffff;
 }
 
-.tab4_main .tab4_title span {
+.tab4_title span {
 	position:relative;
-	top:4px;
+	top:9px;
 	left:19px;
 }
-.tab4_main .tab4_rank .tab4_thisMonthBestFan {
+.tab4_thisMonthBestFan {
 	width:196px;
 	height:120px;
 	display:inline-block;
+	float:left;
 }
 
-.tab4_main .tab4_rank .tab4_todayBestFan {
+.tab4_todayBestFan {
 	width:196px;
 	height:120px;
 	display:inline-block;
-	margin-left:-5px;
+	float:left;
 }
 
-.tab4_main .tab4_rank .tab4_pertimeBestFan {
+.tab4_pertimeBestFan {
 	width:196px;
 	height:120px;
 	display:inline-block;
-	margin-left:-5px;
+	float:left;
 }
 
-.tab4_main .tab4_rank .tab4_bestFanTitle {
+.tab4_bestFanTitle {
 	width:198px;
 	height:30px;
 	display:block;
 }
 
-.tab4_main .tab4_rank .tab4_bestFanTitle .bg {
+.tab4_bestFanTitle .bg {
 	width:17px;
 	height:16px;
 	display:inline-block;
@@ -762,7 +755,7 @@ b.week{
 	left:33px;
 }
 
-.tab4_main .tab4_rank .tab4_bestFanTitle span {
+.tab4_bestFanTitle span {
 	width:100px;
 	height:16px;
 	display:inline;
@@ -773,14 +766,14 @@ b.week{
 	color:#1c79c2;
 }
 
-.tab4_main .tab4_rank .tab4_bestFan {
+.tab4_bestFan {
 	width:198px;
 	height:70px;
 	background:url(../image/sprite.png?xxx) 0 -203px no-repeat;
 	margin-left:5px;
 }
 
-.tab4_main .tab4_rank .tab4_bestFan .bg_CC {
+.tab4_bestFan .bg_CC {
 	width:31px;
 	height:31px;
 	display:inline-block;
@@ -790,45 +783,45 @@ b.week{
 	left: 13px;
 }
 
-.tab4_main .tab4_rank .tab4_bestFan .bg_box {
+.tab4_bestFan .bg_box {
 	width:17px;
 	height:19px;
 	display:inline-block;
 	background:url(../image/sprite.png?xxx) -192px -57px no-repeat;
 	position: relative;
 	top: 24px;
-	left: -103px;
+	left: -89px;
 }
 
-.tab4_main .tab4_rank .tab4_bestFan .name {
+.tab4_bestFan .name {
 	width:120px;
 	height:20px;
 	display:inline;
 	position: relative;
 	top: -3px;
 	left: 12px;
-	 color:#d62870; 
+	color:#d62870; 
 }
 
-.tab4_main .tab4_rank .tab4_bestFan .number { 
+.tab4_bestFan .number { 
 	width:90px;
 	height:20px;
 	display:inline;
 	position: relative;
-	top: -4px;
-	left:66px;
+	top: 4px;
+	left:70px;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
  	color:#1c79c2;
 }
 
-.tab4_main .tab4_dynamicState {
+.tab4_dynamicState {
 	width:590px;
     height: 185px;
 	display:inline-block;
 }
 
-.tab4_main .tab4_dynamicState .tab4_title {
+.tab4_dynamicState .tab4_title {
 	width:135px;
 	height:30px;
 	background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
@@ -836,25 +829,25 @@ b.week{
 	color:#ffffff;
 }
 
-.tab4_main .tab4_dynamicState .tab4_content {
+.tab4_dynamicState .tab4_content {
 	width:530px;
     height: 133px;
 	margin:10px 30px;
 	display:inline-block;
 }
 
-.tab4_main .tab4_dynamicState .tab4_content p{
+.tab4_content p{
 	color:#78a8d5;
 	line-height: 17px;
 	padding: 6px 0;
 }
 
-.tab4_main .tab4_dynamicState .tab4_content .name {
+.tab4_content .name {
 	font-weight:bold;
 	color:#1c79c2;
 }
 
-.tab4_main .tab4_dynamicState .tab4_content .rank {
+.tab4_content .rank {
 	font-weight:bold;
 	color:#d62870;
 }
