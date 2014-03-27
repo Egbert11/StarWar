@@ -576,12 +576,6 @@ ul.tab_style li a.active {
 	display:none;
 }
 
-.tab2_rankList .active {
-	margin:11px 45px;
-	height:270px;
-	width:205px;
-}
-
 .tab2_rankList .num1 {
 	width:205px;
 	height:31px;
