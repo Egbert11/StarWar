@@ -12,7 +12,7 @@
     width:300px;
     height: 350px;
 	display:inline-block;
-	margin-left: -1px;
+	margin-left:-1px;
 }
 
 .tab2_main .fansRank {
@@ -47,6 +47,23 @@
 	display:block;
 }
 
+.tab2_main .tab_style a{
+	font-family:宋体;
+	font-size:12px;
+	color:#78a8d5;
+	text-align:center;
+	width:45px;
+	height:15px;
+	display:inline-block;
+	border-bottom:thin #78a8d5 solid;
+	margin: 0px -2.6px;
+	padding: 0px 0px 6px 0px;
+	position: relative;
+	top: 3px;
+	cursor:default;
+	text-decoration:none;
+}
+
 .tab2_main .tab_style span{
 	font-family:宋体;
 	font-size:12px;
@@ -60,6 +77,7 @@
 	padding: 0px 0px 6px 0px;
 	position: relative;
 	top: 3px;
+	cursor:pointer;
 }
 
 .tab2_main .tab_style span.active {
