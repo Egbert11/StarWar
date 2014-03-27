@@ -1,5 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
+body{
+    font: 12px "宋体";
+}
 .clear_float{
 	clear:both;
 }
@@ -26,43 +29,52 @@ img.avatar{
 	display:block;
 	float:left;
 	width:100px;
-	height:122px;
-	margin-top:5px;
+	height:120px;
+	margin-top: 9px;
 	margin-left:12px;
 	border:1px solid #ffffff;
     -webkit-border-radius: 2px;
     border-radius: 2px;
 }
 
-.pinfo_text_content{
-	margin-left:120px;
-	margin-top:2px;
+.pinfo_content{
+	margin-left: 125px;
+	margin-top: 3px;
 }
 
 .person_info .person_name{
 	font-weight:bold;
 	color:#ffffff;
-	font-size:14px;
 	line-height:25px;
+	display: block;
 }
 
 .sub_info_title{
-	font-size:12px;
 	color:#ffffff;
 	line-height:20px;
+	display: inline-block;
 }
 
 .sub_info_content{
 	font-size:12px;
-	color:#ff9900;
+	color: #f5d53d;
 	line-height:20px;
+	font-weight: bold;
 }
 
 .fo_btn{
 	width:100px;
-	height:40px;
+	line-height: 32px;
+	height: 32px;
 	background-color:#CC33FF;
 	cursor:pointer;
+	display: inline-block;
+	position: relative;
+	top: 8px;
+	left: -2px;
+	-webkit-border-radius: 16px;
+	border-radius: 16px;
+	text-align: center;
 }
 
 .star_rank{
@@ -71,48 +83,101 @@ img.avatar{
 	float:left;
 }
 
+.rank_icon{
+    background: url(../image/sprite.png) 0 0 no-repeat;
+    width: 66px;
+    height: 40px;
+    display: inline-block;
+    position: absolute;
+}
+
+.star_content{
+    padding: 28px 0 0 20px;
+}
+
 .star_journey{
 	width:170px;
 	height:100%;
 	float:left;
 }
 
+.journey_icon{
+    background: url(../image/sprite.png) -75px 0 no-repeat;
+    width: 66px;
+    height: 40px;
+    display: inline-block;
+    position: absolute;
+}
+
+.journey_content{
+    padding-top: 17px;
+}
+
+.journey_content p{
+    padding-left: 18px;
+    width: 150px;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+.journey_content b{
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    margin-right: 2px;
+    position: relative;
+    top: 14px;
+}
+
+b.all{
+    background: url(../image/sprite.png) 0 -53px no-repeat;
+}
+b.month{
+    background: url(../image/sprite.png) -29px -53px no-repeat;
+}
+b.week{
+    background: url(../image/sprite.png) -58px -53px no-repeat;
+}
+
 .star_journey .journey_date{
-	color:#969696;
-	font-size:12px;
+	color: #a0d5fb;
+    display: block;
+	padding-left: 33px;
+	margin-top: -2px;
 }
 
 .tabs{
-    padding: 0 5px;
-	height:40px;
+    margin: 0 4px 0 0;
+    height: 30px;
 }
 
-.tab_selected{
-	background-color:#ffffff;
-	color:#0033CC;
-	font-weight:bold;
+.tabs li{
+    margin-left: 4px;
+    float:left;
 }
 
-.single_tab span{
-	line-height:40px;
-	margin:0 auto;
-	padding-left:40px
+.tabs li a{
+    display: block;
+    color: #5a9fd4;
+    text-decoration: none;
+    width: 145px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    opacity:0.6;
+    background: #ffffff;
 }
 
-.single_tab{
-	cursor:pointer;
-	width:144px;
-	height:40px;
-	color:#336699;
-	font-weight:normal;
-	opacity:0.6;
-	margin-right:3px;
-	float:left;
+.tabs li a.active,
+.tabs li a:hover{
+    color: #1c79c2;
+    font-weight: bold;
+    opacity: 1;
+    background: #ffffff;
 }
 
 .main_content{
-	margin:0 5px;
-	width:590px;
+	margin: 0 4px;
 	height:300px;
     background-color: #ffffff;
 }
@@ -130,17 +195,13 @@ img.avatar{
     width: 600px;
     height: 350px;
     margin: 0 auto;
-    border-color: #abc;
-    border-width: 1px;
-	border-style:solid;
+    border: 1px solid #abc;
 }
 
 .main .zhuboRank {
     width:300px;
     height: 350px;
-    border-color: #aaa;
-    border-width: 1px;
-	border-style:solid;
+    border: 1px solid #aaa;
 }
 
 .main .zhuboRank .title {
@@ -148,8 +209,6 @@ img.avatar{
 	height:30px;
 	background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
 	margin-top:10px;
-	font-family:宋体;
-	font-size:12px;
 	font-weight:bold;
 	color:#ffffff;
 }
@@ -168,8 +227,6 @@ img.avatar{
 }
 
 .main .zhuboRank .tab_style span {
-	font-family:宋体;
-	font-size:12px;
 	color:#1c79c2;
 	text-align:center;
 	width:45px;
@@ -213,8 +270,6 @@ img.avatar{
 	display:inline;
 	position: relative;
 	top: -11px;
-	font-family:宋体;
-	font-size:12px;
 	color:#d62870;
 }
 
@@ -237,8 +292,6 @@ img.avatar{
 	display:inline;
 	position: relative;
 	top: -4px;
-	font-family:宋体;
-	font-size:12px;
 	color:#0b51ef;
 }
 
@@ -261,8 +314,6 @@ img.avatar{
 	display:inline;
 	position: relative;
 	top: -4px;
-	font-family:宋体;
-	font-size:12px;
 	color:#b618ff;
 }
 
@@ -278,8 +329,6 @@ img.avatar{
 	display:inline-block;
 	position: relative;
 	top: -4px;
-	font-family:宋体;
-	font-size:12px;
 	font-weight:bold;
 	color:#78a8d5;
 }
@@ -290,7 +339,5 @@ img.avatar{
 	display:inline;
 	position: relative;
 	top: -4px;
-	font-family:宋体;
-	font-size:12px;
 	color:#78a8d5;
 }
