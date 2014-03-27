@@ -178,7 +178,7 @@ img{
 }
 
 b.all{
-    background: url(../image/sprite.Gpng) 0 -53px no-repeat;
+    background: url(../image/sprite.png) 0 -53px no-repeat;
 }
 b.month{
     background: url(../image/sprite.png) -29px -53px no-repeat;
