@@ -562,15 +562,17 @@ ul.tab_style li a{
 }
 
 ul.tab_style li a.active {
+	height: 19.8px;
+	background-color: #f6ffff;
 	color:#1c79c2;
 	border-top:thin #78a8d5 solid;
 	border-left:thin #78a8d5 solid;
 	border-right:thin #78a8d5 solid;
-	border-bottom:thin #ffffff solid;
+	border-bottom:thin #f6ffff solid;
 }
 
 .tab2_main .tab2_rankList {
-	margin:11px 40px 11px 52px;
+	margin:9px 40px 11px 52px;
 	height:266px;
 	width:205px;
 	display:none;
@@ -625,7 +627,7 @@ ul.tab_style li a.active {
 	height:16px;
 	display:inline;
 	position: relative;
-	top: -4px;
+	top: -3px;
 	color:#0b51ef;
 }
 
@@ -647,7 +649,7 @@ ul.tab_style li a.active {
 	height:16px;
 	display:inline;
 	position: relative;
-	top: -4px;
+	top: -3px;
 	color:#b618ff;
 }
 
@@ -662,7 +664,7 @@ ul.tab_style li a.active {
 	height:16px;
 	display:inline-block;
 	position: relative;
-	top: -4px;
+	top: 3px;
 	font-weight:bold;
 	color:#78a8d5;
 	text-align:center;
@@ -673,7 +675,7 @@ ul.tab_style li a.active {
 	height:16px;
 	display:inline;
 	position: relative;
-	top: -4px;
+	top: 3px;
 	color:#78a8d5;
 }
 
