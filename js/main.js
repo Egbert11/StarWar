@@ -5,6 +5,8 @@ $(document).ready(function(){
     //星星排行的日，周，月，总点击事件
     starRankTab();
     $(".tab2_rankList").children(":odd").css("background-color","#eefafd");
+	
+	FetchAndSetBannerData();
 });
 
 // set up tab switch
@@ -38,7 +40,7 @@ function SetUpStarTravelHover(){
 					fy = y + 50;
 					break;
 				case 3:
-					fx = x - 242;
+					fx = x - 152;
 					fy = y + 50;
 					break;
 				case 4:
@@ -151,3 +153,85 @@ function starRankTab() {
         }
     });
 }
+
+//get the data from banner;
+function FetchAndSetBannerData(){
+	
+	//fetchDataFromServer
+	//$.ajax();		
+	//
+	//mock it up with fake data.
+	data = {
+		avatar:"2333.png",
+		anchor_name:"herokingsley",
+		anchor_rank:6,
+		anchor_renqi:123,
+		anchor_fo:2333333
+	};
+	//update the content of the anchor info
+	var pic = $(".banner .avatar");
+	//pic.attr("src",data.avatar);
+	var pinfo = $(".pinfo_content");
+	var person_name = pinfo.find(".person_name");
+	person_name.html(data.anchor_name);
+	var contentArr = pinfo.find(".sub_info_content");
+	var anchorRank = contentArr[0];
+	$(anchorRank).html("LV"+data.anchor_rank);
+	var anchorRenqi = contentArr[1];
+	$(anchorRenqi).html(data.anchor_renqi);
+	var anchorfo = contentArr[2];
+	$(anchorfo).html(data.anchor_fo);
+
+	d = {
+		a:10,
+		b:11,
+		c:13,
+		d:14,
+		e:15
+	};
+	//update the value of the star rank col
+	var rankcol = $(".banner .star_rank"); 	
+	var rcontentArr = rankcol.find(".sub_info_content");
+	var todayMei = rcontentArr[0];
+	$(todayMei).html(d.a);
+	var todayren = rcontentArr[1];
+	$(todayren).html(d.b);
+	var todaystar = rcontentArr[2];
+	$(todaystar).html(d.c);
+	var weekstar = rcontentArr[3];
+	$(weekstar).html(d.d);
+	var monthzong = rcontentArr[4];
+	$(monthzong).html(d.e);
+
+	//setup star journey data;
+	//
+	var j = {
+		a:10,
+		aa:"2011-10-09",
+		b:15,
+		bb:"1111-11-11",
+		c:20,
+		cc:"1234-05-06"
+	};	
+
+	var starJourney = $(".banner .star_journey");
+	var rankArr = starJourney.find(".sub_info_content");
+	var dateArr = starJourney.find(".journey_date");
+	var zongbang = rankArr[0];
+	$(zongbang).html(j.a);
+	var zongbangdate = dateArr[0];
+	$(zongbangdate).html(j.aa);
+	var monthbang = rankArr[1];
+	$(monthbang).html(j.b);
+	var monthbangdate = dateArr[1];
+	$(monthbangdate).html(j.bb);
+	var weekbang = rankArr[2];
+	var weekbangdate = dateArr[2];
+	$(weekbang).html(j.c);
+	$(weekbangdate).html(j.cc);
+}
+
+
+
+
+
