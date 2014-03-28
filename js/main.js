@@ -7,6 +7,7 @@ $(document).ready(function(){
     $(".tab2_rankList").children(":odd").css("background-color","#eefafd");
 	
 	FetchAndSetBannerData();
+	FetchAndSetStarJourneyPageData("2014-03");
 });
 
 // set up tab switch
@@ -24,6 +25,7 @@ function SetUpStarTravelHover(){
 	var cells = $("#tab3 .rank_cells .week_cell");
 	$.each(cells,function(index,value){
 		var cell = $(this);
+		cell.unbind('hover');
 		cell.hover(function(){
 			var hoverLayer = $("#tab3 .hoverlayer");
 			var x = cell.position().left;
@@ -229,6 +231,54 @@ function FetchAndSetBannerData(){
 	var weekbangdate = dateArr[2];
 	$(weekbang).html(j.c);
 	$(weekbangdate).html(j.cc);
+}
+
+//set up the data of tab3
+function FetchAndSetStarJourneyPageData(timestamp){
+
+	//give a time stamp and set the responding data.
+	//$.ajax();	
+	var data = {
+		month_rank:10,
+		week_rank:[{
+			datestamp:"2014 1.1-7",
+			rank:10
+		},{
+			datestamp:"2014 1.8-14",
+			rank:11
+		},{
+			datestamp:"2014 1.15-21",
+			rank:12
+		},{
+			datestamp:"2014 1.22-28",
+			rank:13
+		},{
+			datestamp:"2014 1.29-32",
+			rank:14
+		}]
+	};
+
+	var tab3 = $("#tab3")
+	var monthrank = tab3.find(".sjmonth_rank .sub_info_content");
+	monthrank.html(data.month_rank);
+	var cells = $("#tab3 .rank_cells");
+	var l = data.week_rank.length;
+	/*
+	for (var i=0;i< 5;i++){
+		var index = i+1;
+		var key = "#week_cell" + index;
+		var cell  = cells.find(key);
+		cell.removeClass();
+		if (index > l){
+			cell.addClass("week_cell_empty");
+			continue;
+		}
+		cell.addClass("week_cell");
+		var celldate = cell.find(".week_cell_date");
+		celldate.html(data.week_rank[i].datestamp);
+		var cellrank = cell.find(".sub_info_content");
+		cellrank.html(data.week_rank[i].rank);
+	}*/	
 }
 
 
