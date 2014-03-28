@@ -5,6 +5,8 @@ $(document).ready(function(){
     //星星排行的日，周，月，总点击事件
     starRankTab();
     $(".tab2_rankList").children(":odd").css("background-color","#eefafd");
+	starRankDisplay();
+	fansContributionDisplay();
 });
 
 // set up tab switch
@@ -150,4 +152,84 @@ function starRankTab() {
                 break;
         }
     });
+}
+
+//设置星星排行的数据显示
+function starRankDisplay(){
+	
+	var starRank = {
+	day:[
+		"梦幻西游梦幻西游",
+		"我是第二名",
+		"我是第三名",
+		"我是第四名",
+		"我是第五名",
+		"我是第六名",
+		"我是第七名"
+	],
+	week:[
+		"大话西游大话西游",
+		"我是第二名",
+		"我是第三名",
+		"我是第四名",
+		"我是第五名",
+		"我是第六名"	
+	],
+	year:[ 
+		"DotaDotaDotaDota",
+		"我是第二名",
+		"我是第三名",
+		"我是第四名",
+		"我是第五名",
+		"我是第六名"		
+	],
+	ALL:[
+		"2009200920092009",
+		"我是第二名",
+		"我是第三名",
+		"我是第四名",
+		"我是第五名",
+		"我是第六名"		
+	]
+	};
+	var i = 1;
+	for(;i <= starRank.day.length;i++)
+	{
+		$(".tab2_zhuboRank .tab2_rankList#day1 #day1-"+i+" span:last-child").text(starRank.day[i-1]);
+		switch(i){
+			case 1: case 2: case 3:
+				break;
+			case 4: case 5: case 6: case 7: case 8: case 9: case 10:
+				$(".tab2_zhuboRank .tab2_rankList#day1 #day1-"+i+" span:first-child").text(i);
+				break;
+		}
+	}
+	for(;i<=10 ;i++)
+	{
+		$(".tab2_zhuboRank .tab2_rankList#day1 #day1-"+i).css("display","none");
+	}
+}
+
+
+//设置粉丝贡献的数据显示
+function fansContributionDisplay(){
+	var bestFan = {
+		name:"梦幻西游大话西游",
+		number:123456
+	};
+	$(".tab4_bestFanStyle").find(".tab4_bestFan .name").text(bestFan.name);
+	$(".tab4_bestFanStyle").find(".tab4_bestFan .number").text("x"+bestFan.number);
+	
+	var dynamicState ={
+		name:"CCC",
+		day:22,
+		reward:90,
+		rank:2
+	};
+	
+	$(".tab4_content .name#name1").text(dynamicState.name);
+	$(".tab4_content .name#numOfDay1").text(dynamicState.day);
+	$(".tab4_content .name#percent1").text(dynamicState.reward+"%");
+	$(".tab4_content .rank#rank1").text(dynamicState.rank);
+	
 }
