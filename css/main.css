@@ -497,17 +497,15 @@ b.week{
 }
 
 .tab2_main {
-    width: 590px;
+    width: 100%;
     height: 348px;
-    margin: 0 auto;
 	background-color:#f6ffff;
 }
 
 .tab2_main .tab2_zhuboRank {
-    width:300px;
-    height: 350px;
+    width:299px;
+    height: 348px;
 	display:inline-block;
-	margin-left:-1px;
 	float:left;
 }
 
@@ -515,7 +513,6 @@ b.week{
     width:293px;
     height: 350px;
 	display:inline-block;
-	margin-left:-4px;
 	float:left;
 }
 
@@ -656,7 +653,7 @@ ul.tab_style li a.active {
 .tab2_rankList .latter {
 	width:205px;
 	height:20px;
-	margin:7px 0;
+	margin:6px 0;
 }
 
 .tab2_rankList .latter span:first-child {
@@ -686,7 +683,7 @@ ul.tab_style li a.active {
 }
 
 .tab4_main .tab4_rank {
-	width:590px;
+	width:100%;
     height: 162px;
 	display:inline-block;
 }
@@ -705,21 +702,8 @@ ul.tab_style li a.active {
 	top:9px;
 	left:19px;
 }
-.tab4_thisMonthBestFan {
-	width:196px;
-	height:120px;
-	display:inline-block;
-	float:left;
-}
 
-.tab4_todayBestFan {
-	width:196px;
-	height:120px;
-	display:inline-block;
-	float:left;
-}
-
-.tab4_pertimeBestFan {
+.tab4_bestFanStyle {
 	width:196px;
 	height:120px;
 	display:inline-block;
