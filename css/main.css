@@ -6,6 +6,10 @@ body{
 img{
     border:0;
 }
+a{
+    text-decoration: none;
+    text-align: center;
+}
 .clear_float{
     clear:both;
 }
@@ -55,7 +59,7 @@ img{
 .sub_info_title{
     color:#ffffff;
     line-height:20px;
-	font-size:12px;
+    font-size:12px;
     display: inline-block;
 }
 
@@ -78,10 +82,10 @@ img{
     -webkit-border-radius: 16px;
     border-radius: 16px;
     text-align: center;
-	color:#ffffff;
-	font-weight:bold;
+    color:#ffffff;
+    font-weight:bold;
     line-height:16px;
-	box-shadow:1px 1px 1px #000000;
+    box-shadow:1px 1px 1px #000000;
 }
 .fo_btn:hover{
     background:-webkit-gradient(linear,left top,left bottom,from(#f5a0ff),to(#c757c0));
@@ -90,15 +94,15 @@ img{
 
 
 .fo_btn_icon{
-	background:url(../image/sprite.png) no-repeat -90px -59px;
-	width:20px;
-	height:16px;
-	display:inline-block;
-	margin-top:10px;
+    background:url(../image/sprite.png) no-repeat -90px -59px;
+    width:20px;
+    height:16px;
+    display:inline-block;
+    margin-top:10px;
 }
 
 .fo_btn_text{
-	vertical-align:super;
+    vertical-align:super;
 }
 
 .star_rank{
@@ -136,7 +140,7 @@ img{
 }
 
 .star_journey .sub_info_title,.star_journey .sub_info_content{
-	line-height:12px;
+    line-height:12px;
 }
 
 .star_journey .icon{
@@ -203,11 +207,9 @@ b.week{
 .tabs li a{
     display: block;
     color: #5a9fd4;
-    text-decoration: none;
     width: 145px;
     height: 30px;
     line-height: 30px;
-    text-align: center;
     opacity:0.6;
     background: #ffffff;
     -webkit-border-top-left-radius: 2px;
@@ -256,7 +258,6 @@ b.week{
     top: 13px;
     text-align:right;
     left:175px;
-
 }
 
 #tab3 .sjhrbtn{
@@ -281,10 +282,10 @@ b.week{
 }
 
 #tab3 .sjmonth_rank{
-	height:75px;
-	position:relative;
-	top:0px;
-	left:0px;
+    height:75px;
+    position:relative;
+    top:0;
+    left:0;
 }
 
 #tab3 .sjrank_title{
@@ -338,47 +339,44 @@ b.week{
     width:175px;
     height:90px;
     display:inline-block;
+    position: absolute;
 }
 
-#tab3 #week_cell1{
-    position:absolute;
+#week_cell1{
     top:10px;
     left:10px;
 }
 
-#tab3 #week_cell2{
-    position:absolute;
+#week_cell2{
     top:10px;
     left:195px;
 }
 
-#tab3 #week_cell3{
-    position:absolute;
+#week_cell3{
     top:10px;
     left:380px;
 }
 
-#tab3 #week_cell4{
-    position:absolute;
+#week_cell4{
     top:110px;
     left:100px;
 }
 
-#tab3 #week_cell5{
-    position:absolute;
+#week_cell5{
+    position: absolute;
     top:110px;
     left:295px;
 }
 
-#tab3  .week_cell_date{
+.week_cell_date{
     position:relative;
     left:30px;
-    top:0px;
+    top:0;
     color:#ffffff;
     font-weight:bold;
 }
 
-#tab3 .week_cell .week_icon{
+.week_icon{
     top:8px;
     position:relative;
     left:15px;
@@ -388,14 +386,7 @@ b.week{
     background:url(../image/sprite.png) no-repeat -60px -54px;
 }
 
-.week_icon{
-    display:inline-block;
-    width:25px;
-    height:25px;
-    background:url(../image/sprite.png) no-repeat -60px -54px;
-}
-
-#tab3 .week_cell .sub_info_title{
+.week_cell .sub_info_title{
     margin-left:15px;
     vertical-align:middle;
     position:relative;
@@ -403,7 +394,7 @@ b.week{
     left:2px;
 }
 
-#tab3 .week_cell_empty .wupaiming{
+.week_cell_empty .wupaiming{
     position:relative;
     top:10px;
     left:55px;
@@ -411,432 +402,395 @@ b.week{
     color:#969696;
 }
 
-
 #tab3 .hoverlayer,#tab3 .mhoverlayer{
-	width:250px;
-	height:135px;
-	background-color:#ffffff;
-	-webkit-border-radius:5px;
+    width:250px;
+    height:135px;
+    background-color:#ffffff;
+    -webkit-border-radius:5px;
     border:2px solid #0099FF;
-	position:absolute;
-	top:0px;
-	left:0px;
-	z-index:100;
-	display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:100;
+    display:none;
 }
 
 #tab3  .sjrank_title{
-	margin-top:5px;
+    margin-top:5px;
 }
 
 #tab3  .hover_text_red{
-	font-size:12px;
-	color:#ff0066;
+    color:#ff0066;
 }
 
 #tab3  .hover_text_dblue{
-	color:#0066ff;	
-	font-size:12px;
+    color:#0066ff;
 }
 
 #tab3  .hover_text_pink{
-	color:#ff33cc;	
-	font-size:12px;
+    color:#ff33cc;
 }
 
 #tab3  .hover_text_blue{
-	color:#3366cc;
-	font-size:12px;
+    color:#3366cc;
 }
 
 .hover_text_blue,.hover_text_red,.hover_text_pink,.hover_text_dblue{
-	vertical-align:super;
-	display:inline-block;
-	height:16px;
-	line-height:16px;
-	margin-left:5px;
-	margin-top:5px;
+    vertical-align:super;
+    display:inline-block;
+    height:16px;
+    line-height:16px;
+    margin-left:5px;
+    margin-top:5px;
 }
 
-#tab3  .first_icon{
-	height:16px;		
-	background:url(../image/sprite.png) no-repeat -118px -59px;
-	width:18px;
-	display:inline-block;
-	margin-left:20px;
-	margin-top:5px;
+#tab3 .icon{
+    height:16px;
+    width:18px;
+    display:inline-block;
+    margin-left:20px;
+    margin-top:5px;
 }
 
-#tab3  .second_icon{
-	height:16px;		
-	width:18px;
-	background:url(../image/sprite.png) no-repeat -145px -59px;
-	display:inline-block;
-	margin-left:20px;
-	margin-top:5px;
-
+#tab3 .first{
+    background:url(../image/sprite.png) no-repeat -118px -59px;
+}
+#tab3 .second{
+    background:url(../image/sprite.png) no-repeat -145px -59px;
 }
 
-#tab3  .third_icon{
-	height:16px;		
-	width:18px;
-	background:url(../image/sprite.png) no-repeat -170px -59px;	
-	display:inline-block;
-	margin-left:20px;
-	
-	margin-top:5px;
-
+#tab3 .third{
+    background:url(../image/sprite.png) no-repeat -170px -59px;
 }
 
-#tab3  .gift_icon{
-	width:15px;
-	height:16px;
-	background:url(../image/sprite.png) no-repeat -194px -59px;
-	display:inline-block;
-	margin-left:40px;
+#tab3 .gift_icon{
+    width:15px;
+    height:16px;
+    background:url(../image/sprite.png) no-repeat -194px -59px;
+    display:inline-block;
+    margin-left:40px;
 }
 
 .tab2_main {
-    width: 590px;
+    width: 100%;
     height: 348px;
-    margin: 0 auto;
-	background-color:#f6ffff;
+    background-color:#f6ffff;
 }
 
 .tab2_main .tab2_zhuboRank {
-    width:300px;
-    height: 350px;
-	display:inline-block;
-	margin-left:-1px;
-	float:left;
+    width:299px;
+    height: 348px;
+    display:inline-block;
+    float:left;
 }
 
 .tab2_main .fansRank {
     width:293px;
     height: 350px;
-	display:inline-block;
-	margin-left:-4px;
-	float:left;
+    display:inline-block;
+    float:left;
 }
 
 .tab2_main .title {
-	width:135px;
-	height:30px;
-	background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
-	margin-top:10px;
-	font-weight:bold;
-	color:#ffffff;
+    width:135px;
+    height:30px;
+    background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
+    margin-top:10px;
+    font-weight:bold;
+    color:#ffffff;
 }
 
 .tab2_main .title span {
-	position:relative;
-	top:9px;
-	left:19px;
+    position:relative;
+    top:9px;
+    left:19px;
 }
 
 .tab2_main ul.tab_style {
-	width:187px;
-	height:20px;
-	position: relative;
-	left: 20px;
-	display:block;
-	margin-top: 6px;
-	border-bottom: 1px #78a8d5 solid;
-	padding:0 36px;
+    width:187px;
+    height:20px;
+    position: relative;
+    left: 20px;
+    display:block;
+    margin-top: 6px;
+    border-bottom: 1px #78a8d5 solid;
+    padding:0 36px;
 }
 
 ul.tab_style li {
-	float:left;
-	display:inline;
+    float:left;
+    display:inline;
 }
 
 ul.tab_style li a{
-	color:#78a8d5;
-	text-align:center;
-	width:45px;
-	height: 19px;
-	display:block;
-	cursor:pointer;
-	text-decoration:none;
-	float:left;
+    color:#78a8d5;
+    width:45px;
+    height: 19px;
+    line-height: 20px;
+    display:block;
+    float:left;
 }
 
 ul.tab_style li a.active {
-	color:#1c79c2;
-    border: 1px solid #78a8d5;
-    border-bottom-color: #ffffff;
+    height: 19px;
+    line-height: 19px;
+    background-color: #f6ffff;
+    color:#1c79c2;
+    border: thin solid #78a8d5;
+    border-bottom-color: #f6ffff;
 }
 
 .tab2_main .tab2_rankList {
-	margin:11px 40px 11px 52px;
-	height:266px;
-	width:205px;
-	display:none;
-}
-
-.tab2_rankList .active {
-	margin:11px 45px;
-	height:270px;
-	width:205px;
+    margin:9px 40px 11px 52px;
+    height:266px;
+    width:205px;
+    display:none;
 }
 
 .tab2_rankList .num1 {
-	width:205px;
-	height:31px;
-	margin:2px 0;
+    width:205px;
+    height:31px;
+    margin:2px 0;
 }
 
 .tab2_rankList .num1 .bg1 {
-	width:17px;
-	height:16px;
-	display:inline-block;
-	background:url(../image/sprite.png?xxx) -117px -59px no-repeat;
-	position: relative;
-	top: -7px;
+    width:17px;
+    height:16px;
+    display:inline-block;
+    background:url(../image/sprite.png?xxx) -117px -59px no-repeat;
+    position: relative;
+    top: -7px;
 }
 
 .tab2_rankList .num1 .bg2 {
-	width:31px;
-	height:31px;
-	display:inline-block;
-	background:url(../image/sprite.png?xxx) -198px -88px no-repeat;
+    width:31px;
+    height:31px;
+    display:inline-block;
+    background:url(../image/sprite.png?xxx) -198px -88px no-repeat;
 }
 
 .tab2_rankList .num1 span {
-	width:200px;
-	height:16px;
-	display:inline;
-	position: relative;
-	top: -11px;
-	color:#d62870;
+    width:200px;
+    height:16px;
+    display:inline;
+    position: relative;
+    top: -11px;
+    color:#d62870;
 }
 
 .tab2_rankList .num2 {
-	width:205px;
-	height:20px;
-	margin:5px 0 2px 0;
+    width:205px;
+    height:20px;
+    margin:5px 0 2px 0;
 }
 
 .tab2_rankList .num2 .bg1 {
-	width:17px;
-	height:16px;
-	display:inline-block;
-	background:url(../image/sprite.png?xxx) -143px -59px no-repeat;
+    width:17px;
+    height:16px;
+    display:inline-block;
+    background:url(../image/sprite.png?xxx) -143px -59px no-repeat;
 }
 
 .tab2_rankList .num2 span {
-	width:200px;
-	height:16px;
-	display:inline;
-	position: relative;
-	top: -4px;
-	color:#0b51ef;
+    width:200px;
+    height:16px;
+    display:inline;
+    position: relative;
+    top: -3px;
+    color:#0b51ef;
 }
 
 .tab2_rankList .num3 {
-	width:205px;
-	height:20px;
-	margin:7px 0;
+    width:205px;
+    height:20px;
+    margin:7px 0;
 }
 
 .tab2_rankList .num3 .bg1 {
-	width:17px;
-	height:16px;
-	display:inline-block;
-	background:url(../image/sprite.png?xxx) -168px -59px no-repeat;
+    width:17px;
+    height:16px;
+    display:inline-block;
+    background:url(../image/sprite.png?xxx) -168px -59px no-repeat;
 }
 
 .tab2_rankList .num3 span {
-	width:200px;
-	height:16px;
-	display:inline;
-	position: relative;
-	top: -4px;
-	color:#b618ff;
+    width:200px;
+    height:16px;
+    display:inline;
+    position: relative;
+    top: -3px;
+    color:#b618ff;
 }
 
 .tab2_rankList .latter {
-	width:205px;
-	height:20px;
-	margin:7px 0;
+    width:205px;
+    height:20px;
+    margin:6px 0;
 }
 
 .tab2_rankList .latter span:first-child {
-	width:17px;
-	height:16px;
-	display:inline-block;
-	position: relative;
-	top: -4px;
-	font-weight:bold;
-	color:#78a8d5;
-	text-align:center;
+    width:17px;
+    height:16px;
+    display:inline-block;
+    position: relative;
+    top: 3px;
+    font-weight:bold;
+    color:#78a8d5;
+    text-align:center;
 }
 
 .tab2_rankList .latter span:last-child {
-	width:200px;
-	height:16px;
-	display:inline;
-	position: relative;
-	top: -4px;
-	color:#78a8d5;
+    width:200px;
+    height:16px;
+    display:inline;
+    position: relative;
+    top: 3px;
+    color:#78a8d5;
 }
 
 .tab4_main {
-	width: 100%;
+    width: 100%;
     height: 348px;
-	background-color:#f6ffff;
+    background-color:#f6ffff;
 }
 
 .tab4_main .tab4_rank {
-	width:590px;
+    width:100%;
     height: 162px;
-	display:inline-block;
+    display:inline-block;
 }
 
 .tab4_rank .tab4_title {
-	width:135px;
-	height:30px;
-	background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
-	margin-top:10px;
-	font-weight:bold;
-	color:#ffffff;
+    width:135px;
+    height:30px;
+    background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
+    margin-top:10px;
+    font-weight:bold;
+    color:#ffffff;
 }
 
 .tab4_title span {
-	position:relative;
-	top:9px;
-	left:19px;
-}
-.tab4_thisMonthBestFan {
-	width:196px;
-	height:120px;
-	display:inline-block;
-	float:left;
+    position:relative;
+    top:9px;
+    left:19px;
 }
 
-.tab4_todayBestFan {
-	width:196px;
-	height:120px;
-	display:inline-block;
-	float:left;
-}
-
-.tab4_pertimeBestFan {
-	width:196px;
-	height:120px;
-	display:inline-block;
-	float:left;
+.tab4_bestFanStyle {
+    width:196px;
+    height:120px;
+    display:inline-block;
+    float:left;
 }
 
 .tab4_bestFanTitle {
-	width:198px;
-	height:30px;
-	display:block;
+    width:198px;
+    height:30px;
+    display:block;
 }
 
 .tab4_bestFanTitle .bg {
-	width:17px;
-	height:16px;
-	display:inline-block;
-	background:url(../image/sprite.png?xxx) -117px -59px no-repeat;
-	position: relative;
-	top: 12px;
-	left:33px;
+    width:17px;
+    height:16px;
+    display:inline-block;
+    background:url(../image/sprite.png?xxx) -117px -59px no-repeat;
+    position: relative;
+    top: 12px;
+    left:33px;
 }
 
 .tab4_bestFanTitle span {
-	width:100px;
-	height:16px;
-	display:inline;
-	position: relative;
-	top: 9px;
-	left:35px;
-	font-weight:bold;
-	color:#1c79c2;
+    width:100px;
+    height:16px;
+    display:inline;
+    position: relative;
+    top: 9px;
+    left:35px;
+    font-weight:bold;
+    color:#1c79c2;
 }
 
 .tab4_bestFan {
-	width:198px;
-	height:70px;
-	background:url(../image/sprite.png?xxx) 0 -203px no-repeat;
-	margin-left:5px;
+    width:198px;
+    height:70px;
+    background:url(../image/sprite.png?xxx) 0 -203px no-repeat;
+    margin-left:5px;
 }
 
 .tab4_bestFan .bg_CC {
-	width:31px;
-	height:31px;
-	display:inline-block;
-	background:url(../image/sprite.png?xxx) -198px -88px no-repeat;
-	position: relative;
-	top: 20px;
-	left: 13px;
+    width:31px;
+    height:31px;
+    display:block;
+    background:url(../image/sprite.png?xxx) -198px -88px no-repeat;
+    position: relative;
+    top: 20px;
+    left: 13px;
 }
 
 .tab4_bestFan .bg_box {
-	width:17px;
-	height:19px;
-	display:inline-block;
-	background:url(../image/sprite.png?xxx) -192px -57px no-repeat;
-	position: relative;
-	top: 24px;
-	left: -89px;
+    width:17px;
+    height:19px;
+    display:block;
+    background:url(../image/sprite.png?xxx) -192px -57px no-repeat;
+    position: relative;
+    top: -16px;
+    left: 54px;
 }
 
 .tab4_bestFan .name {
-	width:120px;
-	height:20px;
-	display:inline;
-	position: relative;
-	top: -3px;
-	left: 12px;
-	color:#d62870; 
+    width:120px;
+    height:20px;
+    display:block;
+    position: relative;
+    top: -15px;
+    left: 55px;
+    color:#d62870;
 }
 
-.tab4_bestFan .number { 
-	width:90px;
-	height:20px;
-	display:inline;
-	position: relative;
-	top: 4px;
-	left:70px;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
- 	color:#1c79c2;
+.tab4_bestFan .number {
+    width:90px;
+    height:20px;
+    display:block;
+    position: relative;
+    top: -32px;
+    left:76px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color:#1c79c2;
 }
 
 .tab4_dynamicState {
-	width:590px;
+    width:590px;
     height: 185px;
-	display:inline-block;
+    display:inline-block;
 }
 
 .tab4_dynamicState .tab4_title {
-	width:135px;
-	height:30px;
-	background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
-	font-weight:bold;
-	color:#ffffff;
+    width:135px;
+    height:30px;
+    background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
+    font-weight:bold;
+    color:#ffffff;
 }
 
 .tab4_dynamicState .tab4_content {
-	width:530px;
+    width:530px;
     height: 133px;
-	margin:10px 30px;
-	display:inline-block;
+    margin:10px 30px;
+    display:inline-block;
 }
 
 .tab4_content p{
-	color:#78a8d5;
-	line-height: 17px;
-	padding: 6px 0;
+    color:#78a8d5;
+    line-height: 17px;
+    padding: 6px 0;
 }
 
 .tab4_content .name {
-	font-weight:bold;
-	color:#1c79c2;
+    font-weight:bold;
+    color:#1c79c2;
 }
 
 .tab4_content .rank {
-	font-weight:bold;
-	color:#d62870;
+    font-weight:bold;
+    color:#d62870;
 }
