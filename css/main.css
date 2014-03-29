@@ -541,7 +541,7 @@ b.week{
 	left: 20px;
 	display:block;
 	margin-top: 6px;
-	border-bottom:thin #78a8d5 solid;
+	border-bottom: 1px #78a8d5 solid;
 	padding:0 36px;
 }
 
@@ -554,7 +554,7 @@ ul.tab_style li a{
 	color:#78a8d5;
 	text-align:center;
 	width:45px;
-	height:19px;
+	height: 19px;
 	display:block;
 	cursor:pointer;
 	text-decoration:none;
@@ -563,10 +563,8 @@ ul.tab_style li a{
 
 ul.tab_style li a.active {
 	color:#1c79c2;
-	border-top:thin #78a8d5 solid;
-	border-left:thin #78a8d5 solid;
-	border-right:thin #78a8d5 solid;
-	border-bottom:thin #ffffff solid;
+    border: 1px solid #78a8d5;
+    border-bottom-color: #ffffff;
 }
 
 .tab2_main .tab2_rankList {
