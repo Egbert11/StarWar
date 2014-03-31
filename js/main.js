@@ -344,7 +344,7 @@ function FetchAndSetStarJourneyPageData(timestamp){
 	monthrank.html(data.month_rank);
 	var cells = $("#tab3 .rank_cells");
 	var l = data.week_rank.length;
-	/*
+	
 	for (var i=0;i< 5;i++){
 		var index = i+1;
 		var key = "#week_cell" + index;
@@ -359,7 +359,7 @@ function FetchAndSetStarJourneyPageData(timestamp){
 		celldate.html(data.week_rank[i].datestamp);
 		var cellrank = cell.find(".sub_info_content");
 		cellrank.html(data.week_rank[i].rank);
-	}*/	
+	}	
 }
 
 
