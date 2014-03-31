@@ -342,23 +342,32 @@ function FetchAndSetStarJourneyPageData(timestamp){
 	var tab3 = $("#tab3")
 	var monthrank = tab3.find(".sjmonth_rank .sub_info_content");
 	monthrank.html(data.month_rank);
+	var weekrank = $("#tab3 .sjweek_rank");
+	weekrank.empty();
+	weekrank.append('<span class="sjrank_title">明星周榜</span>');
+	weekrank.append('<div class="rank_cells"></div>');
+
 	var cells = $("#tab3 .rank_cells");
 	var l = data.week_rank.length;
-	
+		
 	for (var i=0;i< 5;i++){
 		var index = i+1;
 		var key = "#week_cell" + index;
-		var cell  = cells.find(key);
-		cell.removeClass();
+		var cell_str  = '<div id="' + "week_cell" + index + '"></div>';
+		cells.append(cell_str);
+		var cell = cells.find(key);
 		if (index > l){
 			cell.addClass("week_cell_empty");
+			cell.append("");
 			continue;
 		}
 		cell.addClass("week_cell");
-		var celldate = cell.find(".week_cell_date");
-		celldate.html(data.week_rank[i].datestamp);
-		var cellrank = cell.find(".sub_info_content");
-		cellrank.html(data.week_rank[i].rank);
+		cell.append('<span class="week_cell_date">'+data.week_rank[i].datestamp+'</span><br/>');
+		cell.append('<span class="week_icon"></span>');	
+		cell.append('<span class="sub_info_title">明星周榜第<span class="sub_info_content">'+data.week_rank[i].rank+'</span>名</span>');
+		//celldate.html(data.week_rank[i].datestamp);
+//		var cellrank = cell.find(".sub_info_content");
+//		cellrank.html(data.week_rank[i].rank);
 	}	
 }
 
