@@ -109,10 +109,8 @@ function starRankTab() {
     var tab = $(".tab2_main .tab_style");
     tab.find("a").bind("click",function(){
         var parent = $(this).parent().parent();
-        if($(this).attr('id').length>0){
-            parent.find("a").removeClass("active");
-            $(this).addClass("active");
-        }
+        parent.find("a").removeClass("active");
+        $(this).addClass("active");
         //主播星星排行
         var zhubo = $(".tab2_zhuboRank");
         var whichTab = $(this).attr("id");
@@ -138,23 +136,48 @@ function starRankTab() {
         var fans = $(".fansRank");
         switch(whichTab){
             case "5":
-                fans.find(".tab2_rankList").css({'display':'none'});
-                fans.find("#day2").css({'display':'block'});
+                fetchStarRankFanContributionList(url,"day");
                 break;
             case "6":
-                fans.find(".tab2_rankList").css({'display':'none'});
-                fans.find("#week2").css({'display':'block'});
+                fetchStarRankFanContributionList(url,"week");
                 break;
             case "7":
-                fans.find(".tab2_rankList").css({'display':'none'});
-                fans.find("#month2").css({'display':'block'});
+                fetchStarRankFanContributionList(url,"month");
                 break;
             case "8":
-                fans.find(".tab2_rankList").css({'display':'none'});
-                fans.find("#all2").css({'display':'block'});
+                fetchStarRankFanContributionList(url,"all");
                 break;
         }
     });
+}
+
+
+//抓取星星排行中的粉丝贡献排行数据
+function fetchStarRankFanContributionList(tabName, url, dataType){
+    $.ajax({
+            type: 'GET',
+            url: url,
+            data: {receiver_type: "host",date_type:dataType,date: new Date().getTime(),hostid: 3002},
+            dataType: 'json',
+            success: function(data){
+				for(;i <= data.length;i++)
+				{
+					$(".tab2_zhuboRank .tab2_rankList#list2 #list2_"+i+" span:last-child").text(starRank.day[i-1]);
+					switch(i){
+						case 1: case 2: case 3:
+							break;
+						case 4: case 5: case 6: case 7: case 8: case 9: case 10:
+							$(".tab2_zhuboRank .tab2_rankList#list2 #list2_"+i+" span:first-child").text(i);
+							break;
+					}
+				}
+				for(;i<=10 ;i++)
+				{
+					$(".tab2_zhuboRank .tab2_rankList#list2 #list2_"+i).css("display","none");
+				}
+			},
+			error:function(){}
+	});
 }
 
 //设置星星排行的数据显示
