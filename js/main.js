@@ -10,6 +10,7 @@ $(document).ready(function(){
     setInterval(updateBanner, 10*60*1000);
 
 	fetchAndSetStarJourneyPageData(2014,3);
+	InitTab3Banner();
 });
 
 var config = {
@@ -53,7 +54,42 @@ function initTab(){
     })
 }
 
-//set up listener on the star travel page
+function InitTab3Banner(){
+	var tab3 = $("#tab3");
+	var lbtn = tab3.find(".sjhlbtn");
+	var rbtn = tab3.find(".sjhrbtn");
+	var title = tab3.find(".sjheadertitle");
+	title.html("");
+	var dd = new Date();
+	var text = dd.getFullYear() + "年 "+ (dd.getMonth()+1)+"月";
+	var base_month = dd.getMonth()+1;
+	title.html(text);
+	lbtn.click(function(){
+		rbtn.html(">");
+		var cmonth = parseInt(title.html().substr(6,1),10); 
+		var text = dd.getFullYear() + "年 "+ (cmonth - 1)+"月";
+		title.html(text);
+		cmonth = cmonth -1;
+		if (base_month - 2 >= cmonth ){
+			lbtn.html("");
+		}
+		fetchAndSetStarJourneyPageData(dd.getFullYear(),cmonth);
+	});
+	rbtn.click(function(){
+		lbtn.html("<");
+		var cmonth = parseInt(title.html().substr(6,1),10); 
+		var text = dd.getFullYear() + "年 "+ (cmonth+1)+"月";
+		title.html(text);
+		cmonth = cmonth + 1;
+		if (base_month <= cmonth){
+			rbtn.html("");
+		}	
+		fetchAndSetStarJourneyPageData(dd.getFullYear(),cmonth);
+
+	});
+	rbtn.html("");
+}
+
 function SetUpStarTravelHover(data){
 	var rs = data.result;
 	var cells = $("#tab3 .rank_cells .week_cell");

@@ -79,7 +79,6 @@ var calendar = {
 					//数据获取失败==
 					if (data.code != 0)return;
 					var rs = data.result;
-					console.log(rs);
 					var ddArr = $("#calendar dd");
 					if (nmonth < 10 )nmonth = "0" + nmonth;
 					$.each(ddArr,function(index,value){
@@ -87,8 +86,6 @@ var calendar = {
 						var nday = parseInt($(this).html(),10);
 						if (nday < 10 ) nday = "0" + nday;
 						var key = nyear + "-" + nmonth + "-" + nday; 
-						console.log("key"+key);
-						console.log(rs[key]);
 						var centerIcon = $(this).find(".award-bg2");
 						var rightIcon = $(this).find(".award");
 						if (rs[key].player_list.length == 0){
@@ -142,7 +139,6 @@ var calendar = {
 		var preMon = form.getElementsByTagName('span')[0];
 		var nextMon = form.getElementsByTagName('span')[1];
 		 
-		console.log(preMon);
 		preMon.onclick = function(){ //当点击左按钮时,减去一个月,并重绘TABLE
 			calendar.createCalendar(form,new Date(calendar.year,calendar.month-1,1)); 
 			calendar.addStarInCalendar(form);
