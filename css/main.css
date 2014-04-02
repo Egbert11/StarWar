@@ -405,6 +405,12 @@ b.week{
     color:#969696;
 }
 
+.hoverlayer p,.mhoverlayer p{
+	margin-top:30px;
+	margin-left:65px;
+	color:#0099ff;
+}
+
 .hoverlayer,.mhoverlayer{
     width:250px;
     height:135px;
