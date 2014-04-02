@@ -1,7 +1,6 @@
 $(document).ready(function(){
     SetSwitchTab();
 	SetUpTabClickJump();
-	SetUpStarTravelHover();
     //星星排行的日，周，月，总点击事件
     starRankTab();
     $(".tab2_rankList").children(":odd").css("background-color","#eefafd");
@@ -11,7 +10,6 @@ $(document).ready(function(){
 //		dataType:"json",
 //		type:"GET",
 //		success:function(data){
-//			console.log(data);
 //			alert(data.result["2014-04-01"].level);
 //		}
 //	});
@@ -33,11 +31,13 @@ function SetSwitchTab(){
 
 //set up listener on the star travel page;
 function SetUpStarTravelHover(data){
+	var rs = data.result;
 	var cells = $("#tab3 .rank_cells .week_cell");
 	$.each(cells,function(index,value){
 		var cell = $(this);
 		cell.unbind('hover');
 		cell.hover(function(){
+			//alert("hover");
 			var hoverLayer = $("#tab3 .hoverlayer");
 			var x = cell.position().left;
 			var y = cell.position().top;
@@ -62,68 +62,70 @@ function SetUpStarTravelHover(data){
 					break;
 				case 5:
 					fx = x -50;
-					fy = y;
+					fy = y - 60;
 					break;
 				default:
-					
 					break;
 			}
 			hoverLayer.empty();
 			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
-			var len = data.week[index].playlist.length;
+			var len = rs.week[index].player_list.length;
 			if (len > 0){
 				hoverLayer.append('<span class="icon first"></span>');
-				hoverLayer.append('<span class="hover_text_red">'+data.week[index].playlist[0][0] +'</span>');
+				hoverLayer.append('<span class="hover_text_red">'+rs.week[index].player_list[0][0] +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+data.week[index].playlist[0][1]+'</span>');
+				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[0][1]+'</span>');
 			}
 			if (len > 1){
 				hoverLayer.append('<span class="icon_second"></span>');
-				hoverLayer.append('<span class="hover_text_dblue">'+data.week[index].playlist[1][0] +'</span>');
+				hoverLayer.append('<span class="hover_text_dblue">'+rs.week[index].player_list[1][0] +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+data.week[index].playlist[1][1]+'</span>');
+				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[1][1]+'</span>');
 			}
 			if (len > 2){
 				hoverLayer.append('<span class="icon_third"></span>');
-				hoverLayer.append('<span class="hover_text_pink">'+data.week[index].playlist[2][0] +'</span>');
+				hoverLayer.append('<span class="hover_text_pink">'+rs.week[index].player_list[2][0] +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+data.week[index].playlist[2][1]+'</span>');
+				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[2][1]+'</span>');
 			}
 				
 			hoverLayer.css({display:"block",top:fy+"px",left:fx+"px"});
+//			alert(fx+"px"+fy+"px");
 			hoverLayer.hover(function(){
 				$(this).css({display:"block"});
 			},function(){
 				$(this).css({display:"none"});
 			});
+//			alert("hover");
 		},function(){	
 			var hoverLayer = $("#tab3 .hoverlayer");
 			hoverLayer.css({display:"none"});
 		});
 	});
 	var cell = $("#tab3 .sjmonth_rank .sjrank_content");
-	
 	cell.hover(function(){
 		var hoverLayer = $("#tab3 .mhoverlayer");
 		hoverLayer.empty();
-			var len = data.month.playlist.length;
+			
+			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
+			var len = rs.month.player_list.length;
 			if (len > 0){
 				hoverLayer.append('<span class="icon_first"></span>');
-				hoverLayer.append('<span class="hover_text_red">'+data.month.playlist[0][0] +'</span>');
+				hoverLayer.append('<span class="hover_text_red">'+rs.month.player_list[0][0] +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+data.month.playlist[0][1]+'</span>');
+				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[0][1]+'</span>');
 			}
 			if (len > 1){
 				hoverLayer.append('<span class="icon_second"></span>');
-				hoverLayer.append('<span class="hover_text_dblue">'+data.month.playlist[1][0] +'</span>');
+				hoverLayer.append('<span class="hover_text_dblue">'+rs.month.player_list[1][0] +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+data.month.playlist[1][1]+'</span>');
+				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[1][1]+'</span>');
 			}
 			if (len > 2){
 				hoverLayer.append('<span class="icon_third"></span>');
-				hoverLayer.append('<span class="hover_text_pink">'+data.month.playlist[2][0] +'</span>');
+				hoverLayer.append('<span class="hover_text_pink">'+rs.month.player_list[2][0] +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+data.month.playlist[2][1]+'</span>');
+				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[2][1]+'</span>');
 			}
 
 		hoverLayer.css({display:"block",top:"55px",left:"330px"});
@@ -284,7 +286,6 @@ function FetchAndSetBannerData(hostid){
 		},
 		jsonp:"callback",
 		success:function(data){
-			console.log(data);
 			//maybe 分离到其他函数去。
 			if (data.code != 0 )return;
 			var rs = data.result;
@@ -439,21 +440,17 @@ function FetchAndSetStarJourneyPageData(year,month,hostid, size){
 		dataType:"JSONP",
 		type:"GET",
 		data:{
-			date:1396358624,
-			hostid:20051152,
-			size:3,
-			date_type:"day",
-			callback:"?"
-			//year:year,
-			//month:month,
+			hostid:hostid,
+			size:size,
+			//date_type:"day",
+			year:year,
+			month:month,
 			//hostid:hostid,
 			//size:size
 		},
 		jsonpCallback:"callback",
 		success:function(data){
-			//alert("success");
 			if (data.code == 0){
-				console.log(data);
 				//success
 				SetTab3Data(data);			
 				SetUpStarTravelHover(data)
@@ -465,6 +462,7 @@ function FetchAndSetStarJourneyPageData(year,month,hostid, size){
 }
 
 function SetTab3Data(data){
+/*
 		var data = {
 		month_rank:10,
 		week_rank:[{
@@ -484,17 +482,17 @@ function SetTab3Data(data){
 			rank:14
 		}]
 	};
-
+*/
+	var rs = data.result;
 	var tab3 = $("#tab3")
 	var monthrank = tab3.find(".sjmonth_rank .sub_info_content");
-	monthrank.html(data.month_rank);
+	monthrank.html(rs.month.month_rank);
 	var weekrank = $("#tab3 .sjweek_rank");
 	weekrank.empty();
 	weekrank.append('<span class="sjrank_title">明星周榜</span>');
 	weekrank.append('<div class="rank_cells"></div>');
-
 	var cells = $("#tab3 .rank_cells");
-	var l = data.week_rank.length;
+	var l = rs.week.length;
 		
 	for (var i=0;i< 5;i++){
 		var index = i+1;
@@ -508,37 +506,39 @@ function SetTab3Data(data){
 			continue;
 		}
 		cell.addClass("week_cell");
-		cell.append('<span class="week_cell_date">'+data.week_rank[i].datestamp+'</span><br/>');
+		var aDate = rs.week[i].date;
+		aDate = aDate.substr(0,4) + " " + aDate.substr(5,2)+"."+aDate.substr(8,2) +"—" +aDate.substr(19,2);
+		cell.append('<span class="week_cell_date">'+aDate+'</span><br/>');
 		cell.append('<span class="week_icon"></span>');	
-		cell.append('<span class="sub_info_title">明星周榜第<span class="sub_info_content">'+data.week_rank[i].rank+'</span>名</span>');
+		cell.append('<span class="sub_info_title">明星周榜第<span class="sub_info_content">'+rs.week[i].rank+'</span>名</span>');
 		
-	}	
-}
+	}
+	cells.append('<div class="hoverlayer"></div>');
 
-function FetchStarRoadData(year,month,hostid,size){
-	
-	var hostid = arguments[2]?arguments[2]:20051152;
-	var size = arguments[3]?arguments[3]:3;
-	var baseUrl = "http://192.168.11.42:8390/dailyactive/"
-	var url = baseUrl + "get_author_star_road";	
-	$.ajax({
-		url:url,
-		dataType:"JSONP",
-		type:"GET",
-		data:{
-			year:year,
-			month:month,
-			hostid:hostid,
-			size:size,
-			callback:"?"
-		},
-		success:function(data){
-			alert("success");
-		}
-	});
 }
-
-function SetStarRoadData(data){
-	
-}
-
+//
+//function FetchStarRoadData(year,month,hostid,size){
+//	
+//	var hostid = arguments[2]?arguments[2]:20051152;
+//	var size = arguments[3]?arguments[3]:3;
+//	var baseUrl = "http://192.168.11.42:8390/dailyactive/"
+//	var url = baseUrl + "get_author_star_road";	
+//	$.ajax({
+//		url:url,
+//		dataType:"JSONP",
+//		type:"GET",
+//		data:{
+//			year:year,
+//			month:month,
+//			hostid:hostid,
+//			size:size,
+//			callback:"?"
+//		},
+//		success:function(data){
+//			alert("success");
+//		}
+//	});
+//}
+//
+//	
+//
