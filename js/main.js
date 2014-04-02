@@ -12,6 +12,9 @@ $(document).ready(function(){
     //每隔十分钟更新Banner数据
     updateBanner();
     setInterval(updateBanner, 10*60*1000);
+	//初始化成长星路
+	var calendars = document.getElementById('calendar'); 
+	calendar.init(calendars);
 
     initTab3Banner();
 });
@@ -57,7 +60,8 @@ Date.prototype.getNowTime = function(){
 //成长星路、星星排行、星之旅程、粉丝贡献Tab事件绑定
 function initTab(){
     $(".tabs li").delegate("a","click",function(){
-        $(".tabs li a").removeClass("active");
+        
+		$(".tabs li a").removeClass("active");
         $(this).addClass("active");
         $(".main_content .content").hide();
 
@@ -74,7 +78,10 @@ function initTab(){
         }else if (tabName == "tab3"){
             var dd = new Date();
             fetchAndSetStarJourneyPageData(dd.getFullYear(),dd.getMonth()+1);
-        }
+        }else if(tabName == "tab1"){
+				var calendars = document.getElementById('calendar'); 
+				calendar.init(calendars);
+		}
     })
 }
 

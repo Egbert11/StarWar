@@ -204,8 +204,8 @@ var calendar = {
 		this.addStarInCalendar(form);
 	}
 }
-
+/*
 window.onload = function(){
 	var calendars = document.getElementById('calendar'); 
 	calendar.init(calendars);
-}
+}*/
