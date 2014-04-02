@@ -14,7 +14,7 @@ $(document).ready(function(){
     setInterval(updateBanner, 10*60*1000);
 	//初始化成长星路
 	var calendars = document.getElementById('calendar'); 
-	calendars.config = config;
+	calendar.config = config;
 	calendar.init(calendars);
 
     initTab3Banner();
@@ -593,6 +593,12 @@ function setTab3Data(data){
 		if (index > l){
 			cell.addClass("week_cell_empty");
 			cell.append("");
+			continue;
+		}
+		if (rs.week[i].rank == 0 ){
+			cell.addClass("week_cell_empty");
+			cell.append('<span class="wupaiming">暂无排名</span>');
+			//cell.append('<p style="margin-top:40px;margin-left:65px;color:#0099ff;">任务暂未开始</p>');
 			continue;
 		}
 		cell.addClass("week_cell");
