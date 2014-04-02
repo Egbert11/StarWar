@@ -6,9 +6,44 @@ $(document).ready(function(){
     starRankTab();
 	starRankDisplay();
 	fansContributionDisplay();
-	FetchAndSetBannerData();
-	FetchAndSetStarJourneyPageData("2014-03");
+
+    // 每隔十分钟更新Banner数据
+    updateBanner();
+    setInterval(updateBanner, 10*60*1000);
+
+	FetchAndSetStarJourneyPageData(2014,3);
 });
+
+var config = {
+    baseUrl: 'http://192.168.11.42:8390/dailyactive/',
+    hostid: 20051154
+}
+
+// 对Date的扩展，将 Date 转化为指定格式的String
+// 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+// 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+// 例子：
+// (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+// (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "h+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
+
+Date.prototype.getNowTime = function(){
+    return Math.floor(this.getTime()/1000);
+}
 
 // set up tab switch
 function SetSwitchTab(){
@@ -20,8 +55,8 @@ function SetSwitchTab(){
     })
 }
 
-//set up listener on the star travel page;
-function SetUpStarTravelHover(){
+//set up listener on the star travel page
+function SetUpStarTravelHover(data){
 	var cells = $("#tab3 .rank_cells .week_cell");
 	$.each(cells,function(index,value){
 		var cell = $(this);
@@ -57,6 +92,28 @@ function SetUpStarTravelHover(){
 					
 					break;
 			}
+			hoverLayer.empty();
+			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
+			var len = data.week[index].playlist.length;
+			if (len > 0){
+				hoverLayer.append('<span class="icon first"></span>');
+				hoverLayer.append('<span class="hover_text_red">'+data.week[index].playlist[0][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.week[index].playlist[0][1]+'</span>');
+			}
+			if (len > 1){
+				hoverLayer.append('<span class="icon_second"></span>');
+				hoverLayer.append('<span class="hover_text_dblue">'+data.week[index].playlist[1][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.week[index].playlist[1][1]+'</span>');
+			}
+			if (len > 2){
+				hoverLayer.append('<span class="icon_third"></span>');
+				hoverLayer.append('<span class="hover_text_pink">'+data.week[index].playlist[2][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.week[index].playlist[2][1]+'</span>');
+			}
+				
 			hoverLayer.css({display:"block",top:fy+"px",left:fx+"px"});
 			hoverLayer.hover(function(){
 				$(this).css({display:"block"});
@@ -69,8 +126,30 @@ function SetUpStarTravelHover(){
 		});
 	});
 	var cell = $("#tab3 .sjmonth_rank .sjrank_content");
+	
 	cell.hover(function(){
 		var hoverLayer = $("#tab3 .mhoverlayer");
+		hoverLayer.empty();
+			var len = data.month.playlist.length;
+			if (len > 0){
+				hoverLayer.append('<span class="icon_first"></span>');
+				hoverLayer.append('<span class="hover_text_red">'+data.month.playlist[0][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.month.playlist[0][1]+'</span>');
+			}
+			if (len > 1){
+				hoverLayer.append('<span class="icon_second"></span>');
+				hoverLayer.append('<span class="hover_text_dblue">'+data.month.playlist[1][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.month.playlist[1][1]+'</span>');
+			}
+			if (len > 2){
+				hoverLayer.append('<span class="icon_third"></span>');
+				hoverLayer.append('<span class="hover_text_pink">'+data.month.playlist[2][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.month.playlist[2][1]+'</span>');
+			}
+
 		hoverLayer.css({display:"block",top:"55px",left:"330px"});
 		hoverLayer.unbind("hover");
 		hoverLayer.hover(function(){
@@ -84,7 +163,7 @@ function SetUpStarTravelHover(){
 	});
 }
 
-//bind the click function with the tab jump effect; 
+//bind the click function with the tab jump effect
 function SetUpTabClickJump(){
 	var tabs = $(".tabs li a");
 	$.each(tabs,function(index,value){
@@ -204,107 +283,92 @@ function fansContributionDisplay(){
 	
 }
 
-//get the data from banner;
-function FetchAndSetBannerData(){
-	
-	//fetchDataFromServer
-	//$.ajax();		
-	//
-	//mock it up with fake data.
-	data = {
-		avatar:"2333.png",
-		anchor_name:"herokingsley",
-		anchor_rank:6,
-		anchor_renqi:123,
-		anchor_fo:2333333
-	};
-	//update the content of the anchor info
-	var pic = $(".banner .avatar");
-	//pic.attr("src",data.avatar);
-	var pinfo = $(".pinfo_content");
-	var person_name = pinfo.find(".person_name");
-	person_name.html(data.anchor_name);
-	var contentArr = pinfo.find(".sub_info_content");
-	var anchorRank = contentArr[0];
-	$(anchorRank).html("LV"+data.anchor_rank);
-	var anchorRenqi = contentArr[1];
-	$(anchorRenqi).html(data.anchor_renqi);
-	var anchorfo = contentArr[2];
-	$(anchorfo).html(data.anchor_fo);
+//更新Banner数据
+function updateBanner(){
+	var url = config.baseUrl + "get_author_rank_info";
+	$.ajax({
+		url:url,
+        type:"GET",
+		dataType:"jsonp",
+        jsonp: "callback",
+		data:{
+			date: new Date().getNowTime(),
+			hostid:config.hostid
+		},
+		success:function(data){
+			if (data.code != 0 )return;
+            handleBannerData(data);
+		},
+        error:function(){}
+	});		
+}
 
-	d = {
-		a:10,
-		b:11,
-		c:13,
-		d:14,
-		e:15
-	};
-	//update the value of the star rank col
-	var rankcol = $(".banner .star_rank"); 	
-	var rcontentArr = rankcol.find(".sub_info_content");
-	var todayMei = rcontentArr[0];
-	$(todayMei).html(d.a);
-	var todayren = rcontentArr[1];
-	$(todayren).html(d.b);
-	var todaystar = rcontentArr[2];
-	$(todaystar).html(d.c);
-	var weekstar = rcontentArr[3];
-	$(weekstar).html(d.d);
-	var monthzong = rcontentArr[4];
-	$(monthzong).html(d.e);
+//处理成功获取Banner的数据
+function handleBannerData(data){
+    var rs = data.result;
+    var pinfo = $(".pinfo_content");
+    var contentArr = pinfo.find(".sub_info_content").empty();
+    contentArr[0].innerHTML = "LV"+rs.day_level;
+    contentArr[1].innerHTML = rs.popularity;
+    contentArr[2].innerHTML = rs.charm;
 
-	//setup star journey data;
-	//
-	var j = {
-		a:10,
-		aa:"2011-10-09",
-		b:15,
-		bb:"1111-11-11",
-		c:20,
-		cc:"1234-05-06"
-	};	
+    var rankcol = $(".banner .star_rank");
+    var rcontentArr = rankcol.find(".sub_info_content").empty();
+    rcontentArr[0].innerHTML = rs.day_charm_rank;
+    rcontentArr[1].innerHTML = rs.day_popularity_rank;
+    rcontentArr[2].innerHTML = rs.day_star_rank;
+    rcontentArr[3].innerHTML = rs.week_star_rank;
+    rcontentArr[4].innerHTML = rs.month_star_rank;
 
-	var starJourney = $(".banner .star_journey");
-	var rankArr = starJourney.find(".sub_info_content");
-	var dateArr = starJourney.find(".journey_date");
-	var zongbang = rankArr[0];
-	$(zongbang).html(j.a);
-	var zongbangdate = dateArr[0];
-	$(zongbangdate).html(j.aa);
-	var monthbang = rankArr[1];
-	$(monthbang).html(j.b);
-	var monthbangdate = dateArr[1];
-	$(monthbangdate).html(j.bb);
-	var weekbang = rankArr[2];
-	var weekbangdate = dateArr[2];
-	$(weekbang).html(j.c);
-	$(weekbangdate).html(j.cc);
+    $(".banner .star_journey").find(".journey_date").text(new Date().Format("yyyy-MM-dd"));
+
+    var title = $(".banner .star_journey").find("p .sub_info_title");
+    if (rs.total_rank != 0)
+        $(title[0]).html('明星总榜第<span class="sub_info_content">'+rs.total_rank+'</span>名');
+    else
+        $(title[0]).html('暂时无排名');
+
+    if (rs.total_month_rank != 0)
+        $(title[1]).html('明星月榜第<span class="sub_info_content">'+rs.total_month_rank+'</span>名');
+    else
+        $(title[1]).html('暂时无排名');
+
+    if (rs.total_week_rank != 0)
+        $(title[2]).html('明星周榜第<span class="sub_info_content">'+rs.total_week_rank+'</span>名');
+    else
+        $(title[2]).html('暂时无排名');
 }
 
 //set up the data of tab3
-function FetchAndSetStarJourneyPageData(timestamp){
-
+function FetchAndSetStarJourneyPageData(year,month,hostid, size){
+	var hostid = arguments[2]?arguments[2]:20051152;
+	var size = arguments[3]?arguments[3]:3;
+	var url = config.baseUrl + "get_author_star_milestone";
 	//give a time stamp and set the responding data.
-	//$.ajax();	
-	var data = {
-		month_rank:10,
-		week_rank:[{
-			datestamp:"2014 1.1-7",
-			rank:10
-		},{
-			datestamp:"2014 1.8-14",
-			rank:11
-		},{
-			datestamp:"2014 1.15-21",
-			rank:12
-		},{
-			datestamp:"2014 1.22-28",
-			rank:13
-		},{
-			datestamp:"2014 1.29-32",
-			rank:14
-		}]
-	};
+	$.ajax({
+		url:url,
+        type:"GET",
+		dataType:"jsonp",
+        jsonp: "callback",
+		data:{
+            year: year,
+            month: month,
+			hostid: hostid,
+			size: size
+		},
+		success:function(data){
+			if (data.code == 0){
+				//success
+				//SetTab3Data(data);
+				SetUpStarTravelHover(data)
+
+			}
+		}
+	});	
+
+}
+
+function SetTab3Data(data){
 
 	var tab3 = $("#tab3")
 	var monthrank = tab3.find(".sjmonth_rank .sub_info_content");
@@ -332,10 +396,32 @@ function FetchAndSetStarJourneyPageData(timestamp){
 		cell.append('<span class="week_cell_date">'+data.week_rank[i].datestamp+'</span><br/>');
 		cell.append('<span class="week_icon"></span>');	
 		cell.append('<span class="sub_info_title">明星周榜第<span class="sub_info_content">'+data.week_rank[i].rank+'</span>名</span>');
-		//celldate.html(data.week_rank[i].datestamp);
-//		var cellrank = cell.find(".sub_info_content");
-//		cellrank.html(data.week_rank[i].rank);
-	}	
+	}
 }
 
+function FetchStarRoadData(year,month,hostid,size){
+	
+	var hostid = arguments[2]?arguments[2]:20051152;
+	var size = arguments[3]?arguments[3]:3;
+	var baseUrl = "http://192.168.11.42:8390/dailyactive/"
+	var url = baseUrl + "get_author_star_road";	
+	$.ajax({
+		url:url,
+		dataType:"JSONP",
+		type:"GET",
+		data:{
+			year:year,
+			month:month,
+			hostid:hostid,
+			size:size,
+			callback:"?"
+		},
+		success:function(data){
+			alert("success");
+		}
+	});
+}
 
+function SetStarRoadData(data){
+	
+}
