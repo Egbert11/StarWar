@@ -78,8 +78,9 @@ function initTab(){
             fetchFansContributionList("get_player_author_rank","day");
             fetchFansContributionList("get_player_author_contribute","day");
         }else if (tabName == "tab3"){
-            var dd = new Date();
-            fetchAndSetStarJourneyPageData(dd.getFullYear(),dd.getMonth()+1);
+			var dd = new Date();
+            initTab3Banner();
+			fetchAndSetStarJourneyPageData(dd.getFullYear(),dd.getMonth()+1);
         }else if(tabName == "tab1"){
 				var calendars = document.getElementById('calendar'); 
 				calendar.init(calendars);
@@ -97,6 +98,8 @@ function initTab3Banner(){
 	var text = dd.getFullYear() + "年 "+ (dd.getMonth()+1)+"月";
 	var base_month = dd.getMonth()+1;
 	title.html(text);
+	lbtn.unbind('click');
+	rbtn.unbind('click');
 	lbtn.click(function(){
 		rbtn.html(">");
 		var cmonth = parseInt(title.html().substr(6,1),10); 
