@@ -4,7 +4,6 @@ $(document).ready(function(){
 	SetUpStarTravelHover();
     //星星排行的日，周，月，总点击事件
     starRankTab();
-    $(".tab2_rankList").children(":odd").css("background-color","#eefafd");
 	starRankDisplay();
 	fansContributionDisplay();
 	FetchAndSetBannerData();

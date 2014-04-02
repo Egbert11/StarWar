@@ -9,6 +9,7 @@ img{
 a{
     text-decoration: none;
     text-align: center;
+    outline: none;
 }
 .clear_float{
     clear:both;
@@ -552,6 +553,9 @@ ul.tab_style li a.active {
     height:20px;
     margin:6px 0;
     line-height: 20px;
+}
+.tab2_rankList li:nth-child(even) {
+    background:#ecf9fc;
 }
 
 li.no1 {
