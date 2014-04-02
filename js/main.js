@@ -266,21 +266,21 @@ function initHoverLayerWithData(hoverlayer,data){
 	var second_col = hoverlayer.find(".second_col");
 			if (len > 0){
 				first_col.append('<span class="icon first"></span>');
-				first_col.append('<span class="hover_text_red">'+mySubStr(data.player_list[0][0],8) +'</span><br/>');
+				first_col.append('<span class="hover_text_red" title="'+data.player_list[0][0] +'">'+mySubStr(data.player_list[0][0],8) +'</span><br/>');
 				second_col.append('<span class="gift_icon"></span>');
 				second_col.append('<span class="hover_text_blue">'+data.player_list[0][1]+'</span>');
 				second_col.append('<br/>');
 			}
 			if (len > 1){
 				first_col.append('<span class="icon second"></span>');
-				first_col.append('<span class="hover_text_dblue">'+mySubStr(data.player_list[1][0],8) +'</span><br/>');
+				first_col.append('<span class="hover_text_dblue" title="'+data.player_list[1][0] +'">'+mySubStr(data.player_list[1][0],8) +'</span><br/>');
 				second_col.append('<span class="gift_icon"></span>');
 				second_col.append('<span class="hover_text_blue">'+data.player_list[1][1]+'</span>');
 				second_col.append('<br/>');
 			}
 			if (len > 2){
 				first_col.append('<span class="icon third"></span>');
-				first_col.append('<span class="hover_text_pink">'+mySubStr(data.player_list[2][0],8) +'</span><br/>');
+				first_col.append('<span class="hover_text_pink" title="'+data.player_list[2][0] +'">'+mySubStr(data.player_list[2][0],8) +'</span><br/>');
 				second_col.append('<span class="gift_icon"></span>');
 				second_col.append('<span class="hover_text_blue">'+data.player_list[2][1]+'</span>');
 				second_col.append('<br/>');
@@ -579,7 +579,7 @@ function fetchAndSetStarJourneyPageData(year, month, hostid, size){
         data:{
             year: year,
             month: month,
-            hostid: 1338955,
+            hostid: config.hostid,
             size: size
         },
         success:function(data){
@@ -597,7 +597,7 @@ function setTab3Data(data){
 	var tab3 = $("#tab3")
 	var monthrank = tab3.find(".sjmonth_rank .sjrank_content");
 	monthrank.empty();
-	if (rs.month.month_rank){
+	if (rs.month.month_rank == 0){
 		monthrank.append('<p style="text-align:center;margin-top:25px;margin-left:15px;color:#969696;">活动尚未开始</p>');
 	}else{
 		monthrank.append('<span class="sjrank_icon"></span>');

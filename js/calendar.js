@@ -122,19 +122,22 @@ var calendar = {
 
 								if (len > 0){
 									first_col.append('<span class="icon first"></span>');
-									first_col.append('<span class="hover_text_red">'+mySubStr(rs[key].player_list[0][0],8) +'</span><br/>');
+									first_col.append('<span class="hover_text_red" title="'+ rs[key].player_list[0][0] +
+										'">'+mySubStr(rs[key].player_list[0][0],8) +'</span><br/>');
 									second_col.append('<span class="gift_icon"></span>');
 									second_col.append('<span class="hover_text_blue">'+rs[key].player_list[0][1]+'</span><br/>');
 								}
 								if (len > 1){
 									first_col.append('<span class="icon second"></span>');
-									first_col.append('<span class="hover_text_dblue">'+mySubStr(rs[key].player_list[1][0],8) +'</span><br/>');
+									first_col.append('<span class="hover_text_dblue" title="'+
+										rs[key].player_list[1][0] +'">'+mySubStr(rs[key].player_list[1][0],8) +'</span><br/>');
 									second_col.append('<span class="gift_icon"></span>');
 									second_col.append('<span class="hover_text_blue">'+rs[key].player_list[1][1]+'</span><br/>');
 								}
 								if (len > 2){
 									first_col.append('<span class="icon third"></span>');
-									first_col.append('<span class="hover_text_pink">'+mySubStr(rs[key].player_list[2][0],8) +'</span><br/>');
+									first_col.append('<span class="hover_text_pink" title="'+
+										rs[key].player_list[2][0]+'">'+mySubStr(rs[key].player_list[2][0],8) +'</span><br/>');
 									second_col.append('<span class="gift_icon"></span>');
 									second_col.append('<span class="hover_text_blue">'+rs[key].player_list[2][1]+'</span><br/>');
 								}
