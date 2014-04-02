@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 // set up tab switch
 function SetSwitchTab(){
-    $(".tabs li a").bind("click",function(){
+    $(".tabs li").on("a","click",function(){
         $(".tabs li a").removeClass("active");
         $(this).addClass("active");
         $(".main_content .content").hide();
@@ -106,54 +106,22 @@ function SetUpTabClickJump(){
 
 //星星排行的日，周，月，总点击事件
 function starRankTab() {
-    var tab = $(".tab2_main .tab_style");
-    tab.find("a").bind("click",function(){
-        var parent = $(this).parent().parent();
-        if($(this).attr('id').length>0){
-            parent.find("a").removeClass("active");
-            $(this).addClass("active");
-        }
-        //主播星星排行
-        var zhubo = $(".tab2_zhuboRank");
-        var whichTab = $(this).attr("id");
-        switch(whichTab){
-            case "1":
-                zhubo.find(".tab2_rankList").css({'display':'none'});
-                zhubo.find("#day1").css({'display':'block'});
-                break;
-            case "2":
-                zhubo.find(".tab2_rankList").css({'display':'none'});
-                zhubo.find("#week1").css({'display':'block'});
-                break;
-            case "3":
-                zhubo.find(".tab2_rankList").css({'display':'none'});
-                zhubo.find("#month1").css({'display':'block'});
-                break;
-            case "4":
-                zhubo.find(".tab2_rankList").css({'display':'none'});
-                zhubo.find("#all1").css({'display':'block'});
-                break;
-        }
-        //粉丝贡献排行
-        var fans = $(".fansRank");
-        switch(whichTab){
-            case "5":
-                fans.find(".tab2_rankList").css({'display':'none'});
-                fans.find("#day2").css({'display':'block'});
-                break;
-            case "6":
-                fans.find(".tab2_rankList").css({'display':'none'});
-                fans.find("#week2").css({'display':'block'});
-                break;
-            case "7":
-                fans.find(".tab2_rankList").css({'display':'none'});
-                fans.find("#month2").css({'display':'block'});
-                break;
-            case "8":
-                fans.find(".tab2_rankList").css({'display':'none'});
-                fans.find("#all2").css({'display':'block'});
-                break;
-        }
+    var zhuboNav = $(".zhuboRank .tab_style");
+    zhuboNav.delegate("li a", "click",function(){
+        zhuboNav.find("a").removeClass("active");
+        var name = $(this).addClass("active").attr("name");
+
+        $(".zhuboRank ul.tab2_rankList").hide();
+        $(".zhuboRank").find("ul[name="+name+"]").show();
+    });
+
+    var fansNav = $(".fansRank .tab_style");
+    fansNav.delegate("li a", "click",function(){
+        fansNav.find("a").removeClass("active");
+        var name = $(this).addClass("active").attr("name");
+
+        $(".fansRank ul.tab2_rankList").hide();
+        $(".fansRank").find("ul[name="+name+"]").show();
     });
 }
 
