@@ -15,10 +15,10 @@ $(document).ready(function(){
 //			alert(data.result["2014-04-01"].level);
 //		}
 //	});
-//	starRankDisplay();
-//	fansContributionDisplay();
-//	FetchAndSetBannerData();
-//	FetchAndSetStarJourneyPageData(2014,3);
+	starRankDisplay();
+	fansContributionDisplay();
+	FetchAndSetBannerData();
+	FetchAndSetStarJourneyPageData(2014,3);
 });
 
 // set up tab switch
@@ -271,7 +271,8 @@ function FetchAndSetBannerData(date,hostid){
 		type:"GET",
 		data:{
 			date:date,
-			hostid:hostid
+			hostid:hostid,
+			callback:"?"
 		},
 		success:function(data){
 			
@@ -432,7 +433,8 @@ function FetchAndSetStarJourneyPageData(year,month,hostid, size){
 			date:1396358624,
 			hostid:20051152,
 			size:3,
-			date_type:"day"
+			date_type:"day",
+			callback:"?"
 			//year:year,
 			//month:month,
 			//hostid:hostid,
@@ -517,7 +519,8 @@ function FetchStarRoadData(year,month,hostid,size){
 			year:year,
 			month:month,
 			hostid:hostid,
-			size:size
+			size:size,
+			callback:"?"
 		},
 		success:function(data){
 			alert("success");

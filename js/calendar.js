@@ -66,12 +66,13 @@ var calendar = {
 
 		$.ajax({	
 			url:url,
-			dataType:"json",
+			dataType:"JSONP",
 			data:{
 				year:nyear,
 				month:nmonth,
 				hostid:hostid,
-				size:size
+				size:size,
+				callback:"?"
 			},
 			type:"GET",
 			success:function(data){
