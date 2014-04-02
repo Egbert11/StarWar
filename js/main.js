@@ -575,8 +575,16 @@ function fetchAndSetStarJourneyPageData(year, month, hostid, size){
 function setTab3Data(data){
 	var rs = data.result;
 	var tab3 = $("#tab3")
-	var monthrank = tab3.find(".sjmonth_rank .sub_info_content");
-	monthrank.html(rs.month.month_rank);
+	var monthrank = tab3.find(".sjmonth_rank .sjrank_content");
+	monthrank.empty();
+	if (rs.month.month_rank){
+		monthrank.append('<p style="text-align:center;margin-top:25px;margin-left:15px;color:#969696;">活动尚未开始</p>');
+	}else{
+		monthrank.append('<span class="sjrank_icon"></span>');
+		monthrank.append('<span class="sub_info_title">明星月榜第<span class="sub_info_content">'+
+			rs.month.month_rank+'</span>'+'名</span>');
+	}
+	//monthrank.html(rs.month.month_rank);
 	var weekrank = $("#tab3 .sjweek_rank");
 	weekrank.empty();
 	weekrank.append('<span class="sjrank_title">明星周榜</span>');
