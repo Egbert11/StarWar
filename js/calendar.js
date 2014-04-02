@@ -4,7 +4,7 @@ var calendar = {
 	dayTable:null, //初始化TABLE 
 	year:null, //初始化年 
 	month:null, //初始化月份 
-
+	allData:null,
 	getFirstDay:function(year,month){ //获取每个月第一天再星期几 
 		var firstDay = new Date(year,month,1); 
 		return firstDay.getDay(); //getDay()方法来获取 
@@ -47,7 +47,7 @@ var calendar = {
 		} 
 	}, 
 
-	addStarInCalendar:function(form){//添加每日记录
+	addStarInCalendar:function(form,hostid,size){//添加每日记录
 		var len = form.getElementsByTagName('dd').length;
 		for(var i=0;i<len;i++){
 			if(form.getElementsByTagName('dd')[i].innerHTML != "" ){
@@ -55,6 +55,68 @@ var calendar = {
 				$("#calendar dd:eq("+i+")").append(text); 
 			}
 		}
+
+		var baseUrl = "http://192.168.11.42:8390/dailyactive/"
+		var url = baseUrl + "get_author_star_road";
+		var hostid = arguments[1]? arguments[1]:20051152;
+		var size = arguments[2]?arguments[2]:3;
+		var dd = new Date();
+		var nyear = dd.getYear();
+		var nmonth = dd.getMonth() + 1;
+
+		$.ajax({	
+			url:url,
+			dataType:"json",
+			data:{
+				year:nyear,
+				month:nmonth,
+				hostid:hostid,
+				size:size
+			},
+			type:"GET",
+			success:function(data){
+					//数据获取失败==
+					if (data.code != 0)return;
+					var rs = data.result;
+					var ddArr = $("#calendar dd");
+					$.each(ddArr,function(index,value){
+						if($(this).html()== "")return;
+						var nday = $(this).html();
+						if (nmonth < 10 )nmonth = "0" + nmonth;
+						if (nday < 10 ) nday = "0" + nday;
+						var key = nyear + "-" + nmonth + "-" + nday; 
+						console.log("key"+key);
+						console.log(rs[key]);
+						$(this).bind({
+
+						mouseover:function(e){
+							if($(this).html() != ""){
+								var hoverLayer = $("#calendar_hover");
+								hoverLayer.empty();
+								hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
+								var len = rs[key].player_list.length;
+								if (len > 0){
+									hoverLayer.append('');	
+								}
+								var x = $(this).offset().left;
+								var y = $(this).parent("dl").offset().top; 
+								$("#calendar_hover").css("top",y+50);
+								$("#calendar_hover").css("left",x-36);
+								$("#calendar_hover").show();
+							}
+						},
+						mouseout:function(){
+							if($(this).html() != ""){
+								$("#calendar_hover").hide();
+							}
+						}
+					});
+			
+				});
+			}
+		});	
+				
+
 	},
 
 	init:function(form){ //主方法 
@@ -62,10 +124,12 @@ var calendar = {
 		this.createCalendar(form,new Date()); 
 		var preMon = form.getElementsByTagName('span')[0];
 		var nextMon = form.getElementsByTagName('span')[1];
-		preMon.onclick = function(){ //当点击左按钮时,减去一个月,并重绘TABLE 
+		 
+		console.log(preMon);
+		preMon.onclick = function(){ //当点击左按钮时,减去一个月,并重绘TABLE
 			calendar.createCalendar(form,new Date(calendar.year,calendar.month-1,1)); 
 			calendar.addStarInCalendar(form);
-			if(base_month > calendar.month){
+			if(base_month -2 >= calendar.month){
 				preMon.innerHTML = "";
 			}
 			nextMon.innerHTML = "&gt;";
@@ -74,17 +138,18 @@ var calendar = {
 			calendar.createCalendar(form,new Date(calendar.year,calendar.month+1,1)); 
 			calendar.addStarInCalendar(form);
 			preMon.innerHTML = "&lt;";
-			if(base_month < calendar.month){
+			if(base_month  >= calendar.month){
 				nextMon.innerHTML = "";				
 			}
 		}
+		nextMon.innerHTML = "";
 		this.addStarInCalendar(form);
 	}
 }
 
 window.onload = function(){
 	var calendars = document.getElementById('calendar'); 
-	calendar.init(calendars); 
+	calendar.init(calendars);
 }
 
 
@@ -92,16 +157,20 @@ $(function(){
 	$("#calendar dd").bind({
 		mouseover:function(e){
 			if($(this).html() != ""){
+				var dd = new Date();
+				var nyear = dd.getYear();
+				var nmonth = dd.getMonth() + 1;
+				var nday = $(this).html();
 				var x = $(this).offset().left;
 				var y = $(this).parent("dl").offset().top; 
-				$("#day_detail").css("top",y+50);
-				$("#day_detail").css("left",x-36);
-				$("#day_detail").show();
+				$("#calendar_hover").css("top",y+50);
+				$("#calendar_hover").css("left",x-36);
+				$("#calendar_hover").show();
 			}
 		},
 		mouseout:function(){
 			if($(this).html() != ""){
-				$("#day_detail").hide();
+				$("#calendar_hover").hide();
 			}
 		}
 	});

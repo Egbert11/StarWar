@@ -15,10 +15,10 @@ $(document).ready(function(){
 //			alert(data.result["2014-04-01"].level);
 //		}
 //	});
-	starRankDisplay();
-	fansContributionDisplay();
-	FetchAndSetBannerData();
-	FetchAndSetStarJourneyPageData(2014,3);
+//	starRankDisplay();
+//	fansContributionDisplay();
+//	FetchAndSetBannerData();
+//	FetchAndSetStarJourneyPageData(2014,3);
 });
 
 // set up tab switch
@@ -72,7 +72,7 @@ function SetUpStarTravelHover(data){
 			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
 			var len = data.week[index].playlist.length;
 			if (len > 0){
-				hoverLayer.append('<span class="icon_first"></span>');
+				hoverLayer.append('<span class="icon first"></span>');
 				hoverLayer.append('<span class="hover_text_red">'+data.week[index].playlist[0][0] +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
 				hoverLayer.append('<span class="hover_text_blue">'+data.week[index].playlist[0][1]+'</span>');
