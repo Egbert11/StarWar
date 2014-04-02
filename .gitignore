@@ -24,3 +24,7 @@ Desktop.ini
 
 ## VIM
 *.swp
+
+## Python
+*.pyc
+*.pyw

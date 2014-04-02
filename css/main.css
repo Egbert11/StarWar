@@ -546,105 +546,73 @@ ul.tab_style li a.active {
     width:205px;
 }
 
-.rankList .num1 {
-    width:205px;
-    height:31px;
-    margin:2px 0;
-}
-
-.rankList .num1 .bg1 {
-    width:17px;
-    height:16px;
-    display:inline-block;
-    background:url(../image/sprite.png?xxx) -117px -59px no-repeat;
-    position: relative;
-    top: -7px;
-}
-
-.rankList .num1 .bg2 {
-    width:31px;
-    height:31px;
-    display:inline-block;
-    background:url(../image/sprite.png?xxx) -198px -88px no-repeat;
-}
-
-.rankList .num1 span {
-    width:200px;
-    height:16px;
-    display:inline;
-    position: relative;
-    top: -11px;
-    color:#d62870;
-}
-
-.rankList .num2 {
-    width:205px;
-    height:20px;
-    margin:5px 0 2px 0;
-}
-
-.rankList .num2 .bg1 {
-    width:17px;
-    height:16px;
-    display:inline-block;
-    background:url(../image/sprite.png?xxx) -143px -59px no-repeat;
-}
-
-.rankList .num2 span {
-    width:200px;
-    height:16px;
-    display:inline;
-    position: relative;
-    top: -3px;
-    color:#0b51ef;
-}
-
-.rankList .num3 {
-    width:205px;
-    height:20px;
-    margin:7px 0;
-}
-
-.rankList .num3 .bg1 {
-    width:17px;
-    height:16px;
-    display:inline-block;
-    background:url(../image/sprite.png?xxx) -168px -59px no-repeat;
-}
-
-.rankList .num3 span {
-    width:200px;
-    height:16px;
-    display:inline;
-    position: relative;
-    top: -3px;
-    color:#b618ff;
-}
-
-.rankList .latter {
+.rankList li {
     width:205px;
     height:20px;
     margin:6px 0;
+    line-height: 20px;
 }
 
-.rankList .latter span:first-child {
+li.no1 {
+    height: 32px;
+}
+
+li span {
+    color: #78a8d5;
+}
+.no1 span {
+    color: #d62870;
+}
+.no2 span {
+    color: #0b51ef;
+}
+.no3 span{
+    color: #b618ff;
+}
+
+.rankList li span:first-child {
     width:17px;
     height:16px;
     display:inline-block;
-    position: relative;
-    top: 3px;
     font-weight:bold;
-    color:#78a8d5;
     text-align:center;
+    /*position: relative;
+    top: 3px;*/
 }
 
-.rankList .latter span:last-child {
-    width:200px;
-    height:16px;
-    display:inline;
+.rankList li span:last-child {
+    width: 150px;
+    height: 16px;
+    display: inline-block;
+}
+
+li.no1 span:first-child {
+    background:url(../image/sprite.png?xxx) -117px -59px no-repeat;
     position: relative;
-    top: 3px;
-    color:#78a8d5;
+    top: -8px;
+}
+
+li.no1 span:last-child {
+    position: relative;
+    top: -11px;
+    left: 5px;
+}
+
+li.no2 span:first-child {
+    background:url(../image/sprite.png?xxx) -143px -59px no-repeat;
+}
+
+li.no3 span:first-child {
+    background:url(../image/sprite.png?xxx) -168px -59px no-repeat;
+}
+
+.little_avatar {
+    width:31px;
+    height:31px;
+    position: relative;
+    left: 6px;
+    display:inline-block;
+    background:url(../image/sprite.png?xxx) -198px -88px no-repeat;
 }
 
 .tab4_main {

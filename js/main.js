@@ -4,6 +4,11 @@ $(document).ready(function(){
 	SetUpStarTravelHover();
     //星星排行和粉丝贡献的日，周，月，总点击事件
     starRankTab();
+	//各个排行列表的初始化
+	fetchStarRankList("get_author_rank","day");
+	fetchStarRankList("get_player_rank","day");
+	fetchFansContributionList("get_player_author_rank","day");
+	fetchFansContributionList("get_player_author_contribute","day");
 	
 	FetchAndSetBannerData();
 	FetchAndSetStarJourneyPageData("2014-03");
@@ -11,7 +16,7 @@ $(document).ready(function(){
 
 // set up tab switch
 function SetSwitchTab(){
-    $(".tabs li a").bind("click",function(){
+    $(".tabs li").on("a","click",function(){
         $(".tabs li a").removeClass("active");
         $(this).addClass("active");
         $(".main_content .content").hide();
@@ -151,16 +156,16 @@ function starRankTab() {
                 fetchFansContributionList("get_player_author_rank","all");
                 break;
             case "13":
-                fetchFansContributionList("get_player_rank","day");
+                fetchFansContributionList("get_player_author_contribute","day");
                 break;
             case "14":
-                fetchFansContributionList("get_player_rank","week");
+                fetchFansContributionList("get_player_author_contribute","week");
                 break;
             case "15":
-                fetchFansContributionList("get_player_rank","month");
+                fetchFansContributionList("get_player_author_contribute","month");
                 break;
             case "16":
-                fetchFansContributionList("get_player_rank","all");
+                fetchFansContributionList("get_player_author_contribute","all");
                 break;
         }
     });
@@ -171,13 +176,14 @@ function starRankTab() {
 function fetchStarRankList(url, dataType){
     $.ajax({
             type: 'GET',
-            url: "server/star_rank.json",//"http://192.168.11.42:8390/dailyactive/"+url,
-            //data: {
-//				date: 1396358624,
-//				size: 10,
-//				date_type:dataType
-//			},
-            dataType: 'json',
+            url: "http://192.168.11.42:8390/dailyactive/"+url,
+            data: {
+				date: getNowTime(),
+				size: 10,
+				date_type:dataType
+			},
+            dataType: 'jsonp',
+			jsonp:"callback",
             success: function(data){
 				if(data.code == 0){
 					var i = 1;
@@ -189,11 +195,30 @@ function fetchStarRankList(url, dataType){
 						//主播列表
 						list = 2;
 					}
+					//如果没有数据
+					if(data.result.length == 0){
+						$("#list"+list).hide();
+						if(list == 1){
+							if($(".zhuboRank:has(p)").length == 0)
+								$(".zhuboRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+						}else {
+							if($(".fansRank:has(p)").length == 0)
+								$(".fansRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+						}
+						return;
+					}
+					//获取到了排行数据
+					$("#list"+list).show();
+					if(list == 1){
+							$(".zhuboRank p").remove();
+					}else {
+							$(".fansRank p").remove();
+					}
 					for(;i <= data.result.length;i++)
 					{
 						var name = $("#list"+list+" #list"+list+"_"+i);
 						//填充昵称
-						name.find("span:last-child").text(data.result[i-1][0]);
+						name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
 						switch(i){
 							case 1: case 2: case 3:
 								break;
@@ -220,12 +245,13 @@ function fetchFansContributionList(url, dataType){
             type: 'GET',
             url: "http://192.168.11.42:8390/dailyactive/"+url,
             data: {
-				date: 1396358624,
+				date: getNowTime(),
 				hostid:20051152,
 				size: 10,
 				date_type:dataType
 			},
-            dataType: 'json',
+            dataType: 'jsonp',
+			jsonp:"callback",
             success: function(data){
 				if(data.code == 0){
 					var i = 1;
@@ -237,11 +263,30 @@ function fetchFansContributionList(url, dataType){
 						//粉丝人气贡献排行
 						list = 4;
 					}
+					//如果没有数据
+					if(data.result.length == 0){
+						$("#list"+list).hide();
+						if(list == 3){
+							if($(".charmRank:has(p)").length == 0)
+								$(".charmRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+						}else {
+							if($(".popularityRank:has(p)").length == 0)
+								$(".popularityRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+						}
+						return;
+					}
+					//获取到了排行数据
+					$("#list"+list).show();
+					if(list == 3){
+							$(".charmRank p").remove();
+					}else {
+							$(".popularityRank p").remove();
+					}
 					for(;i <= data.result.length;i++)
 					{
 						var name = $("#list"+list+" #list"+list+"_"+i);
 						//填充昵称
-						name.find("span:last-child").text(data.result[i-1][0]);
+						name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
 						switch(i){
 							case 1: case 2: case 3:
 								break;
@@ -260,6 +305,11 @@ function fetchFansContributionList(url, dataType){
 			},
 			error:function(){}
 	});
+}
+
+//获取当前时间
+function getNowTime(){
+	return Math.floor(new Date().getTime()/1000);
 }
 
 //对于过长的字符串返回它的子串
@@ -389,24 +439,33 @@ function FetchAndSetStarJourneyPageData(timestamp){
 	var tab3 = $("#tab3")
 	var monthrank = tab3.find(".sjmonth_rank .sub_info_content");
 	monthrank.html(data.month_rank);
+	var weekrank = $("#tab3 .sjweek_rank");
+	weekrank.empty();
+	weekrank.append('<span class="sjrank_title">明星周榜</span>');
+	weekrank.append('<div class="rank_cells"></div>');
+
 	var cells = $("#tab3 .rank_cells");
 	var l = data.week_rank.length;
-	/*
+		
 	for (var i=0;i< 5;i++){
 		var index = i+1;
 		var key = "#week_cell" + index;
-		var cell  = cells.find(key);
-		cell.removeClass();
+		var cell_str  = '<div id="' + "week_cell" + index + '"></div>';
+		cells.append(cell_str);
+		var cell = cells.find(key);
 		if (index > l){
 			cell.addClass("week_cell_empty");
+			cell.append("");
 			continue;
 		}
 		cell.addClass("week_cell");
-		var celldate = cell.find(".week_cell_date");
-		celldate.html(data.week_rank[i].datestamp);
-		var cellrank = cell.find(".sub_info_content");
-		cellrank.html(data.week_rank[i].rank);
-	}*/	
+		cell.append('<span class="week_cell_date">'+data.week_rank[i].datestamp+'</span><br/>');
+		cell.append('<span class="week_icon"></span>');	
+		cell.append('<span class="sub_info_title">明星周榜第<span class="sub_info_content">'+data.week_rank[i].rank+'</span>名</span>');
+		//celldate.html(data.week_rank[i].datestamp);
+//		var cellrank = cell.find(".sub_info_content");
+//		cellrank.html(data.week_rank[i].rank);
+	}	
 }
 
 
