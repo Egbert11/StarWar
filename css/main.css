@@ -288,7 +288,7 @@ b.week{
     left:0;
 }
 
-#tab3 .sjrank_title{
+.sjrank_title{
     width:133px;
     height:32px;
     background:url(../image/sprite.png) no-repeat 0 -284px;
@@ -402,7 +402,7 @@ b.week{
     color:#969696;
 }
 
-#tab3 .hoverlayer,#tab3 .mhoverlayer{
+.hoverlayer,.mhoverlayer{
     width:250px;
     height:135px;
     background-color:#ffffff;
@@ -412,26 +412,25 @@ b.week{
     top:0;
     left:0;
     z-index:100;
-    display:none;
 }
 
-#tab3  .sjrank_title{
+.sjrank_title{
     margin-top:5px;
 }
 
-#tab3  .hover_text_red{
+.hover_text_red{
     color:#ff0066;
 }
 
-#tab3  .hover_text_dblue{
+.hover_text_dblue{
     color:#0066ff;
 }
 
-#tab3  .hover_text_pink{
+.hover_text_pink{
     color:#ff33cc;
 }
 
-#tab3  .hover_text_blue{
+.hover_text_blue{
     color:#3366cc;
 }
 
@@ -444,7 +443,7 @@ b.week{
     margin-top:5px;
 }
 
-#tab3 .icon{
+.content .icon{
     height:16px;
     width:18px;
     display:inline-block;
@@ -452,18 +451,18 @@ b.week{
     margin-top:5px;
 }
 
-#tab3 .first{
+.first{
     background:url(../image/sprite.png) no-repeat -118px -59px;
 }
-#tab3 .second{
+.second{
     background:url(../image/sprite.png) no-repeat -145px -59px;
 }
 
-#tab3 .third{
+.third{
     background:url(../image/sprite.png) no-repeat -170px -59px;
 }
 
-#tab3 .gift_icon{
+.hoverlayer .gift_icon{
     width:15px;
     height:16px;
     background:url(../image/sprite.png) no-repeat -194px -59px;
@@ -576,8 +575,6 @@ li span {
     display:inline-block;
     font-weight:bold;
     text-align:center;
-    /*position: relative;
-    top: 3px;*/
 }
 
 .rankList li span:last-child {
