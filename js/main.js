@@ -9,12 +9,6 @@ $(document).ready(function(){
     updateBanner();
     setInterval(updateBanner, 10*60*1000);
 
-	//各个排行列表的初始化
-	fetchStarRankList("get_author_rank","day");
-	fetchStarRankList("get_player_rank","day");
-	fetchFansContributionList("get_player_author_rank","day");
-	fetchFansContributionList("get_player_author_contribute","day");
-	
 	fetchAndSetStarJourneyPageData(2014,3);
 });
 
@@ -179,6 +173,15 @@ function SetUpTabClickJump(){
 			var nowSelectedTab = $(".tabs .active");
 			nowSelectedTab.removeClass("active");
 			$(this).addClass("active");
+			//各个排行列表的初始化
+			if($(this).attr("name") == "tab2"){
+				fetchStarRankList("get_author_rank","day");
+				fetchStarRankList("get_player_rank","day");
+			}else if($(this).attr("name") == "tab4"){
+				fetchFansContributionList("get_player_author_rank","day");
+				fetchFansContributionList("get_player_author_contribute","day");
+			}
+			
 			var contents = $(".content");
 			$.each(contents,function(index,value){
 				$(this).removeClass('cactive');
