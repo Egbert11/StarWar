@@ -520,12 +520,32 @@ function handleBannerData(data){
     contentArr[2].innerHTML = rs.charm;
 
     var rankcol = $(".banner .star_rank");
-    var rcontentArr = rankcol.find(".sub_info_content").empty();
-    rcontentArr[0].innerHTML = rs.day_charm_rank;
-    rcontentArr[1].innerHTML = rs.day_popularity_rank;
-    rcontentArr[2].innerHTML = rs.day_star_rank;
-    rcontentArr[3].innerHTML = rs.week_star_rank;
-    rcontentArr[4].innerHTML = rs.month_star_rank;
+    var rcontentArr = rankcol.find(".sub_info_title").empty();
+
+    if(rs.day_charm_rank != 0)
+        $(rcontentArr[0]).html('当日魅力:第<span class="sub_info_content">'+rs.day_charm_rank+'</span>名');
+    else
+        $(rcontentArr[0]).html("当日魅力:暂未更新");
+
+    if(rs.day_popularity_rank != 0)
+        $(rcontentArr[1]).html('当日人气:第<span class="sub_info_content">'+rs.day_popularity_rank+'</span>名');
+    else
+        $(rcontentArr[1]).html("当日人气:暂未更新");
+
+    if(rs.day_star_rank != 0)
+        $(rcontentArr[2]).html('当日星星:第<span class="sub_info_content">'+rs.day_star_rank+'</span>名');
+    else
+        $(rcontentArr[2]).html("当日星星:暂未更新");
+
+    if(rs.week_star_rank != 0)
+        $(rcontentArr[3]).html('本周星星:第<span class="sub_info_content">'+rs.week_star_rank+'</span>名');
+    else
+        $(rcontentArr[3]).html("本周星星:暂未更新");
+
+    if(rs.month_star_rank != 0)
+        $(rcontentArr[4]).html('本周综合:第<span class="sub_info_content">'+rs.month_star_rank+'</span>名');
+    else
+        $(rcontentArr[4]).html("本周综合:暂未更新");
 
     $(".banner .star_journey").find(".journey_date").text(new Date().Format("yyyy-MM-dd"));
 
