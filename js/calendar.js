@@ -109,27 +109,33 @@ var calendar = {
 								var hoverLayer = $("#calendar_hover");
 								hoverLayer.empty();
 								hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
-								var len = rs[key].player_list.length;
+																var len = rs[key].player_list.length;
 								if (len == 0){
 									hoverLayer.append("<p>无粉丝贡献排行数据</p>");
+								}else{
+									hoverLayer.append('<div class="first_col"></div>');
+									hoverLayer.append('<div class="second_col"></div>');
 								}
+								var first_col = hoverLayer.find(".first_col");
+								var second_col = hoverLayer.find(".second_col");
+
 								if (len > 0){
-									hoverLayer.append('<span class="icon first"></span>');
-									hoverLayer.append('<span class="hover_text_red">'+rs[key].player_list[0][0] +'</span>');
-									hoverLayer.append('<span class="gift_icon"></span>');
-									hoverLayer.append('<span class="hover_text_blue">'+rs[key].player_list[0][1]+'</span>');
+									first_col.append('<span class="icon first"></span>');
+									first_col.append('<span class="hover_text_red">'+rs[key].player_list[0][0] +'</span><br/>');
+									second_col.append('<span class="gift_icon"></span>');
+									second_col.append('<span class="hover_text_blue">'+rs[key].player_list[0][1]+'</span><br/>');
 								}
 								if (len > 1){
-									hoverLayer.append('<span class="icon_second"></span>');
-									hoverLayer.append('<span class="hover_text_dblue">'+rs[key].player_list[1][0] +'</span>');
-									hoverLayer.append('<span class="gift_icon"></span>');
-									hoverLayer.append('<span class="hover_text_blue">'+rs[key].player_list[1][1]+'</span>');
+									first_col.append('<span class="icon_second"></span>');
+									first_col.append('<span class="hover_text_dblue">'+rs[key].player_list[1][0] +'</span><br/>');
+									second_col.append('<span class="gift_icon"></span>');
+									second_col.append('<span class="hover_text_blue">'+rs[key].player_list[1][1]+'</span><br/>');
 								}
 								if (len > 2){
-									hoverLayer.append('<span class="icon_third"></span>');
-									hoverLayer.append('<span class="hover_text_pink">'+rs[key].player_list[2][0] +'</span>');
-									hoverLayer.append('<span class="gift_icon"></span>');
-									hoverLayer.append('<span class="hover_text_blue">'+rs[key].player_list[2][1]+'</span>');
+									first_col.append('<span class="icon_third"></span>');
+									first_col.append('<span class="hover_text_pink">'+rs[key].player_list[2][0] +'</span><br/>');
+									second_col.append('<span class="gift_icon"></span>');
+									second_col.append('<span class="hover_text_blue">'+rs[key].player_list[2][1]+'</span><br/>');
 								}
 
 
