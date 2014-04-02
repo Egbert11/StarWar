@@ -1,17 +1,21 @@
 $(document).ready(function(){
-    SetSwitchTab();
+    initTab();
 	SetUpTabClickJump();
 	SetUpStarTravelHover();
-    //星星排行的日，周，月，总点击事件
-    starRankTab();
-	starRankDisplay();
-	fansContributionDisplay();
+    //星星排行和粉丝贡献的日，周，月，总点击事件
+    initStarRankTab();
 
     // 每隔十分钟更新Banner数据
     updateBanner();
     setInterval(updateBanner, 10*60*1000);
 
-	FetchAndSetStarJourneyPageData(2014,3);
+	//各个排行列表的初始化
+	fetchStarRankList("get_author_rank","day");
+	fetchStarRankList("get_player_rank","day");
+	fetchFansContributionList("get_player_author_rank","day");
+	fetchFansContributionList("get_player_author_contribute","day");
+	
+	fetchAndSetStarJourneyPageData(2014,3);
 });
 
 var config = {
@@ -45,8 +49,8 @@ Date.prototype.getNowTime = function(){
     return Math.floor(this.getTime()/1000);
 }
 
-// set up tab switch
-function SetSwitchTab(){
+// 成长星路、星星排行、星之旅程、粉丝贡献Tab事件绑定
+function initTab(){
     $(".tabs li").on("a","click",function(){
         $(".tabs li a").removeClass("active");
         $(this).addClass("active");
@@ -182,105 +186,225 @@ function SetUpTabClickJump(){
 	});
 }
 
-//星星排行的日，周，月，总点击事件
-function starRankTab() {
-    var zhuboNav = $(".zhuboRank .tab_style");
-    zhuboNav.delegate("li a", "click",function(){
-        zhuboNav.find("a").removeClass("active");
-        var name = $(this).addClass("active").attr("name");
-
-        $(".zhuboRank ul.tab2_rankList").hide();
-        $(".zhuboRank").find("ul[name="+name+"]").show();
-    });
-
-    var fansNav = $(".fansRank .tab_style");
-    fansNav.delegate("li a", "click",function(){
-        fansNav.find("a").removeClass("active");
-        var name = $(this).addClass("active").attr("name");
-
-        $(".fansRank ul.tab2_rankList").hide();
-        $(".fansRank").find("ul[name="+name+"]").show();
+//星星排行和粉丝贡献的日，周，月，总点击事件
+function initStarRankTab() {
+	//将排名列表的奇偶名次背景进行修饰
+	$(".rankList").children(":odd").css("background-color","#eefafd");
+    var tab = $(".tab_style");
+    tab.find("a").bind("click",function(){
+        var parent = $(this).parent().parent();
+        parent.find("a").removeClass("active");
+        $(this).addClass("active");
+        //点击tab的id触发相应的接口调用
+        var whichTab = $(this).attr("id");
+        switch(whichTab){
+            case "1":
+                fetchStarRankList("get_author_rank","day");
+                break;
+            case "2":
+                fetchStarRankList("get_author_rank","week");
+                break;
+            case "3":
+                fetchStarRankList("get_author_rank","month");
+                break;
+            case "4":
+                fetchStarRankList("get_author_rank","all");
+                break;
+            case "5":
+                fetchStarRankList("get_player_rank","day");
+                break;
+            case "6":
+                fetchStarRankList("get_player_rank","week");
+                break;
+            case "7":
+                fetchStarRankList("get_player_rank","month");
+                break;
+            case "8":
+                fetchStarRankList("get_player_rank","all");
+                break;
+			case "9":
+                fetchFansContributionList("get_player_author_rank","day");
+                break;
+            case "10":
+                fetchFansContributionList("get_player_author_rank","week");
+                break;
+            case "11":
+                fetchFansContributionList("get_player_author_rank","month");
+                break;
+            case "12":
+                fetchFansContributionList("get_player_author_rank","all");
+                break;
+            case "13":
+                fetchFansContributionList("get_player_author_contribute","day");
+                break;
+            case "14":
+                fetchFansContributionList("get_player_author_contribute","week");
+                break;
+            case "15":
+                fetchFansContributionList("get_player_author_contribute","month");
+                break;
+            case "16":
+                fetchFansContributionList("get_player_author_contribute","all");
+                break;
+        }
     });
 }
 
-//设置星星排行的数据显示
-function starRankDisplay(){
-	
-	var starRank = {
-	day:[
-		"梦幻西游梦幻西游",
-		"我是第二名",
-		"我是第三名",
-		"我是第四名",
-		"我是第五名",
-		"我是第六名",
-		"我是第七名"
-	],
-	week:[
-		"大话西游大话西游",
-		"我是第二名",
-		"我是第三名",
-		"我是第四名",
-		"我是第五名",
-		"我是第六名"	
-	],
-	year:[ 
-		"DotaDotaDotaDota",
-		"我是第二名",
-		"我是第三名",
-		"我是第四名",
-		"我是第五名",
-		"我是第六名"		
-	],
-	ALL:[
-		"2009200920092009",
-		"我是第二名",
-		"我是第三名",
-		"我是第四名",
-		"我是第五名",
-		"我是第六名"		
-	]
-	};
-	var i = 1;
-	for(;i <= starRank.day.length;i++)
-	{
-		$(".tab2_zhuboRank .tab2_rankList#day1 #day1-"+i+" span:last-child").text(starRank.day[i-1]);
-		switch(i){
-			case 1: case 2: case 3:
-				break;
-			case 4: case 5: case 6: case 7: case 8: case 9: case 10:
-				$(".tab2_zhuboRank .tab2_rankList#day1 #day1-"+i+" span:first-child").text(i);
-				break;
+//获取星星排行中的数据
+function fetchStarRankList(path, dataType){
+    $.ajax({
+        type: 'GET',
+        url: config.baseUrl + path,
+        data: {
+            date: new Date().getNowTime(),
+            size: 10,
+            date_type:dataType
+        },
+        dataType: 'jsonp',
+        jsonp:"callback",
+        success: function(data){
+            if(data.code == 0){
+                var i = 1;
+                var list;
+                if(path == "get_author_rank"){
+                    //粉丝列表
+                    list = 1;
+                }else{
+                    //主播列表
+                    list = 2;
+                }
+                //如果没有数据
+                if(data.result.length == 0){
+                    $("#list"+list).hide();
+                    if(list == 1){
+                        if($(".zhuboRank:has(p)").length == 0)
+                            $(".zhuboRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+                    }else {
+                        if($(".fansRank:has(p)").length == 0)
+                            $(".fansRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+                    }
+                    return;
+                }
+                //获取到了排行数据
+                $("#list"+list).show();
+                if(list == 1){
+                    $(".zhuboRank p").remove();
+                }else {
+                    $(".fansRank p").remove();
+                }
+                for(;i <= data.result.length;i++)
+                {
+                    var name = $("#list"+list+" #list"+list+"_"+i);
+                    //填充昵称
+                    name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
+                    switch(i){
+                        case 1: case 2: case 3:
+                        break;
+                        case 4: case 5: case 6: case 7: case 8: case 9: case 10:
+                        //填充排名序号
+                        name.find("span:first-child").text(i);
+                        break;
+                    }
+                }
+                //若人数不足10个，将剩下的隐藏
+                for(;i<=10 ;i++)
+                {
+                    $("#list"+list+" #list"+list+"_"+i).css("display","none");
+                }
+            }
+        },
+        error:function(){}
+    });
+}
+
+//获取粉丝贡献中的数据
+function fetchFansContributionList(path, dataType){
+    $.ajax({
+        type: 'GET',
+        url: config.baseUrl + path,
+        data: {
+            date: new Date().getNowTime(),
+            hostid:config.hostid,
+            size: 10,
+            date_type:dataType
+        },
+        dataType: 'jsonp',
+        jsonp:"callback",
+        success: function(data){
+            if(data.code == 0){
+                var i = 1;
+                var list;
+                if(path == "get_player_author_rank"){
+                    //粉丝魅力贡献排行
+                    list = 3;
+                }else{
+                    //粉丝人气贡献排行
+                    list = 4;
+                }
+                //如果没有数据
+                if(data.result.length == 0){
+                    $("#list"+list).hide();
+                    if(list == 3){
+                        if($(".charmRank:has(p)").length == 0)
+                            $(".charmRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+                    }else {
+                        if($(".popularityRank:has(p)").length == 0)
+                            $(".popularityRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+                    }
+                    return;
+                }
+                //获取到了排行数据
+                $("#list"+list).show();
+                if(list == 3){
+                    $(".charmRank p").remove();
+                }else {
+                    $(".popularityRank p").remove();
+                }
+                for(;i <= data.result.length;i++)
+                {
+                    var name = $("#list"+list+" #list"+list+"_"+i);
+                    //填充昵称
+                    name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
+                    switch(i){
+                        case 1: case 2: case 3:
+                        break;
+                        case 4: case 5: case 6: case 7: case 8: case 9: case 10:
+                        //填充排名序号
+                        name.find("span:first-child").text(i);
+                        break;
+                    }
+                }
+                //若人数不足10个，将剩下的隐藏
+                for(;i<=10 ;i++)
+                {
+                    $("#list"+list+" #list"+list+"_"+i).css("display","none");
+                }
+            }
+        },
+        error:function(){}
+    });
+}
+
+//对于过长的字符串返回它的子串
+function mySubStr(str, maxlen) {
+    str = str.trim();
+    var len = 0;
+    var i;
+    for (i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i);
+        //单字节加1
+        if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
+            len++;
+        }
+            else {
+            len += 2;
+        }
+        if (len > maxlen)
+		{
+			return str.substring(0, i)+'...';
 		}
-	}
-	for(;i<=10 ;i++)
-	{
-		$(".tab2_zhuboRank .tab2_rankList#day1 #day1-"+i).css("display","none");
-	}
-}
-
-
-//设置粉丝贡献的数据显示
-function fansContributionDisplay(){
-	var bestFan = {
-		name:"梦幻西游大话西游",
-		number:123456
-	};
-	$(".tab4_bestFanStyle").find(".tab4_bestFan .name").text(bestFan.name);
-	$(".tab4_bestFanStyle").find(".tab4_bestFan .number").text("x"+bestFan.number);
-	
-	var dynamicState ={
-		name:"CCC",
-		day:22,
-		reward:90,
-		rank:2
-	};
-	
-	$(".tab4_content .name#name1").text(dynamicState.name);
-	$(".tab4_content .name#numOfDay1").text(dynamicState.day);
-	$(".tab4_content .name#percent1").text(dynamicState.reward+"%");
-	$(".tab4_content .rank#rank1").text(dynamicState.rank);
-	
+    }
+    return str.substring(0, i);
 }
 
 //更新Banner数据
@@ -339,33 +463,29 @@ function handleBannerData(data){
         $(title[2]).html('暂时无排名');
 }
 
-//set up the data of tab3
-function FetchAndSetStarJourneyPageData(year,month,hostid, size){
-	var hostid = arguments[2]?arguments[2]:20051152;
-	var size = arguments[3]?arguments[3]:3;
-	var url = config.baseUrl + "get_author_star_milestone";
-	//give a time stamp and set the responding data.
-	$.ajax({
-		url:url,
+//获取星之旅程的数据
+function fetchAndSetStarJourneyPageData(year, month, hostid, size){
+    var hostid = config.hostid;
+    var size = 3;
+    var url = config.baseUrl + "get_author_star_milestone";
+    $.ajax({
+        url:url,
         type:"GET",
-		dataType:"jsonp",
+        dataType:"jsonp",
         jsonp: "callback",
-		data:{
+        data:{
             year: year,
             month: month,
-			hostid: hostid,
-			size: size
-		},
-		success:function(data){
-			if (data.code == 0){
-				//success
-				//SetTab3Data(data);
-				SetUpStarTravelHover(data)
-
-			}
-		}
-	});	
-
+            hostid: hostid,
+            size: size
+        },
+        success:function(data){
+            if (data.code == 0){
+                SetUpStarTravelHover(data)
+            }
+        },
+        error:function(){}
+    });
 }
 
 function SetTab3Data(data){

@@ -477,14 +477,14 @@ b.week{
     background-color:#f6ffff;
 }
 
-.tab2_main .zhuboRank {
+.tab2_main .zhuboRank{
     width:299px;
     height: 348px;
     display:inline-block;
     float:left;
 }
 
-.tab2_main .fansRank {
+.tab2_main .fansRank{
     width:293px;
     height: 350px;
     display:inline-block;
@@ -506,7 +506,7 @@ b.week{
     left:19px;
 }
 
-.tab2_main ul.tab_style {
+ul.tab_style {
     width:187px;
     height:20px;
     position: relative;
@@ -540,14 +540,13 @@ ul.tab_style li a.active {
     border-bottom-color: #f6ffff;
 }
 
-.tab2_rankList {
+.rankList {
     margin:9px 40px 11px 52px;
     height:266px;
     width:205px;
-    display:none;
 }
 
-.tab2_rankList li {
+.rankList li {
     width:205px;
     height:20px;
     margin:6px 0;
@@ -574,17 +573,15 @@ li span {
     color: #b618ff;
 }
 
-.tab2_rankList li span:first-child {
+.rankList li span:first-child {
     width:17px;
     height:16px;
     display:inline-block;
     font-weight:bold;
     text-align:center;
-    position: relative;
-    top: 3px;
 }
 
-.tab2_rankList li span:last-child {
+.rankList li span:last-child {
     width: 150px;
     height: 16px;
     display: inline-block;
@@ -595,14 +592,17 @@ li.no1 span:first-child {
     position: relative;
     top: -8px;
 }
+
 li.no1 span:last-child {
     position: relative;
     top: -11px;
     left: 5px;
 }
+
 li.no2 span:first-child {
     background:url(../image/sprite.png?xxx) -143px -59px no-repeat;
 }
+
 li.no3 span:first-child {
     background:url(../image/sprite.png?xxx) -168px -59px no-repeat;
 }
@@ -622,13 +622,21 @@ li.no3 span:first-child {
     background-color:#f6ffff;
 }
 
-.tab4_main .tab4_rank {
-    width:100%;
-    height: 162px;
+.tab4_main .charmRank{
+    width:299px;
+    height: 348px;
     display:inline-block;
+    float:left;
 }
 
-.tab4_rank .tab4_title {
+.tab4_main .popularityRank {
+    width:293px;
+    height: 350px;
+    display:inline-block;
+    float:left;
+}
+
+.tab4_main .title {
     width:135px;
     height:30px;
     background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
@@ -637,128 +645,8 @@ li.no3 span:first-child {
     color:#ffffff;
 }
 
-.tab4_title span {
+.tab4_main .title span {
     position:relative;
     top:9px;
-    left:19px;
-}
-
-.tab4_bestFanStyle {
-    width:196px;
-    height:120px;
-    display:inline-block;
-    float:left;
-}
-
-.tab4_bestFanTitle {
-    width:198px;
-    height:30px;
-    display:block;
-}
-
-.tab4_bestFanTitle .bg {
-    width:17px;
-    height:16px;
-    display:inline-block;
-    background:url(../image/sprite.png?xxx) -117px -59px no-repeat;
-    position: relative;
-    top: 12px;
-    left:33px;
-}
-
-.tab4_bestFanTitle span {
-    width:100px;
-    height:16px;
-    display:inline;
-    position: relative;
-    top: 9px;
-    left:35px;
-    font-weight:bold;
-    color:#1c79c2;
-}
-
-.tab4_bestFan {
-    width:198px;
-    height:70px;
-    background:url(../image/sprite.png?xxx) 0 -203px no-repeat;
-    margin-left:5px;
-}
-
-.tab4_bestFan .bg_CC {
-    width:31px;
-    height:31px;
-    display:block;
-    background:url(../image/sprite.png?xxx) -198px -88px no-repeat;
-    position: relative;
-    top: 20px;
-    left: 13px;
-}
-
-.tab4_bestFan .bg_box {
-    width:17px;
-    height:19px;
-    display:block;
-    background:url(../image/sprite.png?xxx) -192px -57px no-repeat;
-    position: relative;
-    top: -16px;
-    left: 54px;
-}
-
-.tab4_bestFan .name {
-    width:120px;
-    height:20px;
-    display:block;
-    position: relative;
-    top: -15px;
-    left: 55px;
-    color:#d62870;
-}
-
-.tab4_bestFan .number {
-    width:90px;
-    height:20px;
-    display:block;
-    position: relative;
-    top: -32px;
-    left:76px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
-    color:#1c79c2;
-}
-
-.tab4_dynamicState {
-    width:590px;
-    height: 185px;
-    display:inline-block;
-}
-
-.tab4_dynamicState .tab4_title {
-    width:135px;
-    height:30px;
-    background:url(../image/sprite.png?xxx)  0 -281px no-repeat;
-    font-weight:bold;
-    color:#ffffff;
-}
-
-.tab4_dynamicState .tab4_content {
-    width:530px;
-    height: 133px;
-    margin:10px 30px;
-    display:inline-block;
-}
-
-.tab4_content p{
-    color:#78a8d5;
-    line-height: 17px;
-    padding: 6px 0;
-}
-
-.tab4_content .name {
-    font-weight:bold;
-    color:#1c79c2;
-}
-
-.tab4_content .rank {
-    font-weight:bold;
-    color:#d62870;
+    left:10px;
 }
