@@ -402,7 +402,7 @@ b.week{
     color:#969696;
 }
 
-#tab3 .hoverlayer,#tab3 .mhoverlayer{
+.hoverlayer,.mhoverlayer{
     width:250px;
     height:135px;
     background-color:#ffffff;
@@ -412,7 +412,6 @@ b.week{
     top:0;
     left:0;
     z-index:100;
-    display:none;
 }
 
 #tab3  .sjrank_title{
@@ -463,7 +462,7 @@ b.week{
     background:url(../image/sprite.png) no-repeat -170px -59px;
 }
 
-#tab3 .gift_icon{
+.hoverlayer .gift_icon{
     width:15px;
     height:16px;
     background:url(../image/sprite.png) no-repeat -194px -59px;

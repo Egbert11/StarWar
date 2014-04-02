@@ -23,9 +23,16 @@ var calendar = {
 		calendar.clearCalendar(form); //清空TABLE 
 		var monthLen = calendar.getMonthLen(calendar.year,calendar.month); //获取月份长度 
 		var firstDay = calendar.getFirstDay(calendar.year,calendar.month); //获取月份首天为星期几 
+		//清空样式
+		var cell = $("#tab1 dd");
+		cell.removeClass();
 		for(var i = 1;i <= monthLen;i++){ //循环写入每天的值进入TABLE中
             var text = document.createTextNode(i);
 			calendar.dayTable[i+firstDay-1].appendChild(text); //i为循环值,加上第一天的星期值刚可以对应TABLE位置,但由于数组从0开始算,所以需要减去1
+
+			//增加id
+			$(calendar.dayTable[i+firstDay-1]).addClass("day"+i);
+//			$(calendar.dayTable[i+firstDay-1]).attr('id',"day"+i);
 			if(i == new Date().getDate() && calendar.month == new Date().getMonth() && calendar.year == new Date().getFullYear()){ //判断是否是当天 
 				calendar.dayTable[i+firstDay-1].id = 'today'; 
 			} 

@@ -5,10 +5,20 @@ $(document).ready(function(){
     //星星排行的日，周，月，总点击事件
     starRankTab();
     $(".tab2_rankList").children(":odd").css("background-color","#eefafd");
+//	$.ajax({
+//		url:"./abc.php",
+//		data:{},
+//		dataType:"json",
+//		type:"GET",
+//		success:function(data){
+//			console.log(data);
+//			alert(data.result["2014-04-01"].level);
+//		}
+//	});
 	starRankDisplay();
 	fansContributionDisplay();
 	FetchAndSetBannerData();
-	FetchAndSetStarJourneyPageData("2014-03");
+	FetchAndSetStarJourneyPageData(2014,3);
 });
 
 // set up tab switch
@@ -22,7 +32,7 @@ function SetSwitchTab(){
 }
 
 //set up listener on the star travel page;
-function SetUpStarTravelHover(){
+function SetUpStarTravelHover(data){
 	var cells = $("#tab3 .rank_cells .week_cell");
 	$.each(cells,function(index,value){
 		var cell = $(this);
@@ -58,6 +68,28 @@ function SetUpStarTravelHover(){
 					
 					break;
 			}
+			hoverLayer.empty();
+			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
+			var len = data.week[index].playlist.length;
+			if (len > 0){
+				hoverLayer.append('<span class="icon_first"></span>');
+				hoverLayer.append('<span class="hover_text_red">'+data.week[index].playlist[0][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.week[index].playlist[0][1]+'</span>');
+			}
+			if (len > 1){
+				hoverLayer.append('<span class="icon_second"></span>');
+				hoverLayer.append('<span class="hover_text_dblue">'+data.week[index].playlist[1][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.week[index].playlist[1][1]+'</span>');
+			}
+			if (len > 2){
+				hoverLayer.append('<span class="icon_third"></span>');
+				hoverLayer.append('<span class="hover_text_pink">'+data.week[index].playlist[2][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.week[index].playlist[2][1]+'</span>');
+			}
+				
 			hoverLayer.css({display:"block",top:fy+"px",left:fx+"px"});
 			hoverLayer.hover(function(){
 				$(this).css({display:"block"});
@@ -70,8 +102,30 @@ function SetUpStarTravelHover(){
 		});
 	});
 	var cell = $("#tab3 .sjmonth_rank .sjrank_content");
+	
 	cell.hover(function(){
 		var hoverLayer = $("#tab3 .mhoverlayer");
+		hoverLayer.empty();
+			var len = data.month.playlist.length;
+			if (len > 0){
+				hoverLayer.append('<span class="icon_first"></span>');
+				hoverLayer.append('<span class="hover_text_red">'+data.month.playlist[0][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.month.playlist[0][1]+'</span>');
+			}
+			if (len > 1){
+				hoverLayer.append('<span class="icon_second"></span>');
+				hoverLayer.append('<span class="hover_text_dblue">'+data.month.playlist[1][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.month.playlist[1][1]+'</span>');
+			}
+			if (len > 2){
+				hoverLayer.append('<span class="icon_third"></span>');
+				hoverLayer.append('<span class="hover_text_pink">'+data.month.playlist[2][0] +'</span>');
+				hoverLayer.append('<span class="gift_icon"></span>');
+				hoverLayer.append('<span class="hover_text_blue">'+data.month.playlist[2][1]+'</span>');
+			}
+
 		hoverLayer.css({display:"block",top:"55px",left:"330px"});
 		hoverLayer.unbind("hover");
 		hoverLayer.hover(function(){
@@ -315,11 +369,43 @@ function FetchAndSetBannerData(){
 }
 
 //set up the data of tab3
-function FetchAndSetStarJourneyPageData(timestamp){
-
+function FetchAndSetStarJourneyPageData(year,month,hostid, size){
+	var hostid = arguments[2]?arguments[2]:20051152;
+	var size = arguments[3]?arguments[3]:3;
+	var baseUrl = "http://192.168.11.42:8390/dailyactive/"
+	var url = baseUrl + "get_author_star_milestone";	
+	var test = baseUrl + "get_player_author_rank";
 	//give a time stamp and set the responding data.
-	//$.ajax();	
-	var data = {
+	$.ajax({
+		url:url,
+		dataType:"JSONP",
+		type:"GET",
+		data:{
+			date:1396358624,
+			hostid:20051152,
+			size:3,
+			date_type:"day"
+			//year:year,
+			//month:month,
+			//hostid:hostid,
+			//size:size
+		},
+		jsonpCallback:"callback",
+		success:function(data){
+			alert("success");
+			if (data.code == 0){
+				//success
+				SetTab3Data(data);			
+				SetUpStarTravelHover(data)
+
+			}
+		}
+	});	
+
+}
+
+function SetTab3Data(data){
+		var data = {
 		month_rank:10,
 		week_rank:[{
 			datestamp:"2014 1.1-7",
@@ -365,10 +451,33 @@ function FetchAndSetStarJourneyPageData(timestamp){
 		cell.append('<span class="week_cell_date">'+data.week_rank[i].datestamp+'</span><br/>');
 		cell.append('<span class="week_icon"></span>');	
 		cell.append('<span class="sub_info_title">明星周榜第<span class="sub_info_content">'+data.week_rank[i].rank+'</span>名</span>');
-		//celldate.html(data.week_rank[i].datestamp);
-//		var cellrank = cell.find(".sub_info_content");
-//		cellrank.html(data.week_rank[i].rank);
+		
 	}	
 }
 
+function FetchStarRoadData(year,month,hostid,size){
+	
+	var hostid = arguments[2]?arguments[2]:20051152;
+	var size = arguments[3]?arguments[3]:3;
+	var baseUrl = "http://192.168.11.42:8390/dailyactive/"
+	var url = baseUrl + "get_author_star_road";	
+	$.ajax({
+		url:url,
+		dataType:"JSONP",
+		type:"GET",
+		data:{
+			year:year,
+			month:month,
+			hostid:hostid,
+			size:size
+		},
+		success:function(data){
+			alert("success");
+		}
+	});
+}
+
+function SetStarRoadData(data){
+	
+}
 
