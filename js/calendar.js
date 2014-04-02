@@ -96,8 +96,8 @@ var calendar = {
 							rightIcon.hide();
 							return;
 						}
-//						centerIcon.removeClass();
-//						centerIcon.addClass("award-bg"+rs[key].level);
+						centerIcon.removeClass();
+						centerIcon.addClass("award-bg"+rs[key].level);
 							centerIcon.show();
 							rightIcon.show();
 

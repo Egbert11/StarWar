@@ -15,5 +15,5 @@ dt#tittle{width:252px; font-size:20px; color: #1c79c2; text-align: center; }
 .award-bg1,.award-bg2,.award-bg3{display: none; background: url(../image/sprite.png) -89px -89px no-repeat; _background: url(../image/sprite_ie6.png) -89px -89px no-repeat; width: 30px; height: 30px; position: absolute; left: 28px; top: 12px;}
 .award-bg2{background: url(../image/sprite.png) -125px -89px no-repeat; _background: url(../image/sprite_ie6.png) -125px -89px no-repeat;}
 .award-bg3{background: url(../image/sprite.png) -160px -89px no-repeat; _background: url(../image/sprite_ie6.png) -160px -89px no-repeat;}
-.award-bg5{background: url(../image/sprite.png) -130px -89px no-repeat; _background: url(../image/sprite_ie6.png) -160px -89px no-repeat;}
-.award-bg4{background: url(../image/sprite.png) -160px -89px no-repeat; _background: url(../image/sprite_ie6.png) -160px -89px no-repeat;}
+.award-bg5{background: url(../image/sprite.png) -130px -89px no-repeat; }
+.award-bg4{background: url(../image/sprite.png) -168px -89px no-repeat;}
