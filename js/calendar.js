@@ -7,7 +7,7 @@ var calendar = {
 	allData:null,
 	width:590,
 	height:349,
-
+	config:null,
 	getFirstDay:function(year,month){ //获取每个月第一天再星期几 
 		var firstDay = new Date(year,month,1); 
 		return firstDay.getDay(); //getDay()方法来获取 
@@ -58,9 +58,9 @@ var calendar = {
 			}
 		}
 
-		var baseUrl = "http://192.168.11.42:8390/dailyactive/"
+		var baseUrl = calendar.config.baseUrl;
 		var url = baseUrl + "get_author_star_road";
-		var hostid = arguments[1]? arguments[1]:20051152;
+		var hostid = arguments[1]? arguments[1]:calendar.config.hostid;
 		var size = arguments[2]?arguments[2]:3;
 		var dd = new Date();
 		var nyear = calendar.year;

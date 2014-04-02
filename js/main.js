@@ -14,6 +14,7 @@ $(document).ready(function(){
     setInterval(updateBanner, 10*60*1000);
 	//初始化成长星路
 	var calendars = document.getElementById('calendar'); 
+	calendars.config = config;
 	calendar.init(calendars);
 
     initTab3Banner();
