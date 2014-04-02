@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    SetSwitchTab();
+	InitTab3Banner();
+	SetSwitchTab();
 	SetUpTabClickJump();
 
     //星星排行和粉丝贡献的日，周，月，总点击事件
@@ -12,6 +13,7 @@ $(document).ready(function(){
 	
 	FetchAndSetBannerData();
 	FetchAndSetStarJourneyPageData(2014,3);
+
 });
 
 // set up tab switch
@@ -22,6 +24,42 @@ function SetSwitchTab(){
         $(".main_content .content").hide();
         $("#" + $(this).attr("name")).show();
     })
+}
+
+function InitTab3Banner(){
+	var tab3 = $("#tab3");
+	var lbtn = tab3.find(".sjhlbtn");
+	var rbtn = tab3.find(".sjhrbtn");
+	var title = tab3.find(".sjheadertitle");
+	title.html("");
+	var dd = new Date();
+	var text = dd.getFullYear() + "年 "+ (dd.getMonth()+1)+"月";
+	var base_month = dd.getMonth()+1;
+	title.html(text);
+	lbtn.click(function(){
+		rbtn.html(">");
+		var cmonth = parseInt(title.html().substr(6,1),10); 
+		var text = dd.getFullYear() + "年 "+ (cmonth - 1)+"月";
+		title.html(text);
+		cmonth = cmonth -1;
+		if (base_month - 2 >= cmonth ){
+			lbtn.html("");
+		}
+		FetchAndSetStarJourneyPageData(dd.getFullYear(),cmonth);
+	});
+	rbtn.click(function(){
+		lbtn.html("<");
+		var cmonth = parseInt(title.html().substr(6,1),10); 
+		var text = dd.getFullYear() + "年 "+ (cmonth+1)+"月";
+		title.html(text);
+		cmonth = cmonth + 1;
+		if (base_month <= cmonth){
+			rbtn.html("");
+		}	
+		FetchAndSetStarJourneyPageData(dd.getFullYear(),cmonth);
+
+	});
+	rbtn.html("");
 }
 
 //set up listener on the star travel page;
@@ -573,6 +611,7 @@ function FetchAndSetStarJourneyPageData(year,month,hostid, size){
 		success:function(data){
 			if (data.code == 0){
 				//success
+				console.log(data);
 				SetTab3Data(data);			
 				SetUpStarTravelHover(data)
 
