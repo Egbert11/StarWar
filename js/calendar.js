@@ -88,7 +88,7 @@ var calendar = {
 						var nday = parseInt($(this).html(),10);
 						if (nday < 10 ) nday = "0" + nday;
 						var key = nyear + "-" + nmonth + "-" + nday; 
-						var centerIcon = $(this).find(".award-bg2");
+						var centerIcon = $(this).find("b:last");
 						var rightIcon = $(this).find(".award");
 						if (rs[key].player_list.length == 0){
 							//消除中央和右上角图标,不hover
@@ -97,9 +97,12 @@ var calendar = {
 							rightIcon.hide();
 							return;
 						}
+//						centerIcon.removeClass();
+//						centerIcon.addClass("award-bg"+rs[key].level);
 							centerIcon.show();
 							rightIcon.show();
 
+						
 						$(this).bind({
 
 						mouseover:function(e){
