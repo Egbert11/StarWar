@@ -292,10 +292,87 @@ function fansContributionDisplay(){
 }
 
 //get the data from banner;
-function FetchAndSetBannerData(){
-	
+function FetchAndSetBannerData(date,hostid){
+	var hostid = arguments[1] ?  arguments[1] : 1338955;
+	var baseUrl = "http://192.168.11.42:8390/dailyactive/"
+	var url = baseUrl + "get_author_rank_info";
 	//fetchDataFromServer
-	//$.ajax();		
+	$.ajax({
+		url:url,
+		dataType:"json",
+		type:"GET",
+		data:{
+			date:date,
+			hostid:hostid
+		},
+		success:function(data){
+			
+			//maybe 分离到其他函数去。
+			if (data.code != 0 )return;
+			var rs = data.result;
+			var pinfo = $(".pinfo_content");
+			//var person_name = pinfo.find(".person_name");
+			//person_name.html(data.anchor_name);
+			var contentArr = pinfo.find(".sub_info_content");
+			var anchorRank = contentArr[0];
+			$(anchorRank).html("LV"+rs.day_level);
+			var anchorRenqi = contentArr[1];
+			$(anchorRenqi).html(rs.popularity);
+			var anchorfo = contentArr[2];
+			$(anchorfo).html("等待接口");
+	
+			var rankcol = $(".banner .star_rank"); 	
+			var rcontentArr = rankcol.find(".sub_info_content");
+			var todayMei = rcontentArr[0];
+			$(todayMei).html(rs.day_charm_rank);
+			var todayren = rcontentArr[1];
+			$(todayren).html(rs.day_popularity_rank);
+			var todaystar = rcontentArr[2];
+			$(todaystar).html(rs.day_star_rank);
+			var weekstar = rcontentArr[3];
+			$(weekstar).html(rs.week_star_rank);
+			var monthzong = rcontentArr[4];
+			$(monthzong).html(rs.month_star_rank);
+		
+			var starJourney = $(".banner .star_journey");
+			var title = starJourney.find("p .sub_info_title");
+			$.each(title,function(index,value){
+					$(this).empty();
+					$(this).html("");
+			});
+			//var rankArr = starJourney.find(".sub_info_content");
+			var dateArr = starJourney.find(".journey_date");
+			
+			if (rs.total_rank != 0)
+				$(title[0]).html('明星总榜第<span class="sub_info_content">'+rs.total_rank+'</span>名');
+				//$(zongbang).html(rs.total_rank);
+			else
+				$(title[0]).html('无排名');
+				;
+			
+			var zongbangdate = dateArr[0];
+			$(zongbangdate).html("等待接口");
+			if (rs.total_month_rank != 0)
+				$(title[1]).html('明星月榜第<span class="sub_info_content">'+rs.total_month_rank+'</span>名');
+			else
+				$(title[1]).html('无排名');
+
+				
+			//$(monthbang).html(j.b);
+			var monthbangdate = dateArr[1];
+			$(monthbangdate).html("等待接口");
+			var weekbang = rankArr[2];
+			var weekbangdate = dateArr[2];
+			if (rs.total_week_rank != 0)
+				$(title[2]).html('明星周榜第<span class="sub_info_content">'+rs.total_week_rank+'</span>名');
+			else
+				$(title[2]).html('无排名');
+
+			//$(weekbang).html(j.c);
+			$(weekbangdate).html("等待接口");
+			
+		}
+	});		
 	//
 	//mock it up with fake data.
 	data = {
@@ -306,8 +383,10 @@ function FetchAndSetBannerData(){
 		anchor_fo:2333333
 	};
 	//update the content of the anchor info
+
 	var pic = $(".banner .avatar");
 	//pic.attr("src",data.avatar);
+	/*
 	var pinfo = $(".pinfo_content");
 	var person_name = pinfo.find(".person_name");
 	person_name.html(data.anchor_name);
@@ -318,7 +397,7 @@ function FetchAndSetBannerData(){
 	$(anchorRenqi).html(data.anchor_renqi);
 	var anchorfo = contentArr[2];
 	$(anchorfo).html(data.anchor_fo);
-
+	*/
 	d = {
 		a:10,
 		b:11,
@@ -327,6 +406,7 @@ function FetchAndSetBannerData(){
 		e:15
 	};
 	//update the value of the star rank col
+	/*
 	var rankcol = $(".banner .star_rank"); 	
 	var rcontentArr = rankcol.find(".sub_info_content");
 	var todayMei = rcontentArr[0];
@@ -339,7 +419,7 @@ function FetchAndSetBannerData(){
 	$(weekstar).html(d.d);
 	var monthzong = rcontentArr[4];
 	$(monthzong).html(d.e);
-
+	*/
 	//setup star journey data;
 	//
 	var j = {
