@@ -165,32 +165,7 @@ function setUpStarTravelHover(data){
 			var len = rs.week[index].player_list.length;
 			var d = rs.week[index];
 			initHoverLayerWithData(hoverLayer,d);
-			/*
-			if (len == 0){
-				hoverLayer.append("<p>无粉丝贡献排行数据</p>");
-			}
-			if (len > 0){
-				hoverLayer.append('<span class="icon first"></span>');
-				hoverLayer.append('<span class="hover_text_red">'+mySubStr(rs.week[index].player_list[0][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[0][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			if (len > 1){
-				hoverLayer.append('<span class="icon second"></span>');
-				hoverLayer.append('<span class="hover_text_dblue">'+mySubStr(rs.week[index].player_list[1][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[1][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			if (len > 2){
-				hoverLayer.append('<span class="icon third"></span>');
-				hoverLayer.append('<span class="hover_text_pink">'+mySubStr(rs.week[index].player_list[2][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[2][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			*/	
+		
 			hoverLayer.css({display:"block",top:fy+"px",left:fx+"px"});
 //			alert(fx+"px"+fy+"px");
 			hoverLayer.hover(function(){
@@ -213,33 +188,7 @@ function setUpStarTravelHover(data){
 			var len = rs.month.player_list.length;
 			var d = rs.month;
 			initHoverLayerWithData(hoverLayer,d);
-			/*
-			if (len == 0){
-				hoverLayer.append("<p>无粉丝贡献排行数据</p>");
-			}
-			if (len > 0){
-				hoverLayer.append('<span class="icon first"></span>');
-				hoverLayer.append('<span class="hover_text_red">'+mySubStr( rs.month.player_list[0][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[0][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			if (len > 1){
-				hoverLayer.append('<span class="icon second"></span>');
-				hoverLayer.append('<span class="hover_text_dblue">'+mySubStr(rs.month.player_list[1][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[1][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			if (len > 2){
-				hoverLayer.append('<span class="icon third"></span>');
-				hoverLayer.append('<span class="hover_text_pink">'+mySubStr(rs.month.player_list[2][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[2][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			*/
-		hoverLayer.css({display:"block",top:"55px",left:"330px"});
+			hoverLayer.css({display:"block",top:"55px",left:"330px"});
 		hoverLayer.unbind("hover");
 		hoverLayer.hover(function(){
 			$(this).css({display:"block"});
