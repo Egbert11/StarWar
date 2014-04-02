@@ -5,11 +5,6 @@ $(document).ready(function(){
 
     //星星排行和粉丝贡献的日，周，月，总点击事件
     starRankTab();
-	//各个排行列表的初始化
-	fetchStarRankList("get_author_rank","day");
-	fetchStarRankList("get_player_rank","day");
-	fetchFansContributionList("get_player_author_rank","day");
-	fetchFansContributionList("get_player_author_contribute","day");
 	
 	FetchAndSetBannerData();
 	FetchAndSetStarJourneyPageData(2014,3);
@@ -182,6 +177,15 @@ function SetUpTabClickJump(){
 			var nowSelectedTab = $(".tabs .active");
 			nowSelectedTab.removeClass("active");
 			$(this).addClass("active");
+			//各个排行列表的初始化
+			if($(this).attr("name") == "tab2"){
+				fetchStarRankList("get_author_rank","day");
+				fetchStarRankList("get_player_rank","day");
+			}else if($(this).attr("name") == "tab4"){
+				fetchFansContributionList("get_player_author_rank","day");
+				fetchFansContributionList("get_player_author_contribute","day");
+			}
+			
 			var contents = $(".content");
 			$.each(contents,function(index,value){
 				$(this).removeClass('cactive');
