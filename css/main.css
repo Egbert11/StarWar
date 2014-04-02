@@ -284,7 +284,7 @@ b.week{
 #tab3 .sjmonth_rank{
     height:75px;
     position:relative;
-    top:0;
+    top: 5px;
     left:0;
 }
 
@@ -298,8 +298,8 @@ b.week{
     color:#ffffff;
 }
 
-#tab3 .sjmonth_rank .sjrank_content{
-    margin-top:5px;
+#tab3 .sjmonth_rank .sjrank_title{
+    /*margin-top:20px;*/
 }
 
 #tab3 .sjrank_content{
