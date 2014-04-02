@@ -413,7 +413,9 @@ b.week{
     top:0;
     left:0;
     z-index:100;
+	display:none;
 }
+
 
 .sjrank_title{
     margin-top:5px;
@@ -650,3 +652,5 @@ li.no3 span:first-child {
     top:9px;
     left:10px;
 }
+
+

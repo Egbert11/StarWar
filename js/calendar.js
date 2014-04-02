@@ -61,8 +61,8 @@ var calendar = {
 		var hostid = arguments[1]? arguments[1]:20051152;
 		var size = arguments[2]?arguments[2]:3;
 		var dd = new Date();
-		var nyear = dd.getYear();
-		var nmonth = dd.getMonth() + 1;
+		var nyear = calendar.year;
+		var nmonth = calendar.month + 1;
 
 		$.ajax({	
 			url:url,
@@ -72,22 +72,35 @@ var calendar = {
 				month:nmonth,
 				hostid:hostid,
 				size:size,
-				callback:"?"
 			},
+			jsonp:"callback",
 			type:"GET",
 			success:function(data){
 					//数据获取失败==
 					if (data.code != 0)return;
 					var rs = data.result;
+					console.log(rs);
 					var ddArr = $("#calendar dd");
+					if (nmonth < 10 )nmonth = "0" + nmonth;
 					$.each(ddArr,function(index,value){
 						if($(this).html()== "")return;
-						var nday = $(this).html();
-						if (nmonth < 10 )nmonth = "0" + nmonth;
+						var nday = parseInt($(this).html(),10);
 						if (nday < 10 ) nday = "0" + nday;
 						var key = nyear + "-" + nmonth + "-" + nday; 
 						console.log("key"+key);
 						console.log(rs[key]);
+						var centerIcon = $(this).find(".award-bg2");
+						var rightIcon = $(this).find(".award");
+						if (rs[key].player_list.length == 0){
+							//消除中央和右上角图标,不hover
+								
+							centerIcon.hide();
+							rightIcon.hide();
+							return;
+						}
+							centerIcon.show();
+							rightIcon.show();
+
 						$(this).bind({
 
 						mouseover:function(e){
@@ -99,10 +112,13 @@ var calendar = {
 								if (len > 0){
 									hoverLayer.append('');	
 								}
+								var sx = $(this).position().left;
+								var sy = $(this).position().top;
+//								alert(sx+"px"+sy+'px');
 								var x = $(this).offset().left;
 								var y = $(this).parent("dl").offset().top; 
-								$("#calendar_hover").css("top",y+50);
-								$("#calendar_hover").css("left",x-36);
+								$("#calendar_hover").css("top",sy+50);
+								$("#calendar_hover").css("left",sx-36);
 								$("#calendar_hover").show();
 							}
 						},
@@ -139,7 +155,7 @@ var calendar = {
 			calendar.createCalendar(form,new Date(calendar.year,calendar.month+1,1)); 
 			calendar.addStarInCalendar(form);
 			preMon.innerHTML = "&lt;";
-			if(base_month  >= calendar.month){
+			if(base_month  <= calendar.month){
 				nextMon.innerHTML = "";				
 			}
 		}
@@ -155,6 +171,7 @@ window.onload = function(){
 
 
 $(function(){
+/*
 	$("#calendar dd").bind({
 		mouseover:function(e){
 			if($(this).html() != ""){
@@ -175,5 +192,5 @@ $(function(){
 			}
 		}
 	});
-
+*/
 });
