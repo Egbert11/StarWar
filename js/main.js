@@ -2,7 +2,6 @@ $(document).ready(function(){
     SetSwitchTab();
 	SetUpTabClickJump();
 
-	SetUpStarTravelHover();
     //星星排行和粉丝贡献的日，周，月，总点击事件
     starRankTab();
 	//各个排行列表的初始化
