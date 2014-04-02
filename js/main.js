@@ -9,7 +9,7 @@ $(document).ready(function(){
     updateBanner();
     setInterval(updateBanner, 10*60*1000);
 
-	fetchAndSetStarJourneyPageData(2014,3);
+	fetchAndSetStarJourneyPageData(2014,4);
 	InitTab3Banner();
 });
 
@@ -524,7 +524,8 @@ function fetchAndSetStarJourneyPageData(year, month, hostid, size){
         },
         success:function(data){
             if (data.code == 0){
-                SetUpStarTravelHover(data)
+                SetTab3Data(data);
+                SetUpStarTravelHover(data);
             }
         },
         error:function(){}
