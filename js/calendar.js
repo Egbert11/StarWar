@@ -130,7 +130,6 @@ var calendar = {
 			}
 		});	
 				
-
 	},
 
 	init:function(form){ //主方法 
