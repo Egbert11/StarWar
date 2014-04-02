@@ -116,11 +116,11 @@ function SetUpStarTravelHover(data){
 					fx = x - 152;
 					fy = y + 50;
 					break;
-				case 4:
+				case 5:
 					fx = x + 130;
 					fy = y - 60 ; 
 					break;
-				case 5:
+				case 4:
 					fx = x -50;
 					fy = y - 60;
 					break;
@@ -216,7 +216,11 @@ function SetUpTabClickJump(){
 			}else if($(this).attr("name") == "tab4"){
 				fetchFansContributionList("get_player_author_rank","day");
 				fetchFansContributionList("get_player_author_contribute","day");
+			}else if ($(this).attr("name")== "tab3"){
+				var dd = new Date();	
+				fetchAndSetStarJourneyPageData(dd.getFullYear(),dd.getMonth()+1);
 			}
+
 			
 			var contents = $(".content");
 			$.each(contents,function(index,value){

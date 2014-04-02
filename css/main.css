@@ -85,7 +85,7 @@ a{
     text-align: center;
     color:#ffffff;
     font-weight:bold;
-    line-height:16px;
+    line-height:20px;
     box-shadow:1px 1px 1px #000000;
 }
 .fo_btn:hover{
@@ -95,15 +95,17 @@ a{
 
 
 .fo_btn_icon{
-    background:url(../image/sprite.png) no-repeat -90px -59px;
-    width:20px;
-    height:16px;
+    background:url(../image/sprite.png) no-repeat -210px -57px;
+    width:22px;
+    height:20px;
     display:inline-block;
-    margin-top:10px;
+    margin-top:6px;
+	margin-left:-10px;
 }
 
 .fo_btn_text{
     vertical-align:super;
+	margin-left:20px;
 }
 
 .star_rank{
@@ -358,12 +360,12 @@ b.week{
     left:380px;
 }
 
-#week_cell4{
+#week_cell5{
     top:110px;
     left:100px;
 }
 
-#week_cell5{
+#week_cell4{
     position: absolute;
     top:110px;
     left:295px;
