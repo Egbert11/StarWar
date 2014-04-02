@@ -260,22 +260,31 @@ function fansContributionDisplay(){
 }
 
 //get the data from banner;
-function FetchAndSetBannerData(date,hostid){
-	var hostid = arguments[1] ?  arguments[1] : 1338955;
+function FetchAndSetBannerData(hostid){
+	var hostid = arguments[0] ?  arguments[0] : 1338955;
+	var date = new Date().getTime()/1000;
+	date = Math.floor(date);
+//	var nyear = dd.getFullYear();
+//	var nmonth = dd.getMonth()+1;
+//	var nday = dd.getDate();
+//	if (nmonth < 10)nmonth = "0"+nmonth;
+//	if (nday < 10)nday = "0" + nday;
+//	var date = nyear + '-' + nmonth + '-' + nday;
 	var baseUrl = "http://192.168.11.42:8390/dailyactive/"
 	var url = baseUrl + "get_author_rank_info";
 	//fetchDataFromServer
 	$.ajax({
 		url:url,
-		dataType:"json",
+		dataType:"jsonp",
 		type:"GET",
 		data:{
 			date:date,
 			hostid:hostid,
-			callback:"?"
+			//callback:"?"
 		},
+		jsonp:"callback",
 		success:function(data){
-			
+			console.log(data);
 			//maybe 分离到其他函数去。
 			if (data.code != 0 )return;
 			var rs = data.result;
@@ -442,8 +451,9 @@ function FetchAndSetStarJourneyPageData(year,month,hostid, size){
 		},
 		jsonpCallback:"callback",
 		success:function(data){
-			alert("success");
+			//alert("success");
 			if (data.code == 0){
+				console.log(data);
 				//success
 				SetTab3Data(data);			
 				SetUpStarTravelHover(data)
