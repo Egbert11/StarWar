@@ -16,7 +16,14 @@ $(document).ready(function(){
 var config = {
     baseUrl: 'http://192.168.11.42:8390/dailyactive/',
     hostid: 20051154
-}
+};
+
+var queryStrings=function() {
+    //get url querystring
+    var params=document.location.search,reg=/(?:^\?|&)(.*?)=(.*?)(?=&|$)/g,temp,args={};
+    while((temp=reg.exec(params))!=null) args[temp[1]]=decodeURIComponent(temp[2]);
+    return args;
+};
 
 // 对Date的扩展，将 Date 转化为指定格式的String
 // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
