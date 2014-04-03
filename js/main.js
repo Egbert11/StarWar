@@ -615,6 +615,12 @@ function setTab3Data(data){
 			cell.append("");
 			continue;
 		}
+		if (rs.week[i].rank == 0 ){
+			cell.addClass("week_cell_empty");
+			cell.append('<span class="wupaiming">暂无排名</span>');
+			//cell.append('<p style="margin-top:40px;margin-left:65px;color:#0099ff;">任务暂未开始</p>');
+			continue;
+		}
 		cell.addClass("week_cell");
 		var aDate = rs.week[i].date;
 		aDate = aDate.substr(0,4) + " " + aDate.substr(5,2)+"."+aDate.substr(8,2) +"—" +aDate.substr(19,2);

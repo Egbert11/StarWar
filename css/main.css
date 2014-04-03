@@ -335,7 +335,7 @@ b.week{
     position:relative;
 }
 
-#tab3 .week_cell{
+#tab3 .week_cell,.week_cell_empt,.week_cell_empty{
     width:175px;
     height:90px;
     display:inline-block;
@@ -396,8 +396,8 @@ b.week{
 
 .week_cell_empty .wupaiming{
     position:relative;
-    top:10px;
-    left:55px;
+    top:25px;
+    left:50px;
     font-size:12px;
     color:#969696;
 }
@@ -475,7 +475,7 @@ b.week{
 } 
 
 .first_col{
-	width:120px;
+	width:110px;
 	float:left;
 }
 
