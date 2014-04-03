@@ -467,7 +467,22 @@ b.week{
     background:url(../image/sprite.png) no-repeat -170px -59px;
 }
 
-.hoverlayer .gift_icon{
+.adjusttext{
+
+} 
+
+.first_col{
+	width:110px;
+	float:left;
+}
+
+.second_col{
+	float:left;
+	width:120px;
+
+}
+
+.hoverlayer .gift_icon,.mhoverlayer .gift_icon{
     width:15px;
     height:16px;
     background:url(../image/sprite.png) no-repeat -194px -59px;
