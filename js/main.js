@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     //获取主播id
     config.hostid = parseInt(queryStrings().micuid);
 
@@ -71,11 +70,67 @@ function initTab(){
 
         //各个排行列表的初始化
         if(tabName == "tab2"){
-            fetchStarRankList("get_author_rank","day");
-            fetchStarRankList("get_player_rank","day");
+			var tab1 = $(".zhuboRank .tab_style li a.active").attr("id");
+			switch(tab1){
+				case "1":
+					fetchStarRankList("get_author_rank","day");
+					break;
+				case "2":
+					fetchStarRankList("get_author_rank","week");
+					break;
+				case "3":
+					fetchStarRankList("get_author_rank","month");
+					break;
+				case "4":
+					fetchStarRankList("get_author_rank","all");
+					break;
+			}
+			var tab2 = $(".fansRank .tab_style li a.active").attr("id");
+			switch(tab2){
+				case "5":
+					fetchStarRankList("get_player_rank","day");
+					break;
+				case "6":
+					fetchStarRankList("get_player_rank","week");
+					break;
+				case "7":
+					fetchStarRankList("get_player_rank","month");
+					break;
+				case "8":
+					fetchStarRankList("get_player_rank","all");
+					break;
+			}
         }else if(tabName == "tab4"){
-            fetchFansContributionList("get_player_author_rank","day");
-            fetchFansContributionList("get_player_author_contribute","day");
+			var tab1 = $(".charmRank .tab_style li a.active").attr("id");
+			switch(tab1){
+				case "9":
+					fetchFansContributionList("get_player_author_rank","day");
+					break;
+				case "10":
+					fetchFansContributionList("get_player_author_rank","week");
+					break;
+				case "11":
+					fetchFansContributionList("get_player_author_rank","month");
+					break;
+				case "12":
+					fetchFansContributionList("get_player_author_rank","all");
+					break;
+			}
+			var tab2 = $(".popularityRank .tab_style li a.active").attr("id");
+			switch(tab2){
+				case "13":
+					fetchFansContributionList("get_player_author_contribute","day");
+					break;
+				case "14":
+					fetchFansContributionList("get_player_author_contribute","week");
+					break;
+				case "15":
+					fetchFansContributionList("get_player_author_contribute","month");
+					break;
+				case "16":
+					fetchFansContributionList("get_player_author_contribute","all");
+					break;
+			}
         }else if (tabName == "tab3"){
             var dd = new Date();
             fetchAndSetStarJourneyPageData(dd.getFullYear(),dd.getMonth()+1);
@@ -363,13 +418,32 @@ function fetchStarRankList(path, dataType){
         },
         dataType: 'jsonp',
         jsonp:'callback',
+		timeout:200,
         success: function(data){
             if(data.code == 0){
 				//更新排行榜
                 updateRanklist(path, data);
             }
         },
-        error:function(){}
+        error: function (parsedjson, textStatus, errorThrown) {
+			console.log("parsedJson: " + JSON.stringify(parsedjson));
+			var list, listClass;
+			switch(path){
+				//主播星星排行
+				case "get_author_rank":
+					list = 1;
+					listClass = ".zhuboRank";
+					break;
+				//粉丝贡献排行
+				case "get_player_rank":
+					list = 2;
+					listClass = ".fansRank";
+					break;
+			}
+			$("#list"+list).hide();
+			if($(listClass+":has(p)").length == 0)
+				$(listClass).append('<p class="nodata">暂时未有排行数据</p>');
+		}
     });
 }
 
@@ -380,19 +454,37 @@ function fetchFansContributionList(path, dataType){
         url: config.baseUrl + path,
         data: {
             date: new Date().getNowTime(),
-            hostid:config.hostid,
+            hostid: config.hostid,
             size: 10,
             date_type:dataType
         },
         dataType: 'jsonp',
 		jsonp:'callback',
+		timeout:200,
         success: function(data){
             if(data.code == 0){
                 //更新排行榜
                 updateRanklist(path, data);
             }
         },
-        error:function(){}
+        error: function (parsedjson, textStatus, errorThrown) {
+			var list, listClass;
+			switch(path){
+				//粉丝魅力贡献排行
+				case "get_player_author_rank":
+					list = 3;
+					listClass = ".charmRank";
+					break;
+				//粉丝人气贡献排行
+				case "get_player_author_contribute":
+					list = 4;
+					listClass = ".popularityRank";
+					break;
+			}
+			$("#list"+list).hide();
+			if($(listClass+":has(p)").length == 0)
+				$(listClass).append('<p class="nodata">暂时未有排行数据</p>');
+		}
     });
 }
 
