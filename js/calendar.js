@@ -34,8 +34,7 @@ var calendar = {
 
 			//增加id
 			$(calendar.dayTable[i+firstDay-1]).addClass("day"+i);
-//			$(calendar.dayTable[i+firstDay-1]).attr('id',"day"+i);
-			if(i == new Date().getDate() && calendar.month == new Date().getMonth() && calendar.year == new Date().getFullYear()){ //判断是否是当天 
+			if(i == new Date().getDate() && calendar.month == new Date().getMonth() && calendar.year == new Date().getFullYear()){ //判断是否是当天
 				calendar.dayTable[i+firstDay-1].id = 'today'; 
 			} 
 		} 
@@ -201,29 +200,3 @@ window.onload = function(){
 	var calendars = document.getElementById('calendar'); 
 	calendar.init(calendars);
 }
-
-
-$(function(){
-/*
-	$("#calendar dd").bind({
-		mouseover:function(e){
-			if($(this).html() != ""){
-				var dd = new Date();
-				var nyear = dd.getYear();
-				var nmonth = dd.getMonth() + 1;
-				var nday = $(this).html();
-				var x = $(this).offset().left;
-				var y = $(this).parent("dl").offset().top; 
-				$("#calendar_hover").css("top",y+50);
-				$("#calendar_hover").css("left",x-36);
-				$("#calendar_hover").show();
-			}
-		},
-		mouseout:function(){
-			if($(this).html() != ""){
-				$("#calendar_hover").hide();
-			}
-		}
-	});
-*/
-});
