@@ -7,6 +7,7 @@ var calendar = {
 	allData:null,
 	width:590,
 	height:349,
+	config:null,
 	getFirstDay:function(year,month){ //获取每个月第一天再星期几 
 		var firstDay = new Date(year,month,1); 
 		return firstDay.getDay(); //getDay()方法来获取 
@@ -57,9 +58,9 @@ var calendar = {
 			}
 		}
 
-		var baseUrl = "http://192.168.11.42:8390/dailyactive/"
+		var baseUrl = calendar.config.baseUrl;
 		var url = baseUrl + "get_author_star_road";
-		var hostid = arguments[1]? arguments[1]:20051152;
+		var hostid = arguments[1]? arguments[1]:calendar.config.hostid;
 		var size = arguments[2]?arguments[2]:3;
 		var dd = new Date();
 		var nyear = calendar.year;
@@ -72,7 +73,7 @@ var calendar = {
 				year:nyear,
 				month:nmonth,
 				hostid:hostid,
-				size:size,
+				size:size
 			},
 			jsonp:"callback",
 			type:"GET",
@@ -121,19 +122,22 @@ var calendar = {
 
 								if (len > 0){
 									first_col.append('<span class="icon first"></span>');
-									first_col.append('<span class="hover_text_red">'+rs[key].player_list[0][0] +'</span><br/>');
+									first_col.append('<span class="hover_text_red" title="'+ rs[key].player_list[0][0] +
+										'">'+mySubStr(rs[key].player_list[0][0],8) +'</span><br/>');
 									second_col.append('<span class="gift_icon"></span>');
 									second_col.append('<span class="hover_text_blue">'+rs[key].player_list[0][1]+'</span><br/>');
 								}
 								if (len > 1){
-									first_col.append('<span class="icon_second"></span>');
-									first_col.append('<span class="hover_text_dblue">'+rs[key].player_list[1][0] +'</span><br/>');
+									first_col.append('<span class="icon second"></span>');
+									first_col.append('<span class="hover_text_dblue" title="'+
+										rs[key].player_list[1][0] +'">'+mySubStr(rs[key].player_list[1][0],8) +'</span><br/>');
 									second_col.append('<span class="gift_icon"></span>');
 									second_col.append('<span class="hover_text_blue">'+rs[key].player_list[1][1]+'</span><br/>');
 								}
 								if (len > 2){
-									first_col.append('<span class="icon_third"></span>');
-									first_col.append('<span class="hover_text_pink">'+rs[key].player_list[2][0] +'</span><br/>');
+									first_col.append('<span class="icon third"></span>');
+									first_col.append('<span class="hover_text_pink" title="'+
+										rs[key].player_list[2][0]+'">'+mySubStr(rs[key].player_list[2][0],8) +'</span><br/>');
 									second_col.append('<span class="gift_icon"></span>');
 									second_col.append('<span class="hover_text_blue">'+rs[key].player_list[2][1]+'</span><br/>');
 								}
@@ -204,6 +208,28 @@ var calendar = {
 		this.addStarInCalendar(form);
 	}
 }
+
+function mySubStr(str, maxlen) {
+    str = str.trim();
+    var len = 0;
+    var i;
+    for (i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i);
+        //单字节加1
+        if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
+            len++;
+        }
+            else {
+            len += 2;
+        }
+        if (len > maxlen)
+		{
+			return str.substring(0, i)+'...';
+		}
+    }
+    return str.substring(0, i);
+}
+
 /*
 window.onload = function(){
 	var calendars = document.getElementById('calendar'); 

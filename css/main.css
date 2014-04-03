@@ -36,11 +36,11 @@ a{
 .avatar{
     display:block;
     float:left;
-    width:100px;
-    height:120px;
-    margin-top: 9px;
-    margin-left:12px;
-    border:1px solid #ffffff;
+    /* width:100px; */
+    /* height:120px; */
+    margin-top: 28px;
+    margin-left: 12px;
+    /* border:1px solid #ffffff; */
     -webkit-border-radius: 2px;
     border-radius: 2px;
 }
@@ -75,7 +75,6 @@ a{
     width:100px;
     height: 32px;
     background:-webkit-gradient(linear,left top,left bottom,from(#c757c0),to(#f5a0ff));
-    cursor:pointer;
     display: inline-block;
     position: relative;
     top: 8px;
@@ -86,13 +85,11 @@ a{
     color:#ffffff;
     font-weight:bold;
     line-height:20px;
-    box-shadow:1px 1px 1px #000000;
 }
-.fo_btn:hover{
+/*.fo_btn:hover{
     background:-webkit-gradient(linear,left top,left bottom,from(#f5a0ff),to(#c757c0));
     cursor:pointer;
-}
-
+}*/
 
 .fo_btn_icon{
     background:url(../image/sprite.png) no-repeat -210px -57px;
@@ -105,11 +102,11 @@ a{
 
 .fo_btn_text{
     vertical-align:super;
-	margin-left:20px;
+    margin-left: 10px;
 }
 
 .star_rank{
-    width:120px;
+    width: 130px;
     height:100%;
     float:left;
     position :relative;
@@ -287,7 +284,7 @@ b.week{
 #tab3 .sjmonth_rank{
     height:75px;
     position:relative;
-    top:0;
+    top: 5px;
     left:0;
 }
 
@@ -302,7 +299,7 @@ b.week{
 }
 
 #tab3 .sjmonth_rank .sjrank_title{
-    margin-top:20px;
+    /*margin-top:20px;*/
 }
 
 #tab3 .sjrank_content{
@@ -338,7 +335,7 @@ b.week{
     position:relative;
 }
 
-#tab3 .week_cell{
+#tab3 .week_cell,.week_cell_empt,.week_cell_empty{
     width:175px;
     height:90px;
     display:inline-block;
@@ -399,10 +396,16 @@ b.week{
 
 .week_cell_empty .wupaiming{
     position:relative;
-    top:10px;
-    left:55px;
+    top:25px;
+    left:50px;
     font-size:12px;
     color:#969696;
+}
+
+.hoverlayer p,.mhoverlayer p{
+	margin-top:30px;
+	margin-left:65px;
+	color:#0099ff;
 }
 
 .hoverlayer,.mhoverlayer{
@@ -673,4 +676,42 @@ li.no3 span:first-child {
     text-align: center;
     line-height: 60px;
     color: #77bee8;
+}
+
+.spin {
+    -webkit-transform: rotate(360deg);
+    -webkit-animation: spin 1s linear infinite;
+}
+@-webkit-keyframes spin {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+.spin {
+    transform: rotate(360deg);
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+.loading {
+    width: 32px; height: 32px;
+}
+
+.loading::after {
+    content: '';
+    width: 3px; height:3px;
+    margin: 14px 0 0 14px;
+    border-radius: 100%;                      /* 圆角 */
+    box-shadow: 0 -10px 0 1px #a0d5fb,           /* 上, 1px 扩展 */
+    10px 0px #a0d5fb,                /* 右 */
+    0 10px #a0d5fb,                  /* 下 */
+    -10px 0 #a0d5fb,                 /* 左 */
+
+    -7px -7px 0 .5px #a0d5fb,        /* 左上, 0.5px扩展 */
+    7px -7px 0 1.5px #a0d5fb,        /* 右上, 1.5px扩展 */
+    7px 7px #a0d5fb,                 /* 右下 */
+    -7px 7px #a0d5fb;                /* 左下 */
+    position: absolute;
 }

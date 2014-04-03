@@ -13,6 +13,7 @@ $(document).ready(function(){
     setInterval(updateBanner, 10*60*1000);
 	//初始化成长星路
 	var calendars = document.getElementById('calendar'); 
+	calendar.config = config;
 	calendar.init(calendars);
 
     initTab3Banner();
@@ -219,32 +220,7 @@ function setUpStarTravelHover(data){
 			var len = rs.week[index].player_list.length;
 			var d = rs.week[index];
 			initHoverLayerWithData(hoverLayer,d);
-			/*
-			if (len == 0){
-				hoverLayer.append("<p>无粉丝贡献排行数据</p>");
-			}
-			if (len > 0){
-				hoverLayer.append('<span class="icon first"></span>');
-				hoverLayer.append('<span class="hover_text_red">'+mySubStr(rs.week[index].player_list[0][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[0][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			if (len > 1){
-				hoverLayer.append('<span class="icon second"></span>');
-				hoverLayer.append('<span class="hover_text_dblue">'+mySubStr(rs.week[index].player_list[1][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[1][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			if (len > 2){
-				hoverLayer.append('<span class="icon third"></span>');
-				hoverLayer.append('<span class="hover_text_pink">'+mySubStr(rs.week[index].player_list[2][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[2][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			*/	
+		
 			hoverLayer.css({display:"block",top:fy+"px",left:fx+"px"});
 //			alert(fx+"px"+fy+"px");
 			hoverLayer.hover(function(){
@@ -267,33 +243,7 @@ function setUpStarTravelHover(data){
 			var len = rs.month.player_list.length;
 			var d = rs.month;
 			initHoverLayerWithData(hoverLayer,d);
-			/*
-			if (len == 0){
-				hoverLayer.append("<p>无粉丝贡献排行数据</p>");
-			}
-			if (len > 0){
-				hoverLayer.append('<span class="icon first"></span>');
-				hoverLayer.append('<span class="hover_text_red">'+mySubStr( rs.month.player_list[0][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[0][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			if (len > 1){
-				hoverLayer.append('<span class="icon second"></span>');
-				hoverLayer.append('<span class="hover_text_dblue">'+mySubStr(rs.month.player_list[1][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[1][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			if (len > 2){
-				hoverLayer.append('<span class="icon third"></span>');
-				hoverLayer.append('<span class="hover_text_pink">'+mySubStr(rs.month.player_list[2][0],8) +'</span>');
-				hoverLayer.append('<span class="gift_icon"></span>');
-				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[2][1]+'</span>');
-				hoverLayer.append('<br/>');
-			}
-			*/
-		hoverLayer.css({display:"block",top:"55px",left:"330px"});
+			hoverLayer.css({display:"block",top:"55px",left:"330px"});
 		hoverLayer.unbind("hover");
 		hoverLayer.hover(function(){
 			$(this).css({display:"block"});
@@ -320,21 +270,21 @@ function initHoverLayerWithData(hoverlayer,data){
 	var second_col = hoverlayer.find(".second_col");
 			if (len > 0){
 				first_col.append('<span class="icon first"></span>');
-				first_col.append('<span class="hover_text_red">'+mySubStr(data.player_list[0][0],8) +'</span><br/>');
+				first_col.append('<span class="hover_text_red" title="'+data.player_list[0][0] +'">'+mySubStr(data.player_list[0][0],8) +'</span><br/>');
 				second_col.append('<span class="gift_icon"></span>');
 				second_col.append('<span class="hover_text_blue">'+data.player_list[0][1]+'</span>');
 				second_col.append('<br/>');
 			}
 			if (len > 1){
 				first_col.append('<span class="icon second"></span>');
-				first_col.append('<span class="hover_text_dblue">'+mySubStr(data.player_list[1][0],8) +'</span><br/>');
+				first_col.append('<span class="hover_text_dblue" title="'+data.player_list[1][0] +'">'+mySubStr(data.player_list[1][0],8) +'</span><br/>');
 				second_col.append('<span class="gift_icon"></span>');
 				second_col.append('<span class="hover_text_blue">'+data.player_list[1][1]+'</span>');
 				second_col.append('<br/>');
 			}
 			if (len > 2){
 				first_col.append('<span class="icon third"></span>');
-				first_col.append('<span class="hover_text_pink">'+mySubStr(data.player_list[2][0],8) +'</span><br/>');
+				first_col.append('<span class="hover_text_pink" title="'+data.player_list[2][0] +'">'+mySubStr(data.player_list[2][0],8) +'</span><br/>');
 				second_col.append('<span class="gift_icon"></span>');
 				second_col.append('<span class="hover_text_blue">'+data.player_list[2][1]+'</span>');
 				second_col.append('<br/>');
@@ -601,6 +551,9 @@ function updateBanner(){
 //处理成功获取Banner的数据
 function handleBannerData(data){
     var rs = data.result;
+    $(".person_name").empty().attr('title',rs.nickname).text(mySubStr(rs.nickname,16));
+    $(".fo_btn_text").empty().text(rs.month_level);
+    $(".avatar").attr("src",rs.author_portrait);
     var pinfo = $(".pinfo_content");
     var contentArr = pinfo.find(".sub_info_content").empty();
     contentArr[0].innerHTML = "LV"+rs.day_level;
@@ -608,12 +561,32 @@ function handleBannerData(data){
     contentArr[2].innerHTML = rs.charm;
 
     var rankcol = $(".banner .star_rank");
-    var rcontentArr = rankcol.find(".sub_info_content").empty();
-    rcontentArr[0].innerHTML = rs.day_charm_rank;
-    rcontentArr[1].innerHTML = rs.day_popularity_rank;
-    rcontentArr[2].innerHTML = rs.day_star_rank;
-    rcontentArr[3].innerHTML = rs.week_star_rank;
-    rcontentArr[4].innerHTML = rs.month_star_rank;
+    var rcontentArr = rankcol.find(".sub_info_title").empty();
+
+    if(rs.day_charm_rank != 0)
+        $(rcontentArr[0]).html('当日魅力:第<span class="sub_info_content">'+rs.day_charm_rank+'</span>名');
+    else
+        $(rcontentArr[0]).html("当日魅力:暂未更新");
+
+    if(rs.day_popularity_rank != 0)
+        $(rcontentArr[1]).html('当日人气:第<span class="sub_info_content">'+rs.day_popularity_rank+'</span>名');
+    else
+        $(rcontentArr[1]).html("当日人气:暂未更新");
+
+    if(rs.day_star_rank != 0)
+        $(rcontentArr[2]).html('当日星星:第<span class="sub_info_content">'+rs.day_star_rank+'</span>名');
+    else
+        $(rcontentArr[2]).html("当日星星:暂未更新");
+
+    if(rs.week_star_rank != 0)
+        $(rcontentArr[3]).html('本周星星:第<span class="sub_info_content">'+rs.week_star_rank+'</span>名');
+    else
+        $(rcontentArr[3]).html("本周星星:暂未更新");
+
+    if(rs.month_star_rank != 0)
+        $(rcontentArr[4]).html('本周综合:第<span class="sub_info_content">'+rs.month_star_rank+'</span>名');
+    else
+        $(rcontentArr[4]).html("本周综合:暂未更新");
 
     $(".banner .star_journey").find(".journey_date").text(new Date().Format("yyyy-MM-dd"));
 
@@ -647,7 +620,7 @@ function fetchAndSetStarJourneyPageData(year, month, hostid, size){
         data:{
             year: year,
             month: month,
-            hostid: 1338955,
+            hostid: config.hostid,
             size: size
         },
         success:function(data){
@@ -663,8 +636,16 @@ function fetchAndSetStarJourneyPageData(year, month, hostid, size){
 function setTab3Data(data){
 	var rs = data.result;
 	var tab3 = $("#tab3")
-	var monthrank = tab3.find(".sjmonth_rank .sub_info_content");
-	monthrank.html(rs.month.month_rank);
+	var monthrank = tab3.find(".sjmonth_rank .sjrank_content");
+	monthrank.empty();
+	if (rs.month.month_rank == 0){
+		monthrank.append('<p style="text-align:center;margin-top:25px;margin-left:15px;color:#969696;">活动尚未开始</p>');
+	}else{
+		monthrank.append('<span class="sjrank_icon"></span>');
+		monthrank.append('<span class="sub_info_title">明星月榜第<span class="sub_info_content">'+
+			rs.month.month_rank+'</span>'+'名</span>');
+	}
+	//monthrank.html(rs.month.month_rank);
 	var weekrank = $("#tab3 .sjweek_rank");
 	weekrank.empty();
 	weekrank.append('<span class="sjrank_title">明星周榜</span>');
@@ -681,6 +662,12 @@ function setTab3Data(data){
 		if (index > l){
 			cell.addClass("week_cell_empty");
 			cell.append("");
+			continue;
+		}
+		if (rs.week[i].rank == 0 ){
+			cell.addClass("week_cell_empty");
+			cell.append('<span class="wupaiming">暂无排名</span>');
+			//cell.append('<p style="margin-top:40px;margin-left:65px;color:#0099ff;">任务暂未开始</p>');
 			continue;
 		}
 		cell.addClass("week_cell");
