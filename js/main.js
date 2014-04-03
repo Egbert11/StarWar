@@ -311,53 +311,8 @@ function fetchStarRankList(path, dataType){
         jsonp:"callback",
         success: function(data){
             if(data.code == 0){
-                var i = 1;
-                var list;
-                if(path == "get_author_rank"){
-                    //粉丝列表
-                    list = 1;
-                }else{
-                    //主播列表
-                    list = 2;
-                }
-                //如果没有数据
-                if(data.result.length == 0){
-                    $("#list"+list).hide();
-                    if(list == 1){
-                        if($(".zhuboRank:has(p)").length == 0)
-                            $(".zhuboRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
-                    }else {
-                        if($(".fansRank:has(p)").length == 0)
-                            $(".fansRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
-                    }
-                    return;
-                }
-                //获取到了排行数据
-                $("#list"+list).show();
-                if(list == 1){
-                    $(".zhuboRank p").remove();
-                }else {
-                    $(".fansRank p").remove();
-                }
-                for(;i <= data.result.length;i++)
-                {
-                    var name = $("#list"+list+" #list"+list+"_"+i);
-                    //填充昵称
-                    name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
-                    switch(i){
-                        case 1: case 2: case 3:
-                        break;
-                        case 4: case 5: case 6: case 7: case 8: case 9: case 10:
-                        //填充排名序号
-                        name.find("span:first-child").text(i);
-                        break;
-                    }
-                }
-                //若人数不足10个，将剩下的隐藏
-                for(;i<=10 ;i++)
-                {
-                    $("#list"+list+" #list"+list+"_"+i).css("display","none");
-                }
+				//更新排行榜
+                updateRanklist(path, data);
             }
         },
         error:function(){}
@@ -379,57 +334,70 @@ function fetchFansContributionList(path, dataType){
         jsonp:"callback",
         success: function(data){
             if(data.code == 0){
-                var i = 1;
-                var list;
-                if(path == "get_player_author_rank"){
-                    //粉丝魅力贡献排行
-                    list = 3;
-                }else{
-                    //粉丝人气贡献排行
-                    list = 4;
-                }
-                //如果没有数据
-                if(data.result.length == 0){
-                    $("#list"+list).hide();
-                    if(list == 3){
-                        if($(".charmRank:has(p)").length == 0)
-                            $(".charmRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
-                    }else {
-                        if($(".popularityRank:has(p)").length == 0)
-                            $(".popularityRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
-                    }
-                    return;
-                }
-                //获取到了排行数据
-                $("#list"+list).show();
-                if(list == 3){
-                    $(".charmRank p").remove();
-                }else {
-                    $(".popularityRank p").remove();
-                }
-                for(;i <= data.result.length;i++)
-                {
-                    var name = $("#list"+list+" #list"+list+"_"+i);
-                    //填充昵称
-                    name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
-                    switch(i){
-                        case 1: case 2: case 3:
-                        break;
-                        case 4: case 5: case 6: case 7: case 8: case 9: case 10:
-                        //填充排名序号
-                        name.find("span:first-child").text(i);
-                        break;
-                    }
-                }
-                //若人数不足10个，将剩下的隐藏
-                for(;i<=10 ;i++)
-                {
-                    $("#list"+list+" #list"+list+"_"+i).css("display","none");
-                }
+                //更新排行榜
+                updateRanklist(path, data);
             }
         },
         error:function(){}
     });
+}
+
+//更新星星排行和粉丝贡献的排列列表
+function updateRanklist(path, data) {
+	var list, listClass;
+	switch(path){
+		//主播星星排行
+		case "get_author_rank":
+			list = 1;
+			listClass = ".zhuboRank";
+			break;
+		//粉丝贡献排行
+		case "get_player_rank":
+			list = 2;
+			listClass = ".fansRank";
+			break;
+		//粉丝魅力贡献排行
+		case "get_player_author_rank":
+			list = 3;
+			listClass = ".charmRank";
+			break;
+		//粉丝人气贡献排行
+		case "get_player_author_contribute":
+			list = 4;
+			listClass = ".popularityRank";
+			break;
+	}
+	//如果没有排行数据,将对应列表置空，并提示没有数据
+	if(data.result.length == 0){
+		$("#list"+list).hide();
+		if($(listClass+":has(p)").length == 0)
+			$(listClass).append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+		return;
+	}
+	//获取到了排行数据
+	$("#list"+list).show();
+	$(listClass+" p").remove();
+	var i = 1;
+	for(;i <= data.result.length;i++)
+	{	
+		var name = $("#list"+list+" #list"+list+"_"+i);
+		//填充昵称
+		name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
+		name.show();
+		switch(i){
+			case 1: case 2: case 3:
+				break;
+			case 4: case 5: case 6: case 7: case 8: case 9: case 10:
+				//填充排名序号
+				name.find("span:first-child").text(i);
+				break;
+		}
+	}
+	//若人数不足10个，将剩下的隐藏
+	for(;i<=10 ;i++)
+	{
+		$("#list"+list+" #list"+list+"_"+i).hide();
+	}
 }
 
 //对于过长的字符串返回它的子串
