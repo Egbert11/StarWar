@@ -12,12 +12,16 @@ $(document).ready(function(){
     //每隔十分钟更新Banner数据
     updateBanner();
     setInterval(updateBanner, 10*60*1000);
+	//初始化成长星路
+	var calendars = document.getElementById('calendar'); 
+	calendar.init(calendars);
 
     initTab3Banner();
 });
 
 var config = {
     baseUrl: 'http://192.168.11.42:8390/dailyactive/',
+	avatarUrl:'http://114.113.200.138/nsep/',
     hostid: 0
 };
 
@@ -57,7 +61,8 @@ Date.prototype.getNowTime = function(){
 //成长星路、星星排行、星之旅程、粉丝贡献Tab事件绑定
 function initTab(){
     $(".tabs li").delegate("a","click",function(){
-        $(".tabs li a").removeClass("active");
+        
+		$(".tabs li a").removeClass("active");
         $(this).addClass("active");
         $(".main_content .content").hide();
 
@@ -74,7 +79,10 @@ function initTab(){
         }else if (tabName == "tab3"){
             var dd = new Date();
             fetchAndSetStarJourneyPageData(dd.getFullYear(),dd.getMonth()+1);
-        }
+        }else if(tabName == "tab1"){
+				var calendars = document.getElementById('calendar'); 
+				calendar.init(calendars);
+		}
     })
 }
 
@@ -146,7 +154,7 @@ function setUpStarTravelHover(data){
 					break;
 				case 4:
 					fx = x -50;
-					fy = y - 60;
+					fy = y - 120;
 					break;
 				default:
 					break;
@@ -154,28 +162,34 @@ function setUpStarTravelHover(data){
 			hoverLayer.empty();
 			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
 			var len = rs.week[index].player_list.length;
+			var d = rs.week[index];
+			initHoverLayerWithData(hoverLayer,d);
+			/*
 			if (len == 0){
 				hoverLayer.append("<p>无粉丝贡献排行数据</p>");
 			}
 			if (len > 0){
 				hoverLayer.append('<span class="icon first"></span>');
-				hoverLayer.append('<span class="hover_text_red">'+rs.week[index].player_list[0][0] +'</span>');
+				hoverLayer.append('<span class="hover_text_red">'+mySubStr(rs.week[index].player_list[0][0],8) +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
 				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[0][1]+'</span>');
+				hoverLayer.append('<br/>');
 			}
 			if (len > 1){
-				hoverLayer.append('<span class="icon_second"></span>');
-				hoverLayer.append('<span class="hover_text_dblue">'+rs.week[index].player_list[1][0] +'</span>');
+				hoverLayer.append('<span class="icon second"></span>');
+				hoverLayer.append('<span class="hover_text_dblue">'+mySubStr(rs.week[index].player_list[1][0],8) +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
 				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[1][1]+'</span>');
+				hoverLayer.append('<br/>');
 			}
 			if (len > 2){
-				hoverLayer.append('<span class="icon_third"></span>');
-				hoverLayer.append('<span class="hover_text_pink">'+rs.week[index].player_list[2][0] +'</span>');
+				hoverLayer.append('<span class="icon third"></span>');
+				hoverLayer.append('<span class="hover_text_pink">'+mySubStr(rs.week[index].player_list[2][0],8) +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
 				hoverLayer.append('<span class="hover_text_blue">'+rs.week[index].player_list[2][1]+'</span>');
+				hoverLayer.append('<br/>');
 			}
-				
+			*/	
 			hoverLayer.css({display:"block",top:fy+"px",left:fx+"px"});
 //			alert(fx+"px"+fy+"px");
 			hoverLayer.hover(function(){
@@ -196,28 +210,34 @@ function setUpStarTravelHover(data){
 			
 			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
 			var len = rs.month.player_list.length;
+			var d = rs.month;
+			initHoverLayerWithData(hoverLayer,d);
+			/*
 			if (len == 0){
 				hoverLayer.append("<p>无粉丝贡献排行数据</p>");
 			}
 			if (len > 0){
-				hoverLayer.append('<span class="icon_first"></span>');
-				hoverLayer.append('<span class="hover_text_red">'+rs.month.player_list[0][0] +'</span>');
+				hoverLayer.append('<span class="icon first"></span>');
+				hoverLayer.append('<span class="hover_text_red">'+mySubStr( rs.month.player_list[0][0],8) +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
 				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[0][1]+'</span>');
+				hoverLayer.append('<br/>');
 			}
 			if (len > 1){
-				hoverLayer.append('<span class="icon_second"></span>');
-				hoverLayer.append('<span class="hover_text_dblue">'+rs.month.player_list[1][0] +'</span>');
+				hoverLayer.append('<span class="icon second"></span>');
+				hoverLayer.append('<span class="hover_text_dblue">'+mySubStr(rs.month.player_list[1][0],8) +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
 				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[1][1]+'</span>');
+				hoverLayer.append('<br/>');
 			}
 			if (len > 2){
-				hoverLayer.append('<span class="icon_third"></span>');
-				hoverLayer.append('<span class="hover_text_pink">'+rs.month.player_list[2][0] +'</span>');
+				hoverLayer.append('<span class="icon third"></span>');
+				hoverLayer.append('<span class="hover_text_pink">'+mySubStr(rs.month.player_list[2][0],8) +'</span>');
 				hoverLayer.append('<span class="gift_icon"></span>');
 				hoverLayer.append('<span class="hover_text_blue">'+rs.month.player_list[2][1]+'</span>');
+				hoverLayer.append('<br/>');
 			}
-
+			*/
 		hoverLayer.css({display:"block",top:"55px",left:"330px"});
 		hoverLayer.unbind("hover");
 		hoverLayer.hover(function(){
@@ -229,6 +249,42 @@ function setUpStarTravelHover(data){
 		var hoverLayer = $("#tab3 .mhoverlayer");
 		hoverLayer.css({display:"none"});
 	});
+}
+
+function initHoverLayerWithData(hoverlayer,data){
+	var len = data.player_list.length;
+	if (len == 0){
+				hoverlayer.append("<p>无粉丝贡献排行数据</p>");
+		return;
+	}else{
+		hoverlayer.append('<div class="first_col"></div>');
+		hoverlayer.append('<div class="second_col"></div>');
+	}
+
+	var first_col = hoverlayer.find(".first_col");
+	var second_col = hoverlayer.find(".second_col");
+			if (len > 0){
+				first_col.append('<span class="icon first"></span>');
+				first_col.append('<span class="hover_text_red">'+mySubStr(data.player_list[0][0],8) +'</span><br/>');
+				second_col.append('<span class="gift_icon"></span>');
+				second_col.append('<span class="hover_text_blue">'+data.player_list[0][1]+'</span>');
+				second_col.append('<br/>');
+			}
+			if (len > 1){
+				first_col.append('<span class="icon second"></span>');
+				first_col.append('<span class="hover_text_dblue">'+mySubStr(data.player_list[1][0],8) +'</span><br/>');
+				second_col.append('<span class="gift_icon"></span>');
+				second_col.append('<span class="hover_text_blue">'+data.player_list[1][1]+'</span>');
+				second_col.append('<br/>');
+			}
+			if (len > 2){
+				first_col.append('<span class="icon third"></span>');
+				first_col.append('<span class="hover_text_pink">'+mySubStr(data.player_list[2][0],8) +'</span><br/>');
+				second_col.append('<span class="gift_icon"></span>');
+				second_col.append('<span class="hover_text_blue">'+data.player_list[2][1]+'</span>');
+				second_col.append('<br/>');
+			}
+			
 }
 
 //星星排行和粉丝贡献的日，周，月，总点击事件
@@ -306,56 +362,11 @@ function fetchStarRankList(path, dataType){
             date_type:dataType
         },
         dataType: 'jsonp',
-        jsonp:"callback",
+        jsonp:'callback',
         success: function(data){
             if(data.code == 0){
-                var i = 1;
-                var list;
-                if(path == "get_author_rank"){
-                    //粉丝列表
-                    list = 1;
-                }else{
-                    //主播列表
-                    list = 2;
-                }
-                //如果没有数据
-                if(data.result.length == 0){
-                    $("#list"+list).hide();
-                    if(list == 1){
-                        if($(".zhuboRank:has(p)").length == 0)
-                            $(".zhuboRank").append('<p class="nodata">暂时未有排行数据</p>');
-                    }else {
-                        if($(".fansRank:has(p)").length == 0)
-                            $(".fansRank").append('<p class="nodata">暂时未有排行数据</p>');
-                    }
-                    return;
-                }
-                //获取到了排行数据
-                $("#list"+list).show();
-                if(list == 1){
-                    $(".zhuboRank p").remove();
-                }else {
-                    $(".fansRank p").remove();
-                }
-                for(;i <= data.result.length;i++)
-                {
-                    var name = $("#list"+list+" #list"+list+"_"+i);
-                    //填充昵称
-                    name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
-                    switch(i){
-                        case 1: case 2: case 3:
-                        break;
-                        case 4: case 5: case 6: case 7: case 8: case 9: case 10:
-                        //填充排名序号
-                        name.find("span:first-child").text(i);
-                        break;
-                    }
-                }
-                //若人数不足10个，将剩下的隐藏
-                for(;i<=10 ;i++)
-                {
-                    $("#list"+list+" #list"+list+"_"+i).css("display","none");
-                }
+				//更新排行榜
+                updateRanklist(path, data);
             }
         },
         error:function(){}
@@ -374,60 +385,83 @@ function fetchFansContributionList(path, dataType){
             date_type:dataType
         },
         dataType: 'jsonp',
-        jsonp:"callback",
+		jsonp:'callback',
         success: function(data){
             if(data.code == 0){
-                var i = 1;
-                var list;
-                if(path == "get_player_author_rank"){
-                    //粉丝魅力贡献排行
-                    list = 3;
-                }else{
-                    //粉丝人气贡献排行
-                    list = 4;
-                }
-                //如果没有数据
-                if(data.result.length == 0){
-                    $("#list"+list).hide();
-                    if(list == 3){
-                        if($(".charmRank:has(p)").length == 0)
-                            $(".charmRank").append('<p class="nodata">暂时未有排行数据</p>');
-                    }else {
-                        if($(".popularityRank:has(p)").length == 0)
-                            $(".popularityRank").append('<p class="nodata">暂时未有排行数据</p>');
-                    }
-                    return;
-                }
-                //获取到了排行数据
-                $("#list"+list).show();
-                if(list == 3){
-                    $(".charmRank p").remove();
-                }else {
-                    $(".popularityRank p").remove();
-                }
-                for(;i <= data.result.length;i++)
-                {
-                    var name = $("#list"+list+" #list"+list+"_"+i);
-                    //填充昵称
-                    name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
-                    switch(i){
-                        case 1: case 2: case 3:
-                        break;
-                        case 4: case 5: case 6: case 7: case 8: case 9: case 10:
-                        //填充排名序号
-                        name.find("span:first-child").text(i);
-                        break;
-                    }
-                }
-                //若人数不足10个，将剩下的隐藏
-                for(;i<=10 ;i++)
-                {
-                    $("#list"+list+" #list"+list+"_"+i).css("display","none");
-                }
+                //更新排行榜
+                updateRanklist(path, data);
             }
         },
         error:function(){}
     });
+}
+
+//更新星星排行和粉丝贡献的排列列表
+function updateRanklist(path, data) {
+	var list, listClass;
+	switch(path){
+		//主播星星排行
+		case "get_author_rank":
+			list = 1;
+			listClass = ".zhuboRank";
+			break;
+		//粉丝贡献排行
+		case "get_player_rank":
+			list = 2;
+			listClass = ".fansRank";
+			break;
+		//粉丝魅力贡献排行
+		case "get_player_author_rank":
+			list = 3;
+			listClass = ".charmRank";
+			break;
+		//粉丝人气贡献排行
+		case "get_player_author_contribute":
+			list = 4;
+			listClass = ".popularityRank";
+			break;
+	}
+	//如果没有排行数据,将对应列表置空，并提示没有数据
+	if(data.result.length == 0){
+		$("#list"+list).hide();
+		if($(listClass+":has(p)").length == 0)
+			$(listClass).append('<p class="nodata">暂时未有排行数据</p>');
+		return;
+	}
+	//获取到了排行数据
+	$("#list"+list).show();
+	$(listClass+" p").remove();
+	var i = 1;
+	for(;i <= data.result.length;i++)
+	{	
+		var name = $("#list"+list+" #list"+list+"_"+i);
+		//第一名的设置头像
+		if(i == 1){
+			var avatar = name.find("img.little_avatar");
+			if(data.result[0][3] == '0')
+				avatar.attr("src","image/avatar.png");
+			else
+				avatar.attr("src",config.avatarUrl+data.result[0][3]);
+		}
+		//设置标题
+		name.find("span:last-child").attr('title',data.result[i-1][0]);
+		//填充昵称
+		name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
+		name.show();
+		switch(i){
+			case 1: case 2: case 3:
+				break;
+			case 4: case 5: case 6: case 7: case 8: case 9: case 10:
+				//填充排名序号
+				name.find("span:first-child").text(i);
+				break;
+		}
+	}
+	//若人数不足10个，将剩下的隐藏
+	for(;i<=10 ;i++)
+	{
+		$("#list"+list+" #list"+list+"_"+i).hide();
+	}
 }
 
 //对于过长的字符串返回它的子串
@@ -524,7 +558,7 @@ function fetchAndSetStarJourneyPageData(year, month, hostid, size){
         data:{
             year: year,
             month: month,
-            hostid: hostid,
+            hostid: 1338955,
             size: size
         },
         success:function(data){
