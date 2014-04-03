@@ -141,6 +141,9 @@ function SetUpStarTravelHover(data){
 			hoverLayer.empty();
 			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
 			var len = rs.week[index].player_list.length;
+			if (len == 0){
+				hoverLayer.append("<p>无粉丝贡献排行数据</p>");
+			}
 			if (len > 0){
 				hoverLayer.append('<span class="icon first"></span>');
 				hoverLayer.append('<span class="hover_text_red">'+rs.week[index].player_list[0][0] +'</span>');
@@ -180,6 +183,9 @@ function SetUpStarTravelHover(data){
 			
 			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
 			var len = rs.month.player_list.length;
+			if (len == 0){
+				hoverLayer.append("<p>无粉丝贡献排行数据</p>");
+			}
 			if (len > 0){
 				hoverLayer.append('<span class="icon_first"></span>');
 				hoverLayer.append('<span class="hover_text_red">'+rs.month.player_list[0][0] +'</span>');
