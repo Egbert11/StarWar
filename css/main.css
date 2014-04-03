@@ -655,4 +655,8 @@ li.no3 span:first-child {
     left:10px;
 }
 
-
+.nodata{
+    text-align: center;
+    line-height: 60px;
+    color: #77bee8;
+}

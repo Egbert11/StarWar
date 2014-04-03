@@ -1,4 +1,8 @@
 $(document).ready(function(){
+
+    //获取主播id
+    config.hostid = parseInt(queryStrings().micuid);
+
     initTab();
 	SetUpTabClickJump();
 
@@ -15,7 +19,7 @@ $(document).ready(function(){
 
 var config = {
     baseUrl: 'http://192.168.11.42:8390/dailyactive/',
-    hostid: 20051154
+    hostid: 0
 };
 
 var queryStrings=function() {
@@ -332,10 +336,10 @@ function fetchStarRankList(path, dataType){
                     $("#list"+list).hide();
                     if(list == 1){
                         if($(".zhuboRank:has(p)").length == 0)
-                            $(".zhuboRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+                            $(".zhuboRank").append('<p class="nodata">暂时未有排行数据</p>');
                     }else {
                         if($(".fansRank:has(p)").length == 0)
-                            $(".fansRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+                            $(".fansRank").append('<p class="nodata">暂时未有排行数据</p>');
                     }
                     return;
                 }
@@ -400,10 +404,10 @@ function fetchFansContributionList(path, dataType){
                     $("#list"+list).hide();
                     if(list == 3){
                         if($(".charmRank:has(p)").length == 0)
-                            $(".charmRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+                            $(".charmRank").append('<p class="nodata">暂时未有排行数据</p>');
                     }else {
                         if($(".popularityRank:has(p)").length == 0)
-                            $(".popularityRank").append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+                            $(".popularityRank").append('<p class="nodata">暂时未有排行数据</p>');
                     }
                     return;
                 }
