@@ -18,6 +18,7 @@ $(document).ready(function(){
 
 var config = {
     baseUrl: 'http://192.168.11.42:8390/dailyactive/',
+	avatarUrl:'http://114.113.200.138/nsep/',
     hostid: 0
 };
 
@@ -333,7 +334,6 @@ function fetchFansContributionList(path, dataType){
         success: function(data){
             if(data.code == 0){
                 //更新排行榜
-				console.log(config.hostid);
                 updateRanklist(path, data);
             }
         },
@@ -380,6 +380,16 @@ function updateRanklist(path, data) {
 	for(;i <= data.result.length;i++)
 	{	
 		var name = $("#list"+list+" #list"+list+"_"+i);
+		//第一名的设置头像
+		if(i == 1){
+			var avatar = name.find("img.little_avatar");
+			if(data.result[0][3] == '0')
+				avatar.attr("src","image/avatar.png");
+			else
+				avatar.attr("src",config.avatarUrl+data.result[0][3]);
+		}
+		//设置标题
+		name.find("span:last-child").attr('title',data.result[i-1][0]);
 		//填充昵称
 		name.find("span:last-child").text(mySubStr(data.result[i-1][0],18));
 		name.show();
