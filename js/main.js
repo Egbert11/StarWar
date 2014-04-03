@@ -1,22 +1,32 @@
 $(document).ready(function(){
+
+    //获取主播id
+    config.hostid = parseInt(queryStrings().micuid);
+
+    //成长星路、星星排行、星之旅程、粉丝贡献Tab事件绑定
     initTab();
-	SetUpTabClickJump();
 
     //星星排行和粉丝贡献的日，周，月，总点击事件
     initStarRankTab();
 
-    // 每隔十分钟更新Banner数据
+    //每隔十分钟更新Banner数据
     updateBanner();
     setInterval(updateBanner, 10*60*1000);
 
-	fetchAndSetStarJourneyPageData(2014,4);
-	InitTab3Banner();
+    initTab3Banner();
 });
 
 var config = {
     baseUrl: 'http://192.168.11.42:8390/dailyactive/',
-    hostid: 20051154
-}
+    hostid: 0
+};
+
+var queryStrings=function() {
+    //get url querystring
+    var params=document.location.search,reg=/(?:^\?|&)(.*?)=(.*?)(?=&|$)/g,temp,args={};
+    while((temp=reg.exec(params))!=null) args[temp[1]]=decodeURIComponent(temp[2]);
+    return args;
+};
 
 // 对Date的扩展，将 Date 转化为指定格式的String
 // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
@@ -44,17 +54,31 @@ Date.prototype.getNowTime = function(){
     return Math.floor(this.getTime()/1000);
 }
 
-// 成长星路、星星排行、星之旅程、粉丝贡献Tab事件绑定
+//成长星路、星星排行、星之旅程、粉丝贡献Tab事件绑定
 function initTab(){
-    $(".tabs li").on("a","click",function(){
+    $(".tabs li").delegate("a","click",function(){
         $(".tabs li a").removeClass("active");
         $(this).addClass("active");
         $(".main_content .content").hide();
-        $("#" + $(this).attr("name")).show();
+
+        var tabName = $(this).attr("name");
+        $("#" + tabName).show();
+
+        //各个排行列表的初始化
+        if(tabName == "tab2"){
+            fetchStarRankList("get_author_rank","day");
+            fetchStarRankList("get_player_rank","day");
+        }else if(tabName == "tab4"){
+            fetchFansContributionList("get_player_author_rank","day");
+            fetchFansContributionList("get_player_author_contribute","day");
+        }else if (tabName == "tab3"){
+            var dd = new Date();
+            fetchAndSetStarJourneyPageData(dd.getFullYear(),dd.getMonth()+1);
+        }
     })
 }
 
-function InitTab3Banner(){
+function initTab3Banner(){
 	var tab3 = $("#tab3");
 	var lbtn = tab3.find(".sjhlbtn");
 	var rbtn = tab3.find(".sjhrbtn");
@@ -90,7 +114,7 @@ function InitTab3Banner(){
 	rbtn.html("");
 }
 
-function SetUpStarTravelHover(data){
+function setUpStarTravelHover(data){
 	var rs = data.result;
 	var cells = $("#tab3 .rank_cells .week_cell");
 	$.each(cells,function(index,value){
@@ -130,6 +154,9 @@ function SetUpStarTravelHover(data){
 			hoverLayer.empty();
 			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
 			var len = rs.week[index].player_list.length;
+			if (len == 0){
+				hoverLayer.append("<p>无粉丝贡献排行数据</p>");
+			}
 			if (len > 0){
 				hoverLayer.append('<span class="icon first"></span>');
 				hoverLayer.append('<span class="hover_text_red">'+rs.week[index].player_list[0][0] +'</span>');
@@ -169,6 +196,9 @@ function SetUpStarTravelHover(data){
 			
 			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
 			var len = rs.month.player_list.length;
+			if (len == 0){
+				hoverLayer.append("<p>无粉丝贡献排行数据</p>");
+			}
 			if (len > 0){
 				hoverLayer.append('<span class="icon_first"></span>');
 				hoverLayer.append('<span class="hover_text_red">'+rs.month.player_list[0][0] +'</span>');
@@ -198,38 +228,6 @@ function SetUpStarTravelHover(data){
 	},function(){
 		var hoverLayer = $("#tab3 .mhoverlayer");
 		hoverLayer.css({display:"none"});
-	});
-}
-
-//bind the click function with the tab jump effect
-function SetUpTabClickJump(){
-	var tabs = $(".tabs li a");
-	$.each(tabs,function(index,value){
-		$(this).click(function(){
-			var nowSelectedTab = $(".tabs .active");
-			nowSelectedTab.removeClass("active");
-			$(this).addClass("active");
-			//各个排行列表的初始化
-			if($(this).attr("name") == "tab2"){
-				fetchStarRankList("get_author_rank","day");
-				fetchStarRankList("get_player_rank","day");
-			}else if($(this).attr("name") == "tab4"){
-				fetchFansContributionList("get_player_author_rank","day");
-				fetchFansContributionList("get_player_author_contribute","day");
-			}else if ($(this).attr("name")== "tab3"){
-				var dd = new Date();	
-				fetchAndSetStarJourneyPageData(dd.getFullYear(),dd.getMonth()+1);
-			}
-
-			
-			var contents = $(".content");
-			$.each(contents,function(index,value){
-				$(this).removeClass('cactive');
-			});
-			var nIndex = index + 1;
-			var nowContent = $("#tab"+nIndex);
-			nowContent.addClass('cactive');
-		});
 	});
 }
 
@@ -308,7 +306,7 @@ function fetchStarRankList(path, dataType){
             date_type:dataType
         },
         dataType: 'jsonp',
-        jsonp:"callback",
+        jsonp:'callback',
         success: function(data){
             if(data.code == 0){
 				//更新排行榜
@@ -331,10 +329,11 @@ function fetchFansContributionList(path, dataType){
             date_type:dataType
         },
         dataType: 'jsonp',
-        jsonp:"callback",
+		jsonp:'callback',
         success: function(data){
             if(data.code == 0){
                 //更新排行榜
+				console.log(config.hostid);
                 updateRanklist(path, data);
             }
         },
@@ -371,7 +370,7 @@ function updateRanklist(path, data) {
 	if(data.result.length == 0){
 		$("#list"+list).hide();
 		if($(listClass+":has(p)").length == 0)
-			$(listClass).append('<p style="margin:8px 0 0 55px">暂时未有排行数据</p>');
+			$(listClass).append('<p class="nodata">暂时未有排行数据</p>');
 		return;
 	}
 	//获取到了排行数据
@@ -496,15 +495,15 @@ function fetchAndSetStarJourneyPageData(year, month, hostid, size){
         },
         success:function(data){
             if (data.code == 0){
-                SetTab3Data(data);
-                SetUpStarTravelHover(data);
+                setTab3Data(data);
+                setUpStarTravelHover(data);
             }
         },
         error:function(){}
     });
 }
 
-function SetTab3Data(data){
+function setTab3Data(data){
 	var rs = data.result;
 	var tab3 = $("#tab3")
 	var monthrank = tab3.find(".sjmonth_rank .sub_info_content");

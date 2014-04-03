@@ -5,6 +5,8 @@ var calendar = {
 	year:null, //初始化年 
 	month:null, //初始化月份 
 	allData:null,
+	width:590,
+	height:349,
 	getFirstDay:function(year,month){ //获取每个月第一天再星期几 
 		var firstDay = new Date(year,month,1); 
 		return firstDay.getDay(); //getDay()方法来获取 
@@ -32,8 +34,7 @@ var calendar = {
 
 			//增加id
 			$(calendar.dayTable[i+firstDay-1]).addClass("day"+i);
-//			$(calendar.dayTable[i+firstDay-1]).attr('id',"day"+i);
-			if(i == new Date().getDate() && calendar.month == new Date().getMonth() && calendar.year == new Date().getFullYear()){ //判断是否是当天 
+			if(i == new Date().getDate() && calendar.month == new Date().getMonth() && calendar.year == new Date().getFullYear()){ //判断是否是当天
 				calendar.dayTable[i+firstDay-1].id = 'today'; 
 			} 
 		} 
@@ -106,16 +107,45 @@ var calendar = {
 								hoverLayer.empty();
 								hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
 								var len = rs[key].player_list.length;
-								if (len > 0){
-									hoverLayer.append('');	
+								if (len == 0){
+									hoverLayer.append("<p>无粉丝贡献排行数据</p>");
 								}
+								if (len > 0){
+									hoverLayer.append('<span class="icon first"></span>');
+									hoverLayer.append('<span class="hover_text_red">'+rs[key].player_list[0][0] +'</span>');
+									hoverLayer.append('<span class="gift_icon"></span>');
+									hoverLayer.append('<span class="hover_text_blue">'+rs[key].player_list[0][1]+'</span>');
+								}
+								if (len > 1){
+									hoverLayer.append('<span class="icon_second"></span>');
+									hoverLayer.append('<span class="hover_text_dblue">'+rs[key].player_list[1][0] +'</span>');
+									hoverLayer.append('<span class="gift_icon"></span>');
+									hoverLayer.append('<span class="hover_text_blue">'+rs[key].player_list[1][1]+'</span>');
+								}
+								if (len > 2){
+									hoverLayer.append('<span class="icon_third"></span>');
+									hoverLayer.append('<span class="hover_text_pink">'+rs[key].player_list[2][0] +'</span>');
+									hoverLayer.append('<span class="gift_icon"></span>');
+									hoverLayer.append('<span class="hover_text_blue">'+rs[key].player_list[2][1]+'</span>');
+								}
+
+
 								var sx = $(this).position().left;
 								var sy = $(this).position().top;
-//								alert(sx+"px"+sy+'px');
-								var x = $(this).offset().left;
-								var y = $(this).parent("dl").offset().top; 
-								$("#calendar_hover").css("top",sy+50);
-								$("#calendar_hover").css("left",sx-36);
+								var width = hoverLayer.width();
+								var height = hoverLayer.height();
+								sx = sx - 36;
+								sy = sy + 50;
+								if (sx + width > calendar.width){
+									sx = calendar.width - width - 10;
+								}else if( sx < 10 ){
+									sx = 10;
+								}
+								if (sy + height > calendar.height){
+									sy = calendar.height - height - 10;
+								}
+								$("#calendar_hover").css("top",sy);
+								$("#calendar_hover").css("left",sx);
 								$("#calendar_hover").show();
 							}
 						},
@@ -125,6 +155,13 @@ var calendar = {
 							}
 						}
 					});
+					var hoverLayer = $("#calendar_hover");	
+					hoverLayer.hover(function(){
+							$(this).show();
+						},function(){
+							$(this).hide();
+					});
+
 			
 				});
 			}
@@ -163,29 +200,3 @@ window.onload = function(){
 	var calendars = document.getElementById('calendar'); 
 	calendar.init(calendars);
 }
-
-
-$(function(){
-/*
-	$("#calendar dd").bind({
-		mouseover:function(e){
-			if($(this).html() != ""){
-				var dd = new Date();
-				var nyear = dd.getYear();
-				var nmonth = dd.getMonth() + 1;
-				var nday = $(this).html();
-				var x = $(this).offset().left;
-				var y = $(this).parent("dl").offset().top; 
-				$("#calendar_hover").css("top",y+50);
-				$("#calendar_hover").css("left",x-36);
-				$("#calendar_hover").show();
-			}
-		},
-		mouseout:function(){
-			if($(this).html() != ""){
-				$("#calendar_hover").hide();
-			}
-		}
-	});
-*/
-});
