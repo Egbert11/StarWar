@@ -7,6 +7,7 @@ var calendar = {
 	allData:null,
 	width:590,
 	height:349,
+
 	getFirstDay:function(year,month){ //获取每个月第一天再星期几 
 		var firstDay = new Date(year,month,1); 
 		return firstDay.getDay(); //getDay()方法来获取 
@@ -72,7 +73,7 @@ var calendar = {
 				year:nyear,
 				month:nmonth,
 				hostid:hostid,
-				size:size,
+				size:size
 			},
 			jsonp:"callback",
 			type:"GET",
