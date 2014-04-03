@@ -368,7 +368,6 @@ function fetchStarRankList(path, dataType){
         },
         dataType: 'jsonp',
         jsonp:'callback',
-		timeout:200,
         success: function(data){
             if(data.code == 0){
 				//更新排行榜
@@ -410,7 +409,6 @@ function fetchFansContributionList(path, dataType){
         },
         dataType: 'jsonp',
 		jsonp:'callback',
-		timeout:200,
         success: function(data){
             if(data.code == 0){
                 //更新排行榜
