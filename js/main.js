@@ -284,7 +284,7 @@ function initHoverLayerWithData(hoverlayer,data){
 				first_col.append('<p></p>');
 				var col = first_col.find("p:eq(0)");
 				col.append('<span class="icon first"></span>');
-				col.append('<span class="hover_text_red" title="'+data.player_list[0][0] +'">'+mySubStr(data.player_list[0][0],8) +'</span>');
+				col.append('<span class="hover_text_red" title="'+data.player_list[0][0] +'">'+mySubStr(data.player_list[0][0],15) +'</span>');
 				
 				second_col.append('<p></p>');
 				var col = second_col.find("p:eq(0)");
@@ -295,7 +295,7 @@ function initHoverLayerWithData(hoverlayer,data){
 				first_col.append('<p></p>');
 				var col = first_col.find("p:eq(1)");
 				col.append('<span class="icon second"></span>');
-				col.append('<span class="hover_text_dblue" title="'+data.player_list[1][0] +'">'+mySubStr(data.player_list[1][0],8) +'</span>');
+				col.append('<span class="hover_text_dblue" title="'+data.player_list[1][0] +'">'+mySubStr(data.player_list[1][0],15) +'</span>');
 				
 				second_col.append('<p></p>');
 				var col = second_col.find("p:eq(1)");
@@ -306,7 +306,7 @@ function initHoverLayerWithData(hoverlayer,data){
 				first_col.append('<p></p>');
 				var col = first_col.find("p:eq(2)");
 				col.append('<span class="icon third"></span>');
-				col.append('<span class="hover_text_pink" title="'+data.player_list[2][0] +'">'+mySubStr(data.player_list[2][0],8) +'</span>');
+				col.append('<span class="hover_text_pink" title="'+data.player_list[2][0] +'">'+mySubStr(data.player_list[2][0],15) +'</span>');
 				
 				second_col.append('<p></p>');
 				var col = second_col.find("p:eq(2)");

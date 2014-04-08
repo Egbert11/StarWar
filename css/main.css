@@ -457,7 +457,7 @@ b.week{
     height:16px;
     width:18px;
     display:inline-block;
-    margin-left:20px;
+    margin-left:5px;
     margin-top:5px;
 }
 
@@ -477,14 +477,13 @@ b.week{
 } 
 
 .first_col{
-	width:100px;
+	width:140px;
 	float:left;
 }
 
 .second_col{
-	float:left;
-	width:100px;
-
+	float:right;
+	width:65px;
 }
 
 .hoverlayer .gift_icon,.mhoverlayer .gift_icon{
@@ -492,7 +491,6 @@ b.week{
     height:16px;
     background:url(../image/sprite.png) no-repeat -193px -59px;
     display:inline-block;
-    margin-left:40px;
 }
 
 .tab2_main {
