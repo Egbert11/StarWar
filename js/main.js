@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 var config = {
     baseUrl: 'http://192.168.11.42:8390/dailyactive/',
-	avatarUrl:'http://114.113.200.138/nsep/',
+	avatarUrl:'http://cc.cottage.netease.com/nsep/headicon/builtin/',
     hostid: 0
 };
 
