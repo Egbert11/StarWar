@@ -267,7 +267,7 @@ function initHoverLayerWithData(hoverlayer,data){
 	var len = data.player_list.length;
 	if (len == 0){
 				console.log(data);
-				hoverlayer.append("<p>无粉丝贡献排行数据</p>");
+				hoverlayer.append('<p class="wufensi">无粉丝贡献排行数据</p>');
 		return;
 	}else{
 		hoverlayer.append('<div class="first_col"></div>');
@@ -277,25 +277,37 @@ function initHoverLayerWithData(hoverlayer,data){
 	var first_col = hoverlayer.find(".first_col");
 	var second_col = hoverlayer.find(".second_col");
 			if (len > 0){
-				first_col.append('<span class="icon first"></span>');
-				first_col.append('<span class="hover_text_red" title="'+data.player_list[0][0] +'">'+mySubStr(data.player_list[0][0],8) +'</span><br/>');
-				second_col.append('<span class="gift_icon"></span>');
-				second_col.append('<span class="hover_text_blue">'+data.player_list[0][1]+'</span>');
-				second_col.append('<br/>');
+				first_col.append('<p></p>');
+				var col = first_col.find("p:eq(0)");
+				col.append('<span class="icon first"></span>');
+				col.append('<span class="hover_text_red" title="'+data.player_list[0][0] +'">'+mySubStr(data.player_list[0][0],8) +'</span>');
+				
+				second_col.append('<p></p>');
+				var col = second_col.find("p:eq(0)");
+				col.append('<span class="gift_icon"></span>');
+				col.append('<span class="hover_text_blue">'+data.player_list[0][1]+'</span>');
 			}
 			if (len > 1){
-				first_col.append('<span class="icon second"></span>');
-				first_col.append('<span class="hover_text_dblue" title="'+data.player_list[1][0] +'">'+mySubStr(data.player_list[1][0],8) +'</span><br/>');
-				second_col.append('<span class="gift_icon"></span>');
-				second_col.append('<span class="hover_text_blue">'+data.player_list[1][1]+'</span>');
-				second_col.append('<br/>');
+				first_col.append('<p></p>');
+				var col = first_col.find("p:eq(1)");
+				col.append('<span class="icon second"></span>');
+				col.append('<span class="hover_text_dblue" title="'+data.player_list[1][0] +'">'+mySubStr(data.player_list[1][0],8) +'</span>');
+				
+				second_col.append('<p></p>');
+				var col = second_col.find("p:eq(1)");
+				col.append('<span class="gift_icon"></span>');
+				col.append('<span class="hover_text_blue">'+data.player_list[1][1]+'</span>');
 			}
 			if (len > 2){
-				first_col.append('<span class="icon third"></span>');
-				first_col.append('<span class="hover_text_pink" title="'+data.player_list[2][0] +'">'+mySubStr(data.player_list[2][0],8) +'</span><br/>');
-				second_col.append('<span class="gift_icon"></span>');
-				second_col.append('<span class="hover_text_blue">'+data.player_list[2][1]+'</span>');
-				second_col.append('<br/>');
+				first_col.append('<p></p>');
+				var col = first_col.find("p:eq(2)");
+				col.append('<span class="icon third"></span>');
+				col.append('<span class="hover_text_pink" title="'+data.player_list[2][0] +'">'+mySubStr(data.player_list[2][0],8) +'</span>');
+				
+				second_col.append('<p></p>');
+				var col = second_col.find("p:eq(2)");
+				col.append('<span class="gift_icon"></span>');
+				col.append('<span class="hover_text_blue">'+data.player_list[2][1]+'</span>');
 			}
 			
 }

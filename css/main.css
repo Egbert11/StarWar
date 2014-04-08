@@ -401,15 +401,22 @@ b.week{
     color:#969696;
 }
 
-.hoverlayer p,.mhoverlayer p{
-	margin-top:30px;
+.wufensi{
 	margin-left:65px;
+	margin-top:30px;
 	color:#0099ff;
 }
 
+.hoverlayer p,.mhoverlayer p{
+	height:20px;
+	line-height:16px;
+	margin-top:0px;
+}
+
 .hoverlayer,.mhoverlayer{
-    width:250px;
-    height:135px;
+    width:210px;
+    height:104px;
+	font-size:10px;
     background-color:#ffffff;
     -webkit-border-radius:5px;
     border:2px solid #0099FF;
@@ -422,7 +429,7 @@ b.week{
 
 
 .sjrank_title{
-    margin-top:5px;
+    margin-top:2px;
 }
 
 .hover_text_red{
@@ -462,11 +469,11 @@ b.week{
     background:url(../image/sprite.png) no-repeat -118px -59px;
 }
 .second{
-    background:url(../image/sprite.png) no-repeat -145px -59px;
+    background:url(../image/sprite.png) no-repeat -144px -59px;
 }
 
 .third{
-    background:url(../image/sprite.png) no-repeat -170px -59px;
+    background:url(../image/sprite.png) no-repeat -169px -59px;
 }
 
 .adjusttext{
@@ -474,20 +481,20 @@ b.week{
 } 
 
 .first_col{
-	width:110px;
+	width:100px;
 	float:left;
 }
 
 .second_col{
 	float:left;
-	width:120px;
+	width:100px;
 
 }
 
 .hoverlayer .gift_icon,.mhoverlayer .gift_icon{
     width:15px;
     height:16px;
-    background:url(../image/sprite.png) no-repeat -194px -59px;
+    background:url(../image/sprite.png) no-repeat -193px -59px;
     display:inline-block;
     margin-left:40px;
 }
