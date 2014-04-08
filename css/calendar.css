@@ -11,7 +11,7 @@ dt#tittle{width:252px; font-size:20px; color: #1c79c2; text-align: center; }
 .last_week dd{border-bottom: 1px solid #AED0DF;}
 .day_detail{position: absolute; top: 0 ;left: 0; width: 200px; height:60px; background: #FFF; border-radius: 4px ; border: 2px solid #439FD8; text-align: center; display: none;}
 .award{display: none; position:absolute; width: 22px; height: 22px; top:0; right:0; background: url(../image/sprite.png) 0 -92px no-repeat; _background: url(../image/sprite_ie6.png) 0 -92px no-repeat;}
-.award-bg0{display: none; background: url(../image/sprite.png) -33px -85px no-repeat; _background: url(../image/sprite_ie6.png) -33px -85px no-repeat; width: 48px; height: 40px; position: absolute; left: 18px; top: 5px;}
+/*.award-bg0{display: none; background: url(../image/sprite.png) -33px -85px no-repeat; _background: url(../image/sprite_ie6.png) -33px -85px no-repeat; width: 48px; height: 40px; position: absolute; left: 18px; top: 5px;}*/
 .award-bg1,.award-bg2,.award-bg3{display: none; background: url(../image/sprite.png) -89px -89px no-repeat; _background: url(../image/sprite_ie6.png) -89px -89px no-repeat; width: 30px; height: 30px; position: absolute; left: 28px; top: 12px;}
 .award-bg2{background: url(../image/sprite.png) -160px -89px no-repeat; _background: url(../image/sprite_ie6.png) -160px -89px no-repeat;}
 .award-bg3{background: url(../image/sprite.png) -125px -89px no-repeat;width:33px; _background: url(../image/sprite_ie6.png) -125px -89px no-repeat;}

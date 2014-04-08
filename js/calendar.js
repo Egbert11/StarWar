@@ -84,6 +84,8 @@ var calendar = {
 					var ddArr = $("#calendar dd");
 					if (nmonth < 10 )nmonth = "0" + nmonth;
 					$.each(ddArr,function(index,value){
+						$(this).unbind('mouseover');
+						$(this).unbind('mouseout');
 						if($(this).html()== "")return;
 						var nday = parseInt($(this).html(),10);
 						if (nday < 10 ) nday = "0" + nday;
@@ -187,7 +189,9 @@ var calendar = {
 		this.createCalendar(form,new Date()); 
 		var preMon = form.getElementsByTagName('span')[0];
 		var nextMon = form.getElementsByTagName('span')[1];
-		 
+		preMon.innerHTML = "&lt";
+		nextMon.innverHTML = "&gt";
+		$(preMon).unbind('click'); 
 		preMon.onclick = function(){ //当点击左按钮时,减去一个月,并重绘TABLE
 			calendar.createCalendar(form,new Date(calendar.year,calendar.month-1,1)); 
 			calendar.addStarInCalendar(form);
@@ -196,6 +200,7 @@ var calendar = {
 			}
 			nextMon.innerHTML = "&gt;";
 		}
+		$(nextMon).unbind('click');
 		nextMon.onclick = function(){ //当点击右按钮时,加上一个月,并重绘TABLE
 			calendar.createCalendar(form,new Date(calendar.year,calendar.month+1,1)); 
 			calendar.addStarInCalendar(form);

@@ -186,6 +186,8 @@ function setUpStarTravelHover(data){
 	var cells = $("#tab3 .rank_cells .week_cell");
 	$.each(cells,function(index,value){
 		var cell = $(this);
+		var sindex = cell.attr('id').substr(9,1);
+		
 		cell.unbind('hover');
 		cell.hover(function(){
 			//alert("hover");
@@ -194,7 +196,7 @@ function setUpStarTravelHover(data){
 			var y = cell.position().top;
 			var fx = 0;
 			var fy = 0;
-			switch(index+1){
+			switch(sindex){
 				case 1:
 					fx = x + 100;
 					fy = y +50;
@@ -220,23 +222,22 @@ function setUpStarTravelHover(data){
 			}
 			hoverLayer.empty();
 			hoverLayer.append('<span class="sjrank_title">粉丝贡献榜</span><br/>');
-			var len = rs.week[index].player_list.length;
-			var d = rs.week[index];
+			var len = rs.week[sindex - 1].player_list.length;
+			var d = rs.week[sindex - 1];
 			initHoverLayerWithData(hoverLayer,d);
 		
 			hoverLayer.css({display:"block",top:fy+"px",left:fx+"px"});
-//			alert(fx+"px"+fy+"px");
 			hoverLayer.hover(function(){
 				$(this).css({display:"block"});
 			},function(){
 				$(this).css({display:"none"});
 			});
-//			alert("hover");
 		},function(){	
 			var hoverLayer = $("#tab3 .hoverlayer");
 			hoverLayer.css({display:"none"});
 		});
 	});
+	//月榜
 	var cell = $("#tab3 .sjmonth_rank .sjrank_content");
 	cell.hover(function(){
 		var hoverLayer = $("#tab3 .mhoverlayer");
@@ -262,6 +263,7 @@ function setUpStarTravelHover(data){
 function initHoverLayerWithData(hoverlayer,data){
 	var len = data.player_list.length;
 	if (len == 0){
+				console.log(data);
 				hoverlayer.append("<p>无粉丝贡献排行数据</p>");
 		return;
 	}else{
@@ -628,11 +630,15 @@ function fetchAndSetStarJourneyPageData(year, month, hostid, size){
         },
         success:function(data){
             if (data.code == 0){
+				console.log(data);
                 setTab3Data(data);
                 setUpStarTravelHover(data);
             }
         },
-        error:function(){}
+        error:function(){
+		//增加错误处理。
+		}
+
     });
 }
 
