@@ -140,7 +140,11 @@ function initTab(){
 				var calendars = document.getElementById('calendar'); 
 				calendar.init(calendars);
 		}
-    })
+    });
+
+    $(".more").click(function(){
+        $(".tabs li a:eq(2)").trigger("click");
+    });
 }
 
 function initTab3Banner(){
@@ -585,9 +589,9 @@ function handleBannerData(data){
         $(rcontentArr[3]).html("本周星星:暂未更新");
 
     if(rs.month_star_rank != 0)
-        $(rcontentArr[4]).html('本周综合:第<span class="sub_info_content">'+rs.month_star_rank+'</span>名');
+        $(rcontentArr[4]).html('本月综合:第<span class="sub_info_content">'+rs.month_star_rank+'</span>名');
     else
-        $(rcontentArr[4]).html("本周综合:暂未更新");
+        $(rcontentArr[4]).html("本月综合:暂未更新");
 
     $(".banner .star_journey").find(".journey_date").text(new Date().Format("yyyy-MM-dd"));
 
