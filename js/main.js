@@ -153,6 +153,8 @@ function initTab3Banner(){
 	var text = dd.getFullYear() + "年 "+ (dd.getMonth()+1)+"月";
 	var base_month = dd.getMonth()+1;
 	title.html(text);
+	lbtn.html("<");
+	rbtn.html(">");
 	lbtn.unbind('click');
 	rbtn.unbind('click');
 	lbtn.click(function(){
