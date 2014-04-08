@@ -375,7 +375,6 @@ function fetchStarRankList(path, dataType){
         },
         dataType: 'jsonp',
         jsonp:'callback',
-		timeout:200,
         success: function(data){
             if(data.code == 0){
 				//更新排行榜
@@ -417,7 +416,6 @@ function fetchFansContributionList(path, dataType){
         },
         dataType: 'jsonp',
 		jsonp:'callback',
-		timeout:200,
         success: function(data){
             if(data.code == 0){
                 //更新排行榜
@@ -558,7 +556,7 @@ function updateBanner(){
 //处理成功获取Banner的数据
 function handleBannerData(data){
     var rs = data.result;
-    $(".person_name").empty().attr('title',rs.nickname).text(mySubStr(rs.nickname,16));
+    $(".person_name").empty().attr('title',rs.nickname).text(mySubStr(rs.nickname,36));
     $(".fo_btn_text").empty().text(rs.month_level);
     $(".avatar").attr("src",rs.author_portrait);
     var pinfo = $(".pinfo_content");
