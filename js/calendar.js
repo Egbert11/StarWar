@@ -191,11 +191,12 @@ var calendar = {
 		var nextMon = form.getElementsByTagName('span')[1];
 		preMon.innerHTML = "&lt";
 		nextMon.innverHTML = "&gt";
+		if(base_month == 3 && calendar.year == "2014")preMon.innerHTML = "";
 		$(preMon).unbind('click'); 
 		preMon.onclick = function(){ //当点击左按钮时,减去一个月,并重绘TABLE
 			calendar.createCalendar(form,new Date(calendar.year,calendar.month-1,1)); 
 			calendar.addStarInCalendar(form);
-			if(base_month -2 >= calendar.month){
+			if(base_month -2 >= calendar.month || (calendar.month <= 3 && calendar.year == "2014")){
 				preMon.innerHTML = "";
 			}
 			nextMon.innerHTML = "&gt;";

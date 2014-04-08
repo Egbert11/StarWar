@@ -155,6 +155,7 @@ function initTab3Banner(){
 	title.html(text);
 	lbtn.html("<");
 	rbtn.html(">");
+	if(dd.getFullYear() == "2014" && dd.getMonth() == "3"){lbtn.html("");}
 	lbtn.unbind('click');
 	rbtn.unbind('click');
 	lbtn.click(function(){
@@ -163,7 +164,7 @@ function initTab3Banner(){
 		var text = dd.getFullYear() + "年 "+ (cmonth - 1)+"月";
 		title.html(text);
 		cmonth = cmonth -1;
-		if (base_month - 2 >= cmonth ){
+		if (base_month - 2 >= cmonth ||(dd.getFullYear()=="2014" && cmonth<=3)){
 			lbtn.html("");
 		}
 		fetchAndSetStarJourneyPageData(dd.getFullYear(),cmonth);
